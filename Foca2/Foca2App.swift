@@ -1,0 +1,19 @@
+//
+//  Foca2App.swift
+//  Foca2
+//
+//  Created by Adit G on 11/1/23.
+//
+
+import SwiftUI
+
+@main
+struct Foca2App: App {
+    @StateObject private var dataController = DataController()
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+        }
+    }
+}

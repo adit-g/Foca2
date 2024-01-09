@@ -1,0 +1,717 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CD7912B489FB4008036D4 /* CalendarViewController.swift */; };
+		A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CD7932B489FC5008036D4 /* EKWrapper.swift */; };
+		A90CD7A02B4A651F008036D4 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = A90CD79F2B4A651F008036D4 /* CalendarKit */; };
+		A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9598AB82B1E445A00C14541 /* TaskRow.swift */; };
+		A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */; };
+		A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97798712B4E06CD00ACA144 /* CalendarView.swift */; };
+		A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A821FE2AF355FE002E0F61 /* Foca2App.swift */; };
+		A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A822002AF355FE002E0F61 /* ContentView.swift */; };
+		A9A822032AF355FF002E0F61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A822022AF355FF002E0F61 /* Assets.xcassets */; };
+		A9A822062AF355FF002E0F61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A822052AF355FF002E0F61 /* Preview Assets.xcassets */; };
+		A9A822102AF355FF002E0F61 /* Foca2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8220F2AF355FF002E0F61 /* Foca2Tests.swift */; };
+		A9A8221A2AF355FF002E0F61 /* Foca2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A822192AF355FF002E0F61 /* Foca2UITests.swift */; };
+		A9A8221C2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */; };
+		A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */; };
+		A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8222B2AF358E2002E0F61 /* DataController.swift */; };
+		A9C651F22B17AADA000B3D2A /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
+		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
+		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
+		A9C652052B1A6D96000B3D2A /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C652032B1A6D96000B3D2A /* Task+CoreDataClass.swift */; };
+		A9C652062B1A6D96000B3D2A /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C652042B1A6D96000B3D2A /* Task+CoreDataProperties.swift */; };
+		A9C652082B1A8839000B3D2A /* TaskEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C652072B1A8839000B3D2A /* TaskEditorSheet.swift */; };
+		A9FA71242AF4886200B5E1EC /* SubTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71202AF4886200B5E1EC /* SubTask+CoreDataClass.swift */; };
+		A9FA71252AF4886200B5E1EC /* SubTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71212AF4886200B5E1EC /* SubTask+CoreDataProperties.swift */; };
+		A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71282AF4A31800B5E1EC /* Schedule.swift */; };
+		A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */; };
+		A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9A8220C2AF355FF002E0F61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9A821F32AF355FE002E0F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9A821FA2AF355FE002E0F61;
+			remoteInfo = Foca2;
+		};
+		A9A822162AF355FF002E0F61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9A821F32AF355FE002E0F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9A821FA2AF355FE002E0F61;
+			remoteInfo = Foca2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A90CD7912B489FB4008036D4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ../../../CalendarApp/Calendar/CalendarViewController.swift; sourceTree = "<group>"; };
+		A90CD7932B489FC5008036D4 /* EKWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EKWrapper.swift; path = ../../../CalendarApp/Calendar/EKWrapper.swift; sourceTree = "<group>"; };
+		A90CD79D2B4A64C8008036D4 /* CalendarKit */ = {isa = PBXFileReference; lastKnownFileType = text; path = CalendarKit; sourceTree = SOURCE_ROOT; };
+		A9598AB82B1E445A00C14541 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
+		A97798712B4E06CD00ACA144 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		A9A821FB2AF355FE002E0F61 /* Foca2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foca2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9A821FE2AF355FE002E0F61 /* Foca2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2App.swift; sourceTree = "<group>"; };
+		A9A822002AF355FE002E0F61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A9A822022AF355FF002E0F61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9A822052AF355FF002E0F61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A9A8220B2AF355FF002E0F61 /* Foca2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Foca2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9A8220F2AF355FF002E0F61 /* Foca2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2Tests.swift; sourceTree = "<group>"; };
+		A9A822152AF355FF002E0F61 /* Foca2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Foca2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9A822192AF355FF002E0F61 /* Foca2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2UITests.swift; sourceTree = "<group>"; };
+		A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A9A822292AF356E9002E0F61 /* Foca2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foca2.xcdatamodel; sourceTree = "<group>"; };
+		A9A8222B2AF358E2002E0F61 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		A9C651F12B17AADA000B3D2A /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
+		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		A9C652032B1A6D96000B3D2A /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A9C652042B1A6D96000B3D2A /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A9C652072B1A8839000B3D2A /* TaskEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorSheet.swift; sourceTree = "<group>"; };
+		A9FA71202AF4886200B5E1EC /* SubTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A9FA71212AF4886200B5E1EC /* SubTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A9FA71282AF4A31800B5E1EC /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
+		A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9A821F82AF355FE002E0F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90CD7A02B4A651F008036D4 /* CalendarKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A822082AF355FF002E0F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A822122AF355FF002E0F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A90CD79E2B4A651F008036D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9598ABA2B210D2E00C14541 /* ScheduleViews */ = {
+			isa = PBXGroup;
+			children = (
+				A9FA71282AF4A31800B5E1EC /* Schedule.swift */,
+				A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */,
+				A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */,
+				A9C651FD2B19A308000B3D2A /* TaskModel.swift */,
+				A9C651F52B17ACF6000B3D2A /* TaskTile.swift */,
+				A9598AB82B1E445A00C14541 /* TaskRow.swift */,
+				A97798712B4E06CD00ACA144 /* CalendarView.swift */,
+				A9C652072B1A8839000B3D2A /* TaskEditorSheet.swift */,
+				A90CD7912B489FB4008036D4 /* CalendarViewController.swift */,
+				A90CD7932B489FC5008036D4 /* EKWrapper.swift */,
+				A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */,
+			);
+			path = ScheduleViews;
+			sourceTree = "<group>";
+		};
+		A9598ABB2B210D6000C14541 /* CoreDataDefs */ = {
+			isa = PBXGroup;
+			children = (
+				A9C652032B1A6D96000B3D2A /* Task+CoreDataClass.swift */,
+				A9C652042B1A6D96000B3D2A /* Task+CoreDataProperties.swift */,
+				A9FA71202AF4886200B5E1EC /* SubTask+CoreDataClass.swift */,
+				A9FA71212AF4886200B5E1EC /* SubTask+CoreDataProperties.swift */,
+			);
+			path = CoreDataDefs;
+			sourceTree = "<group>";
+		};
+		A9A821F22AF355FE002E0F61 = {
+			isa = PBXGroup;
+			children = (
+				A9A821FD2AF355FE002E0F61 /* Foca2 */,
+				A9A8220E2AF355FF002E0F61 /* Foca2Tests */,
+				A9A822182AF355FF002E0F61 /* Foca2UITests */,
+				A9A821FC2AF355FE002E0F61 /* Products */,
+				A90CD79E2B4A651F008036D4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A9A821FC2AF355FE002E0F61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9A821FB2AF355FE002E0F61 /* Foca2.app */,
+				A9A8220B2AF355FF002E0F61 /* Foca2Tests.xctest */,
+				A9A822152AF355FF002E0F61 /* Foca2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9A821FD2AF355FE002E0F61 /* Foca2 */ = {
+			isa = PBXGroup;
+			children = (
+				A9598ABB2B210D6000C14541 /* CoreDataDefs */,
+				A9A821FE2AF355FE002E0F61 /* Foca2App.swift */,
+				A9A822002AF355FE002E0F61 /* ContentView.swift */,
+				A9C651F12B17AADA000B3D2A /* Random.swift */,
+				A9598ABA2B210D2E00C14541 /* ScheduleViews */,
+				A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */,
+				A90CD79D2B4A64C8008036D4 /* CalendarKit */,
+				A9A8222B2AF358E2002E0F61 /* DataController.swift */,
+				A9A822022AF355FF002E0F61 /* Assets.xcassets */,
+				A9A822042AF355FF002E0F61 /* Preview Content */,
+			);
+			path = Foca2;
+			sourceTree = "<group>";
+		};
+		A9A822042AF355FF002E0F61 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A9A822052AF355FF002E0F61 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9A8220E2AF355FF002E0F61 /* Foca2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A9A8220F2AF355FF002E0F61 /* Foca2Tests.swift */,
+			);
+			path = Foca2Tests;
+			sourceTree = "<group>";
+		};
+		A9A822182AF355FF002E0F61 /* Foca2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				A9A822192AF355FF002E0F61 /* Foca2UITests.swift */,
+				A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */,
+			);
+			path = Foca2UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9A821FA2AF355FE002E0F61 /* Foca2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9A8221F2AF355FF002E0F61 /* Build configuration list for PBXNativeTarget "Foca2" */;
+			buildPhases = (
+				A9A821F72AF355FE002E0F61 /* Sources */,
+				A9A821F82AF355FE002E0F61 /* Frameworks */,
+				A9A821F92AF355FE002E0F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Foca2;
+			packageProductDependencies = (
+				A90CD79F2B4A651F008036D4 /* CalendarKit */,
+			);
+			productName = Foca2;
+			productReference = A9A821FB2AF355FE002E0F61 /* Foca2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A9A8220A2AF355FF002E0F61 /* Foca2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9A822222AF355FF002E0F61 /* Build configuration list for PBXNativeTarget "Foca2Tests" */;
+			buildPhases = (
+				A9A822072AF355FF002E0F61 /* Sources */,
+				A9A822082AF355FF002E0F61 /* Frameworks */,
+				A9A822092AF355FF002E0F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9A8220D2AF355FF002E0F61 /* PBXTargetDependency */,
+			);
+			name = Foca2Tests;
+			productName = Foca2Tests;
+			productReference = A9A8220B2AF355FF002E0F61 /* Foca2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A9A822142AF355FF002E0F61 /* Foca2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9A822252AF355FF002E0F61 /* Build configuration list for PBXNativeTarget "Foca2UITests" */;
+			buildPhases = (
+				A9A822112AF355FF002E0F61 /* Sources */,
+				A9A822122AF355FF002E0F61 /* Frameworks */,
+				A9A822132AF355FF002E0F61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9A822172AF355FF002E0F61 /* PBXTargetDependency */,
+			);
+			name = Foca2UITests;
+			productName = Foca2UITests;
+			productReference = A9A822152AF355FF002E0F61 /* Foca2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9A821F32AF355FE002E0F61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					A9A821FA2AF355FE002E0F61 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					A9A8220A2AF355FF002E0F61 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = A9A821FA2AF355FE002E0F61;
+					};
+					A9A822142AF355FF002E0F61 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = A9A821FA2AF355FE002E0F61;
+					};
+				};
+			};
+			buildConfigurationList = A9A821F62AF355FE002E0F61 /* Build configuration list for PBXProject "Foca2" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A9A821F22AF355FE002E0F61;
+			packageReferences = (
+			);
+			productRefGroup = A9A821FC2AF355FE002E0F61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9A821FA2AF355FE002E0F61 /* Foca2 */,
+				A9A8220A2AF355FF002E0F61 /* Foca2Tests */,
+				A9A822142AF355FF002E0F61 /* Foca2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9A821F92AF355FE002E0F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9A822062AF355FF002E0F61 /* Preview Assets.xcassets in Resources */,
+				A9A822032AF355FF002E0F61 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A822092AF355FF002E0F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A822132AF355FF002E0F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9A821F72AF355FE002E0F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */,
+				A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */,
+				A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */,
+				A9C652052B1A6D96000B3D2A /* Task+CoreDataClass.swift in Sources */,
+				A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */,
+				A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */,
+				A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */,
+				A9C652062B1A6D96000B3D2A /* Task+CoreDataProperties.swift in Sources */,
+				A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */,
+				A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */,
+				A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */,
+				A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */,
+				A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */,
+				A9FA71252AF4886200B5E1EC /* SubTask+CoreDataProperties.swift in Sources */,
+				A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */,
+				A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */,
+				A9C651F22B17AADA000B3D2A /* Random.swift in Sources */,
+				A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */,
+				A9C652082B1A8839000B3D2A /* TaskEditorSheet.swift in Sources */,
+				A9FA71242AF4886200B5E1EC /* SubTask+CoreDataClass.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A822072AF355FF002E0F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9A822102AF355FF002E0F61 /* Foca2Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9A822112AF355FF002E0F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9A8221C2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift in Sources */,
+				A9A8221A2AF355FF002E0F61 /* Foca2UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9A8220D2AF355FF002E0F61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9A821FA2AF355FE002E0F61 /* Foca2 */;
+			targetProxy = A9A8220C2AF355FF002E0F61 /* PBXContainerItemProxy */;
+		};
+		A9A822172AF355FF002E0F61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9A821FA2AF355FE002E0F61 /* Foca2 */;
+			targetProxy = A9A822162AF355FF002E0F61 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A9A8221D2AF355FF002E0F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A9A8221E2AF355FF002E0F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9A822202AF355FF002E0F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Foca2/Preview Content\"";
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "This app needs access to calendar data in order to display it on your screen";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9A822212AF355FF002E0F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Foca2/Preview Content\"";
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "This app needs access to calendar data in order to display it on your screen";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A9A822232AF355FF002E0F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foca2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Foca2";
+			};
+			name = Debug;
+		};
+		A9A822242AF355FF002E0F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foca2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Foca2";
+			};
+			name = Release;
+		};
+		A9A822262AF355FF002E0F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Foca2;
+			};
+			name = Debug;
+		};
+		A9A822272AF355FF002E0F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Foca2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9A821F62AF355FE002E0F61 /* Build configuration list for PBXProject "Foca2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9A8221D2AF355FF002E0F61 /* Debug */,
+				A9A8221E2AF355FF002E0F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9A8221F2AF355FF002E0F61 /* Build configuration list for PBXNativeTarget "Foca2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9A822202AF355FF002E0F61 /* Debug */,
+				A9A822212AF355FF002E0F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9A822222AF355FF002E0F61 /* Build configuration list for PBXNativeTarget "Foca2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9A822232AF355FF002E0F61 /* Debug */,
+				A9A822242AF355FF002E0F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9A822252AF355FF002E0F61 /* Build configuration list for PBXNativeTarget "Foca2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9A822262AF355FF002E0F61 /* Debug */,
+				A9A822272AF355FF002E0F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A90CD79F2B4A651F008036D4 /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CalendarKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9A822292AF356E9002E0F61 /* Foca2.xcdatamodel */,
+			);
+			currentVersion = A9A822292AF356E9002E0F61 /* Foca2.xcdatamodel */;
+			path = Foca2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A9A821F32AF355FE002E0F61 /* Project object */;
+}
