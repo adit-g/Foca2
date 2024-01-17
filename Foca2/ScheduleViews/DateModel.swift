@@ -61,4 +61,22 @@ class DateModel: ObservableObject {
         formatter.dateFormat = format
         return formatter.string(from: date)
     }
+    
+    static func getDescriptiveDateStr(date: Date, format: String) -> String {
+        let today = Date()
+        
+        if Calendar.current.isDate(date, equalTo: today, toGranularity: .day) {
+            return "Today"
+        } else if Calendar.current.isDate(date,
+            equalTo: Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today,
+            toGranularity: .day) {
+            return "Yesterday"
+        } else if Calendar.current.isDate(date,
+            equalTo: Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today,
+            toGranularity: .day) {
+            return "Tomorrow"
+        } else {
+            return getDateStr(date: date, format: format)
+        }
+    }
 }

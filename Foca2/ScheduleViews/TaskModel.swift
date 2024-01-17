@@ -8,71 +8,61 @@
 import SwiftUI
 import CoreData
 
+enum TaskModelError: Error {
+    case blankTitle
+    case nilValue
+}
+
 class TaskModel: ObservableObject {
-    let moc: NSManagedObjectContext
+    private var task: Task
+    private var moc: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext) {
-        self.moc = context
+    @Published var hasDueDate: Bool
+    
+    init(task: Task, moc: NSManagedObjectContext) {
+        self.task = task
+        self.moc = moc
+        self._hasDueDate = Published(wrappedValue: task.doDate != nil)
     }
     
-    func deleteTask(_ task: Task) {
-        moc.delete(task)
+    public func getDate() throws -> Date {
+        if task.doDate == nil {
+            throw TaskModelError.nilValue
+        }
+        return task.doDate!
     }
     
-    func updateTask(title: String, notes: String, isScheduled: Bool,
-                 isTimed: Bool, isDurated: Bool, date: Date, startTime: Date,
-                 endTime: Date, duration: Int, task: Task?) throws {
-        let wrappedTask: Task = task ?? Task(context: moc)
-        
-        if title.isEmpty {
-            throw TaskModelError.blankTitle
-        }
-        if isTimed && !isScheduled {
-            throw TaskModelError.invalidTimes
-        }
-        
-        wrappedTask.title = title
-        wrappedTask.completed = false
-        
-        if task == nil { wrappedTask.createdDate = Date() }
-        if !notes.isEmpty { wrappedTask.notes = notes }
-        if isScheduled { wrappedTask.doDate = date }
-        if isTimed {
-            let startComponents = Calendar.current.dateComponents([.hour, .minute], from: startTime)
-            let endComponents = Calendar.current.dateComponents([.hour, .minute], from: endTime)
-            guard let correctStartTime = Calendar.current.date(
-                bySettingHour: startComponents.hour!,
-                minute: startComponents.minute!,
-                second: 0, of: date
-            ) else {
-                throw TaskModelError.invalidTimes
-            }
-            
-            let correctEndTime: Date
-            if endComponents.hour! < startComponents.hour! || (endComponents.hour! == startComponents.hour! && endComponents.minute! < startComponents.minute!) {
-                var comps = DateComponents()
-                comps.day = 1
-                let nextDay = Calendar.current.date(byAdding: comps, to: date)!
-                let nextDayEndTime = Calendar.current.date(bySettingHour: endComponents.hour!, minute: endComponents.minute!, second: 0, of: nextDay)
-                guard nextDayEndTime != nil else {
-                    throw TaskModelError.invalidTimes
-                }
-                correctEndTime = nextDayEndTime!
-            } else {
-                let todayEndTime = Calendar.current.date(bySettingHour: endComponents.hour!, minute: endComponents.minute!, second: 0, of: date)
-                guard todayEndTime != nil else {
-                    throw TaskModelError.invalidTimes
-                }
-                correctEndTime = todayEndTime!
-            }
-            
-            wrappedTask.startTime = correctStartTime
-            wrappedTask.endTime = correctEndTime
-        }
-        //TODO: make duration tied up with start and end time
-        if isDurated { wrappedTask.duration = Int16(duration) }
-        else { wrappedTask.duration = -1 }
-        
-        try? moc.save()
+    public func setDate(_ date: Date) {
+        task.doDate = date
+        self.hasDueDate = true
     }
+    
+    public func removeDueDate() {
+        self.hasDueDate = false
+        task.doDate = nil
+    }
+    
+//    func deleteTask(_ task: Task) {
+//        task.managedObjectContext?.delete(task)
+//    }
+//    
+//    func addTask(title: String, notes: String, isScheduled: Bool, date: Date) throws {
+//        let newTask = Task(context: moc)
+//        newTask.createdDate = Date()
+//        try updateTask(task: newTask, title: title, notes: notes, isScheduled: isScheduled, date: date)
+//    }
+//    
+//    func updateTask(task: Task, title: String, notes: String, isScheduled: Bool, date: Date) throws {
+//        if title.isEmpty {
+//            throw TaskModelError.blankTitle
+//        }
+//        
+//        task.title = title
+//        task.completed = false
+//        
+//        if !notes.isEmpty { task.notes = notes }
+//        if isScheduled { task.doDate = date }
+//
+//        try? moc.save()
+//    }
 }

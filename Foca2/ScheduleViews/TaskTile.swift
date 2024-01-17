@@ -26,7 +26,7 @@ struct TaskTile: View {
         self.itemsRequest = FetchRequest(
             entity: Task.entity(),
             sortDescriptors: [NSSortDescriptor(key: "createdDate", ascending: true)],
-            predicate: NSPredicate(format: "doDate >= %@ AND doDate <= %@ AND startTime == nil AND endTime == nil", startDate as CVarArg, endDate as CVarArg)
+            predicate: NSPredicate(format: "doDate >= %@ AND doDate <= %@", startDate as CVarArg, endDate as CVarArg)
         )
     }
     
@@ -43,9 +43,11 @@ struct TaskTile: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.horizontal)
         .sheet(isPresented: $taskCreaterOpen) {
-            TaskEditorSheet(task: nil, context: moc)
+            TaskEditor(context: moc)
         }
-        .sheet(item: $taskToEdit) { TaskEditorSheet(task: $0, context: moc) }
+        .sheet(item: $taskToEdit) {
+            TaskEditor(task: $0, context: moc)
+        }
     }
     
     var TopBar: some View {
@@ -56,7 +58,7 @@ struct TaskTile: View {
                 taskCreaterOpen = true
             }
         }
-        .foregroundColor(Color("darkgray"))
+        .foregroundStyle(Color(.darkgray))
         .padding(.horizontal)
         .padding(.vertical, 10)
         .background(Rectangle().fill(Color("blue")))

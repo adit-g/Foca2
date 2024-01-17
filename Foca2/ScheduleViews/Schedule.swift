@@ -23,8 +23,6 @@ struct Schedule: View {
     }
 }
 
-struct Schedule_Previews: PreviewProvider {
-    static var previews: some View {
-        Schedule()
-    }
+#Preview {
+    Schedule()
 }

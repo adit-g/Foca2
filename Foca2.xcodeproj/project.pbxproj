@@ -10,6 +10,11 @@
 		A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CD7912B489FB4008036D4 /* CalendarViewController.swift */; };
 		A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CD7932B489FC5008036D4 /* EKWrapper.swift */; };
 		A90CD7A02B4A651F008036D4 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = A90CD79F2B4A651F008036D4 /* CalendarKit */; };
+		A92F831C2B4EE61F00AFFFBD /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */; };
+		A92F83232B50D33100AFFFBD /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83212B50D33100AFFFBD /* Task+CoreDataClass.swift */; };
+		A92F83242B50D33100AFFFBD /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83222B50D33100AFFFBD /* Task+CoreDataProperties.swift */; };
+		A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83252B521A8700AFFFBD /* DueDateSelection.swift */; };
+		A92F83282B54572300AFFFBD /* ChooseDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83272B54572300AFFFBD /* ChooseDateView.swift */; };
 		A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9598AB82B1E445A00C14541 /* TaskRow.swift */; };
 		A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */; };
 		A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97798712B4E06CD00ACA144 /* CalendarView.swift */; };
@@ -25,11 +30,6 @@
 		A9C651F22B17AADA000B3D2A /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
 		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
 		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
-		A9C652052B1A6D96000B3D2A /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C652032B1A6D96000B3D2A /* Task+CoreDataClass.swift */; };
-		A9C652062B1A6D96000B3D2A /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C652042B1A6D96000B3D2A /* Task+CoreDataProperties.swift */; };
-		A9C652082B1A8839000B3D2A /* TaskEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C652072B1A8839000B3D2A /* TaskEditorSheet.swift */; };
-		A9FA71242AF4886200B5E1EC /* SubTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71202AF4886200B5E1EC /* SubTask+CoreDataClass.swift */; };
-		A9FA71252AF4886200B5E1EC /* SubTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71212AF4886200B5E1EC /* SubTask+CoreDataProperties.swift */; };
 		A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71282AF4A31800B5E1EC /* Schedule.swift */; };
 		A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */; };
 		A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */; };
@@ -56,6 +56,11 @@
 		A90CD7912B489FB4008036D4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ../../../CalendarApp/Calendar/CalendarViewController.swift; sourceTree = "<group>"; };
 		A90CD7932B489FC5008036D4 /* EKWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EKWrapper.swift; path = ../../../CalendarApp/Calendar/EKWrapper.swift; sourceTree = "<group>"; };
 		A90CD79D2B4A64C8008036D4 /* CalendarKit */ = {isa = PBXFileReference; lastKnownFileType = text; path = CalendarKit; sourceTree = SOURCE_ROOT; };
+		A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditor.swift; sourceTree = "<group>"; };
+		A92F83212B50D33100AFFFBD /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A92F83222B50D33100AFFFBD /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A92F83252B521A8700AFFFBD /* DueDateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateSelection.swift; sourceTree = "<group>"; };
+		A92F83272B54572300AFFFBD /* ChooseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateView.swift; sourceTree = "<group>"; };
 		A9598AB82B1E445A00C14541 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		A97798712B4E06CD00ACA144 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -74,11 +79,6 @@
 		A9C651F12B17AADA000B3D2A /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
 		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
-		A9C652032B1A6D96000B3D2A /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A9C652042B1A6D96000B3D2A /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A9C652072B1A8839000B3D2A /* TaskEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorSheet.swift; sourceTree = "<group>"; };
-		A9FA71202AF4886200B5E1EC /* SubTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubTask+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A9FA71212AF4886200B5E1EC /* SubTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A9FA71282AF4A31800B5E1EC /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -125,9 +125,11 @@
 				A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */,
 				A9C651FD2B19A308000B3D2A /* TaskModel.swift */,
 				A9C651F52B17ACF6000B3D2A /* TaskTile.swift */,
+				A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */,
+				A92F83252B521A8700AFFFBD /* DueDateSelection.swift */,
+				A92F83272B54572300AFFFBD /* ChooseDateView.swift */,
 				A9598AB82B1E445A00C14541 /* TaskRow.swift */,
 				A97798712B4E06CD00ACA144 /* CalendarView.swift */,
-				A9C652072B1A8839000B3D2A /* TaskEditorSheet.swift */,
 				A90CD7912B489FB4008036D4 /* CalendarViewController.swift */,
 				A90CD7932B489FC5008036D4 /* EKWrapper.swift */,
 				A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */,
@@ -138,10 +140,8 @@
 		A9598ABB2B210D6000C14541 /* CoreDataDefs */ = {
 			isa = PBXGroup;
 			children = (
-				A9C652032B1A6D96000B3D2A /* Task+CoreDataClass.swift */,
-				A9C652042B1A6D96000B3D2A /* Task+CoreDataProperties.swift */,
-				A9FA71202AF4886200B5E1EC /* SubTask+CoreDataClass.swift */,
-				A9FA71212AF4886200B5E1EC /* SubTask+CoreDataProperties.swift */,
+				A92F83212B50D33100AFFFBD /* Task+CoreDataClass.swift */,
+				A92F83222B50D33100AFFFBD /* Task+CoreDataProperties.swift */,
 			);
 			path = CoreDataDefs;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					A9A821FA2AF355FE002E0F61 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -344,26 +344,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A92F83242B50D33100AFFFBD /* Task+CoreDataProperties.swift in Sources */,
+				A92F83282B54572300AFFFBD /* ChooseDateView.swift in Sources */,
 				A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */,
 				A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */,
 				A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */,
-				A9C652052B1A6D96000B3D2A /* Task+CoreDataClass.swift in Sources */,
 				A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */,
 				A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */,
 				A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */,
-				A9C652062B1A6D96000B3D2A /* Task+CoreDataProperties.swift in Sources */,
+				A92F831C2B4EE61F00AFFFBD /* TaskEditor.swift in Sources */,
+				A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */,
 				A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */,
 				A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */,
 				A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */,
+				A92F83232B50D33100AFFFBD /* Task+CoreDataClass.swift in Sources */,
 				A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */,
 				A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */,
-				A9FA71252AF4886200B5E1EC /* SubTask+CoreDataProperties.swift in Sources */,
 				A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */,
 				A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */,
 				A9C651F22B17AADA000B3D2A /* Random.swift in Sources */,
 				A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */,
-				A9C652082B1A8839000B3D2A /* TaskEditorSheet.swift in Sources */,
-				A9FA71242AF4886200B5E1EC /* SubTask+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +436,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -496,6 +497,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -531,7 +533,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,7 +564,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

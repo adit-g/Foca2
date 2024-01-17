@@ -21,10 +21,6 @@ struct ViewOffsetKey: PreferenceKey {
 }
 
 extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-    }
-    
     func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
         background(
             GeometryReader { geometryProxy in
@@ -34,6 +30,18 @@ extension View {
         )
         .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
     }
+    
+    func onWillAppear(_ perform: @escaping () -> Void) -> some View {
+        modifier(WillAppearModifier(callback: perform))
+    }
+}
+
+struct WillAppearModifier: ViewModifier {
+    let callback: () -> Void
+
+    func body(content: Content) -> some View {
+        content.background(UIViewLifeCycleHandler(onWillAppear: callback))
+    }
 }
 
 extension UIScreen {
@@ -41,18 +49,39 @@ extension UIScreen {
     static let width = UIScreen.main.bounds.width
 }
 
-enum TaskModelError: Error {
-    case blankTitle
-    case invalidTimes
-}
+struct UIViewLifeCycleHandler: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UIViewController
 
-struct RoundedCorner: Shape {
+    var onWillAppear: () -> Void = { }
 
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
+    func makeUIViewController(context: UIViewControllerRepresentableContext<Self>) -> UIViewControllerType {
+        context.coordinator
+    }
 
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
+    func updateUIViewController(
+        _: UIViewControllerType,
+        context _: UIViewControllerRepresentableContext<Self>
+    ) { }
+
+    func makeCoordinator() -> Self.Coordinator {
+        Coordinator(onWillAppear: onWillAppear)
+    }
+
+    class Coordinator: UIViewControllerType {
+        let onWillAppear: () -> Void
+
+        init(onWillAppear: @escaping () -> Void) {
+            self.onWillAppear = onWillAppear
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        required init?(coder _: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            onWillAppear()
+        }
     }
 }

@@ -29,8 +29,6 @@ class DataController: ObservableObject {
 
         let task = Task(context: controller.container.viewContext)
         task.title = "task 1"
-        task.startTime = Date()
-        task.endTime = Date() + 3600
         task.doDate = Date()
         try? controller.container.viewContext.save()
 

@@ -11,7 +11,7 @@ import CoreData
 struct TaskEditorSheet: View {
     @Environment(\.dismiss) var dismiss
     
-    @ObservedObject private var taskModel: TaskModel
+    let taskModel: TaskModel
     let selectedTask: Task?
     @State private var showAlert: Bool
     @State private var alertTitle: String
@@ -91,8 +91,8 @@ struct TaskEditorSheet: View {
         Section {
             Toggle("Date", isOn: $scheduled)
                 .fontWeight(scheduled ? .semibold: .regular)
-                .onChange(of: scheduled) {
-                    if !$0 { timed = false }
+                .onChange(of: scheduled) { _, newValue in
+                    if !newValue { timed = false }
                 }
             
             if scheduled {
@@ -103,8 +103,8 @@ struct TaskEditorSheet: View {
             
             Toggle("Time", isOn: $timed)
                 .fontWeight(timed ? .semibold : .regular)
-                .onChange(of: timed) {
-                    if $0 { scheduled = true }
+                .onChange(of: timed) { _, newValue in
+                    if newValue { scheduled = true }
                 }
             
             if timed {
@@ -161,17 +161,30 @@ struct TaskEditorSheet: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(selectedTask == nil ? "Add" : "Update") {
                 do {
-                    try taskModel.updateTask(
-                        title: title,
-                        notes: notes,
-                        isScheduled: scheduled,
-                        isTimed: timed,
-                        isDurated: durated,
-                        date: date,
-                        startTime: startTime,
-                        endTime: endTime,
-                        duration: 60 * hourSelection + 5 * minuteSelection,
-                        task: selectedTask)
+                    if selectedTask == nil {
+                        try taskModel.addTask(
+                            title: title,
+                            notes: notes,
+                            isScheduled: scheduled,
+                            isTimed: timed,
+                            isDurated: durated,
+                            date: date,
+                            startTime: startTime,
+                            endTime: endTime,
+                            duration: 60 * hourSelection + 5 * minuteSelection)
+                    } else {
+                        try taskModel.updateTask(
+                            task: selectedTask!,
+                            title: title,
+                            notes: notes,
+                            isScheduled: scheduled,
+                            isTimed: timed,
+                            isDurated: durated,
+                            date: date,
+                            startTime: startTime,
+                            endTime: endTime,
+                            duration: 60 * hourSelection + 5 * minuteSelection)
+                    }
                 } catch TaskModelError.blankTitle {
                     showAlert = true
                     alertTitle = "The title must not be blank"

@@ -21,28 +21,10 @@ struct DateSelector: View {
     var datesWidth: CGFloat {
         UIScreen.width - dateSize.width - lineSize.width + 5
     }
-    
-    var headerDateStr: String {
-        let today = Date()
-        
-        if Calendar.current.isDate(date, equalTo: today, toGranularity: .day) {
-            return "Today"
-        } else if Calendar.current.isDate(date,
-            equalTo: Calendar.current.date(byAdding: .day, value: -1, to: today) ?? today,
-            toGranularity: .day) {
-            return "Yesterday"
-        } else if Calendar.current.isDate(date,
-            equalTo: Calendar.current.date(byAdding: .day, value: 1, to: today) ?? today,
-            toGranularity: .day) {
-            return "Tomorrow"
-        } else {
-            return DateModel.getDateStr(date: date, format: "MMM d")
-        }
-    }
 
     var body: some View {
         VStack {
-            Text(headerDateStr)
+            Text(DateModel.getDescriptiveDateStr(date: date, format: "MMM d"))
                 .fontWeight(.semibold)
                 .font(.title)
             
@@ -154,8 +136,6 @@ struct DateSelector: View {
     
 }
 
-struct DateSelector_Previews: PreviewProvider {
-    static var previews: some View {
-        DateSelector(date: .constant(Date()), bgColor: "blue")
-    }
+#Preview {
+    DateSelector(date: .constant(Date()), bgColor: "blue")
 }
