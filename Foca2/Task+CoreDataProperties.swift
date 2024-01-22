@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  Foca2
 //
-//  Created by Adit G on 1/11/24.
+//  Created by Adit G on 1/17/24.
 //
 //
 
@@ -21,10 +21,16 @@ extension Task {
     @NSManaged public var doDate: Date?
     @NSManaged public var notes: String?
     @NSManaged public var title: String?
-    
-    public var wrappedTitle: String { title ?? "" }
-    public var wrappedNotes: String { notes ?? "" }
+    @NSManaged public var reminderDate: Date?
 
+    public var wrappedTitle: String {
+        title ?? ""
+    }
+    
+    public var wrappedNotes: String {
+        notes ?? ""
+    }
+    
 }
 
 extension Task : Identifiable {

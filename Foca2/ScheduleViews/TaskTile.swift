@@ -26,7 +26,9 @@ struct TaskTile: View {
         self.itemsRequest = FetchRequest(
             entity: Task.entity(),
             sortDescriptors: [NSSortDescriptor(key: "createdDate", ascending: true)],
-            predicate: NSPredicate(format: "doDate >= %@ AND doDate <= %@", startDate as CVarArg, endDate as CVarArg)
+            predicate: NSPredicate(
+                format: "doDate BETWEEN {%@, %@} AND title != %@ AND title != nil",
+                startDate as CVarArg, endDate as CVarArg, "")
         )
     }
     

@@ -11,14 +11,15 @@ struct ChooseDateView: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var sheetSize: CGFloat
-    @ObservedObject var taskModel: TaskModel
-    let previousDismissAction: DismissAction
+    let setAction: (Date) -> Void
     let storedSheetLength: CGFloat
+    let components: DatePickerComponents
+    
     @State private var chosenDate = Date()
     
     var body: some View {
         Form {
-            DatePicker("Pick a Date", selection: $chosenDate, displayedComponents: .date)
+            DatePicker("Pick a Date", selection: $chosenDate, displayedComponents: components)
                 .datePickerStyle(.graphical)
         }
         .scrollContentBackground(.hidden)
@@ -47,8 +48,7 @@ struct ChooseDateView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Set") {
-                    taskModel.setDate(chosenDate)
-                    previousDismissAction()
+                    setAction(chosenDate)
                 }
             }
         }

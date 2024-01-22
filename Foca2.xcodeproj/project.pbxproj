@@ -11,8 +11,6 @@
 		A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90CD7932B489FC5008036D4 /* EKWrapper.swift */; };
 		A90CD7A02B4A651F008036D4 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = A90CD79F2B4A651F008036D4 /* CalendarKit */; };
 		A92F831C2B4EE61F00AFFFBD /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */; };
-		A92F83232B50D33100AFFFBD /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83212B50D33100AFFFBD /* Task+CoreDataClass.swift */; };
-		A92F83242B50D33100AFFFBD /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83222B50D33100AFFFBD /* Task+CoreDataProperties.swift */; };
 		A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83252B521A8700AFFFBD /* DueDateSelection.swift */; };
 		A92F83282B54572300AFFFBD /* ChooseDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83272B54572300AFFFBD /* ChooseDateView.swift */; };
 		A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9598AB82B1E445A00C14541 /* TaskRow.swift */; };
@@ -27,6 +25,10 @@
 		A9A8221C2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */; };
 		A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */; };
 		A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8222B2AF358E2002E0F61 /* DataController.swift */; };
+		A9BFCEB32B58747E00F55EE3 /* ReminderDateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */; };
+		A9BFCEB62B587D7C00F55EE3 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB42B587D7C00F55EE3 /* Task+CoreDataClass.swift */; };
+		A9BFCEB72B587D7C00F55EE3 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB52B587D7C00F55EE3 /* Task+CoreDataProperties.swift */; };
+		A9BFCEBA2B59BC3000F55EE3 /* NotesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB92B59BC3000F55EE3 /* NotesEditor.swift */; };
 		A9C651F22B17AADA000B3D2A /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
 		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
 		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
@@ -57,8 +59,6 @@
 		A90CD7932B489FC5008036D4 /* EKWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EKWrapper.swift; path = ../../../CalendarApp/Calendar/EKWrapper.swift; sourceTree = "<group>"; };
 		A90CD79D2B4A64C8008036D4 /* CalendarKit */ = {isa = PBXFileReference; lastKnownFileType = text; path = CalendarKit; sourceTree = SOURCE_ROOT; };
 		A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditor.swift; sourceTree = "<group>"; };
-		A92F83212B50D33100AFFFBD /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A92F83222B50D33100AFFFBD /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A92F83252B521A8700AFFFBD /* DueDateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateSelection.swift; sourceTree = "<group>"; };
 		A92F83272B54572300AFFFBD /* ChooseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateView.swift; sourceTree = "<group>"; };
 		A9598AB82B1E445A00C14541 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
@@ -76,6 +76,11 @@
 		A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A9A822292AF356E9002E0F61 /* Foca2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foca2.xcdatamodel; sourceTree = "<group>"; };
 		A9A8222B2AF358E2002E0F61 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDateSelection.swift; sourceTree = "<group>"; };
+		A9BFCEB42B587D7C00F55EE3 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataClass.swift"; path = "../Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A9BFCEB52B587D7C00F55EE3 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "../Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A9BFCEB82B58E15E00F55EE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A9BFCEB92B59BC3000F55EE3 /* NotesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesEditor.swift; sourceTree = "<group>"; };
 		A9C651F12B17AADA000B3D2A /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
 		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -127,6 +132,8 @@
 				A9C651F52B17ACF6000B3D2A /* TaskTile.swift */,
 				A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */,
 				A92F83252B521A8700AFFFBD /* DueDateSelection.swift */,
+				A9BFCEB92B59BC3000F55EE3 /* NotesEditor.swift */,
+				A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */,
 				A92F83272B54572300AFFFBD /* ChooseDateView.swift */,
 				A9598AB82B1E445A00C14541 /* TaskRow.swift */,
 				A97798712B4E06CD00ACA144 /* CalendarView.swift */,
@@ -140,8 +147,8 @@
 		A9598ABB2B210D6000C14541 /* CoreDataDefs */ = {
 			isa = PBXGroup;
 			children = (
-				A92F83212B50D33100AFFFBD /* Task+CoreDataClass.swift */,
-				A92F83222B50D33100AFFFBD /* Task+CoreDataProperties.swift */,
+				A9BFCEB42B587D7C00F55EE3 /* Task+CoreDataClass.swift */,
+				A9BFCEB52B587D7C00F55EE3 /* Task+CoreDataProperties.swift */,
 			);
 			path = CoreDataDefs;
 			sourceTree = "<group>";
@@ -170,6 +177,7 @@
 		A9A821FD2AF355FE002E0F61 /* Foca2 */ = {
 			isa = PBXGroup;
 			children = (
+				A9BFCEB82B58E15E00F55EE3 /* Info.plist */,
 				A9598ABB2B210D6000C14541 /* CoreDataDefs */,
 				A9A821FE2AF355FE002E0F61 /* Foca2App.swift */,
 				A9A822002AF355FE002E0F61 /* ContentView.swift */,
@@ -344,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A92F83242B50D33100AFFFBD /* Task+CoreDataProperties.swift in Sources */,
+				A9BFCEBA2B59BC3000F55EE3 /* NotesEditor.swift in Sources */,
 				A92F83282B54572300AFFFBD /* ChooseDateView.swift in Sources */,
 				A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */,
 				A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */,
@@ -352,17 +360,19 @@
 				A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */,
 				A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */,
 				A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */,
+				A9BFCEB62B587D7C00F55EE3 /* Task+CoreDataClass.swift in Sources */,
 				A92F831C2B4EE61F00AFFFBD /* TaskEditor.swift in Sources */,
 				A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */,
 				A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */,
 				A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */,
 				A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */,
-				A92F83232B50D33100AFFFBD /* Task+CoreDataClass.swift in Sources */,
 				A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */,
 				A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */,
 				A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */,
+				A9BFCEB32B58747E00F55EE3 /* ReminderDateSelection.swift in Sources */,
 				A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */,
 				A9C651F22B17AADA000B3D2A /* Random.swift in Sources */,
+				A9BFCEB72B587D7C00F55EE3 /* Task+CoreDataProperties.swift in Sources */,
 				A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,7 +537,7 @@
 				DEVELOPMENT_TEAM = 2L6XN9RA4T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "This app needs access to calendar data in order to display it on your screen";
+				INFOPLIST_FILE = Foca2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,7 +568,7 @@
 				DEVELOPMENT_TEAM = 2L6XN9RA4T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "This app needs access to calendar data in order to display it on your screen";
+				INFOPLIST_FILE = Foca2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

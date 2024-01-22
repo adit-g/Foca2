@@ -1,26 +1,36 @@
 //
-//  DueDateSelection.swift
+//  ReminderDateSelection.swift
 //  Foca2
 //
-//  Created by Adit G on 1/12/24.
+//  Created by Adit G on 1/17/24.
 //
 
 import SwiftUI
 import CoreData
 
-struct DueDateSelection: View {
+struct ReminderDateSelection: View {
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var taskModel: TaskModel
     
     let isItSunday = Calendar.current.dateComponents([.weekday], from: Date()).weekday! == 1
-    let today = Date()
-    let tomorrow: Date = Date() + 86400
-    let nextWeek: Date = Calendar.current.nextDate(
-        after: Date() + 86400,
-        matching: DateComponents(weekday: 2),
-        matchingPolicy: .nextTime
-    )!
+    let isItLate = Calendar.current.dateComponents([.hour], from: Date()).hour! > 20
+    let laterToday = {
+        let date = Date()
+        let currentHour = Calendar.current.dateComponents([.hour], from: date).hour!
+        let reminderHour = min(currentHour + 3, 23)
+        
+        return Calendar.current.date(bySettingHour: reminderHour, minute: 0, second: 0, of: date)!
+    }()
+    let tomorrow = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date() + 86400)!
+    let nextWeek = {
+        let nextMonday = Calendar.current.nextDate(
+            after: Date() + 86400,
+            matching: DateComponents(weekday: 2),
+            matchingPolicy: .nextTime
+        )!
+        return Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: nextMonday)!
+    }()
     
     @State private var storedSheetLength = CGFloat.zero
     @State private var sheetLength = CGFloat.zero
@@ -31,7 +41,7 @@ struct DueDateSelection: View {
             ScrollView {
                 VStack {
                     ZStack {
-                        Text("Schedule")
+                        Text("Reminder")
                             .font(.system(size: 20, weight: .semibold))
                             .frame(maxWidth: .infinity, alignment: .center)
                         
@@ -42,8 +52,12 @@ struct DueDateSelection: View {
                         .padding()
                     }
                     
-                    getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Today", dateToSelect: today)
+                    getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Later Today", dateToSelect: laterToday, hideDate: isItLate)
+                        .disabled(isItLate)
+                        .opacity(isItLate ? 0.5 : 1)
+                    
                     getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
+                    
                     getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
                         .disabled(isItSunday)
                         .opacity(isItSunday ? 0.5 : 1)
@@ -56,7 +70,7 @@ struct DueDateSelection: View {
                             .padding(.horizontal)
                             .foregroundStyle(Color(.black))
                         
-                        Text("Pick a Date")
+                        Text("Pick a Date & Time")
                             .foregroundStyle(Color(.black))
                         
                         Spacer()
@@ -69,7 +83,7 @@ struct DueDateSelection: View {
                     }
                     .padding(.bottom)
                     .onTapGesture {
-                        sheetLength = 450
+                        sheetLength = 520
                         showDateView = true
                     }
                 }
@@ -79,7 +93,7 @@ struct DueDateSelection: View {
                         sheetSize: $sheetLength,
                         setAction: setAction,
                         storedSheetLength: storedSheetLength,
-                        components: .date
+                        components: [.date, .hourAndMinute]
                     )
                 }
                 .onAppear {
@@ -93,7 +107,7 @@ struct DueDateSelection: View {
     }
     
     private func setAction(_ date: Date) {
-        taskModel.setDueDate(date)
+        taskModel.setReminderDate(date)
         dismiss()
     }
     
@@ -102,7 +116,8 @@ struct DueDateSelection: View {
         imageName: String,
         text: String,
         dateToSelect: Date,
-        flipImage: Bool = false
+        flipImage: Bool = false,
+        hideDate: Bool = false
     ) -> some View {
         Button {
             setAction(dateToSelect)
@@ -124,10 +139,11 @@ struct DueDateSelection: View {
                 
                 Spacer()
                 
-                Text(DateModel.getDateStr(date: dateToSelect, format: "E"))
+                Text(DateModel.getDateStr(date: dateToSelect, format: "E h:mm a"))
                     .font(.system(size: 14))
                     .foregroundStyle(Color(.darkGray))
                     .padding(.horizontal)
+                    .opacity(hideDate ? 0 : 1)
             }
             .padding(.bottom)
         }

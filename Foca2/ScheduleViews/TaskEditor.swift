@@ -14,7 +14,7 @@ struct TaskEditor: View {
     
     @StateObject private var taskModel: TaskModel
     
-    @State private var taskTitle: String = ""
+    @State private var taskTitle: String
     @State private var sheetLength: CGFloat = .zero
     @State private var safeAreaBottom: CGFloat = .zero
     
@@ -22,8 +22,12 @@ struct TaskEditor: View {
     @State private var showReminderDatePicker = false
     @State private var showNotesEditor = false
     
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    
     init(task: Task? = nil, context: NSManagedObjectContext) {
         let wrappedTask = task ?? Task(context: context)
+        self._taskTitle = State(wrappedValue: wrappedTask.wrappedTitle)
         self._taskModel = StateObject(
             wrappedValue: TaskModel(
                 task: wrappedTask,
@@ -40,16 +44,27 @@ struct TaskEditor: View {
             }
             .padding(.vertical, max(0, 15 - safeAreaBottom / 2))
             .readSize(onChange: { sheetLength = $0.height })
+            .onAppear { safeAreaBottom = getSafeAreaBottom() }
         }
         .background(Color(.blue))
-        .onAppear {
-            isFocused = true
-            safeAreaBottom = getSafeAreaBottom()
-        }
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
         .safeAreaPadding(.top, min(15, safeAreaBottom / 2))
-        .sheet(isPresented: $showDueDatePicker,content: { DueDateSelection(taskModel: taskModel) })
+        .sheet(
+            isPresented: $showDueDatePicker,
+            content: { DueDateSelection(taskModel: taskModel) }
+        )
+        .sheet(
+            isPresented: $showReminderDatePicker,
+            content: { ReminderDateSelection(taskModel: taskModel) }
+        )
+        .sheet(
+            isPresented: $showNotesEditor,
+            content: {
+                NotesEditor(taskModel: taskModel, notes: taskModel.getNote())
+            }
+        )
+        .alert(alertTitle, isPresented: $showAlert) { Text("Cool") }
     }
     
     private func getSafeAreaBottom() -> CGFloat{
@@ -63,34 +78,109 @@ struct TaskEditor: View {
     }
         
     var ButtonRow: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                getPickerButton(onClickBool: $showReminderDatePicker, imageName: "bell")
+                if taskModel.hasReminderDate {
+                    ReminderDateCapsule
+                        .padding(.leading)
+                } else {
+                    getPickerButton(
+                        onClickBool:$showReminderDatePicker,
+                        imageName: "bell"
+                    )
+                        .padding(.leading, 12)
+                }
                 
                 if taskModel.hasDueDate {
                     DueDateCapsule
                 } else {
-                    getPickerButton(onClickBool: $showDueDatePicker, imageName: "calendar")
+                    getPickerButton(
+                        onClickBool: $showDueDatePicker,
+                        imageName: "calendar"
+                    )
                 }
                 
-                getPickerButton(onClickBool: $showNotesEditor, imageName: "pencil.and.scribble")
+                if taskModel.hasNotes {
+                    NotesCapsule
+                        .padding(.trailing)
+                } else {
+                    getPickerButton(
+                        onClickBool: $showNotesEditor,
+                        imageName: "pencil.and.scribble"
+                    )
+                }
                 
                 Spacer()
             }
             .padding(.top, 5)
-            .padding(.leading, 2)
         }
     }
     
-//    @ViewBuilder
-//    private func Image(name: String, size: CGFloat, )
+    @ViewBuilder
+    private func ImageTemplate(
+        _ name: String,
+        _ size: CGFloat,
+        _ color: Color
+    ) -> some View {
+        Image(systemName: name)
+            .font(.system(size: size))
+            .foregroundStyle(color)
+    }
+    
+    var NotesCapsule: some View {
+        HStack (spacing: 10) {
+            ImageTemplate("pencil.and.scribble", 20, Color(.blue))
+                .onTapGesture { showNotesEditor = true }
+            
+            Text("Note")
+                .foregroundStyle(Color(.blue))
+                .font(.system(size: 16))
+                .onTapGesture { showNotesEditor = true }
+            
+            XButton
+                .onTapGesture { taskModel.setNote("") }
+        }
+        .modifier(CapsuleBackground())
+    }
+    
+    var ReminderDateCapsule: some View {
+        let reminderDate = try! taskModel.getReminderDate()
+        let timeString = DateModel.getDateStr(date: reminderDate, format: "h:mm a")
+        let dateString = DateModel.getDescriptiveDateStr(date: reminderDate, format: "E, MMMM d")
+        return HStack(spacing: 10) {
+            ImageTemplate("bell", 20, Color(.blue))
+                .onTapGesture { showReminderDatePicker = true }
+            
+            VStack {
+                Text("Remind me at \(timeString)")
+                    .font(.system(size: 12))
+                
+                Text(dateString)
+                    .font(.system(size: 10))
+            }
+            .foregroundStyle(Color(.blue))
+            .onTapGesture { showReminderDatePicker = true }
+            
+            XButton
+                .onTapGesture { taskModel.removeReminderDate() }
+        }
+        .modifier(CapsuleBackground())
+    }
+    
+    var XButton: some View {
+        Circle()
+            .frame(width: 20, height: 20)
+            .foregroundStyle(Color(.blue))
+            .overlay{
+                ImageTemplate("xmark", 10, Color(.eggplant))
+                    .fontWeight(.bold)
+            }
+    }
     
     var DueDateCapsule: some View {
-        let dueDateStr = DateModel.getDescriptiveDateStr(date: try! taskModel.getDate(), format: "E, MMM d")
+        let dueDateStr = DateModel.getDescriptiveDateStr(date: try! taskModel.getDueDate(), format: "E, MMM d")
         return HStack(spacing: 10) {
-            Image(systemName: "calendar")
-                .font(.system(size: 20))
-                .foregroundStyle(Color(.blue))
+            ImageTemplate("calendar", 20, Color(.blue))
                 .onTapGesture { showDueDatePicker = true }
             
             Text("Due \(dueDateStr)")
@@ -98,24 +188,10 @@ struct TaskEditor: View {
                 .font(.system(size: 16))
                 .onTapGesture { showDueDatePicker = true }
             
-            Circle()
-                .frame(width: 20, height: 20)
-                .foregroundStyle(Color(.blue))
-                .overlay{
-                    Image(systemName: "xmark")
-                        .font(.system(size: 10))
-                        .foregroundStyle(Color(.eggplant))
-                        .fontWeight(.bold)
-                }
+            XButton
                 .onTapGesture { taskModel.removeDueDate() }
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .background {
-            Capsule()
-                .foregroundStyle(Color(.eggplant))
-        }
-        .padding(.leading)
+        .modifier(CapsuleBackground())
     }
     
     @ViewBuilder
@@ -123,38 +199,55 @@ struct TaskEditor: View {
         Button {
             onClickBool.wrappedValue = true
         } label: {
-            Image(systemName: imageName)
-                .font(.system(size: 20))
-                .padding(.leading)
-                .foregroundStyle(Color(.darkGray))
-                .padding(.vertical, 5)
+            ImageTemplate(imageName, 20, Color(.darkGray))
+                .padding(5)
         }
     }
     
     var TitleRow: some View {
         HStack {
-            Image(systemName: "circle")
-                .font(.system(size: 24))
-                .foregroundStyle(Color(.darkGray))
+            ImageTemplate("circle", 24, Color(.darkGray))
             
             TextField("Add a Task", text: $taskTitle)
                 .padding(.leading, 5)
                 .foregroundStyle(Color(.darkgray))
                 .focused($isFocused)
-                .onChange(of: isFocused) { if !$1 {dismiss()} }
                 .onSubmit {}
+                .onAppear { self.isFocused = true }
             
             Spacer()
             
             Button {
+                taskModel.setTitle(taskTitle)
+                
+                do {
+                    try taskModel.rinseAndRepeat()
+                    taskTitle = ""
+                } catch TaskModelError.BlankTitle {
+                    alertTitle = "The task title cannot be blank"
+                    showAlert = true
+                } catch TaskModelError.CoreDataIssue {
+                    alertTitle = "There was an issue saving your task. Please try again later"
+                    showAlert = true
+                } catch { print(error.localizedDescription) }
             } label: {
-                Image(systemName: "arrow.up.circle.fill")
-                    .font(.system(size: 30))
-                    .foregroundStyle(.blue)
+                ImageTemplate("arrow.up.circle.fill", 30, .blue)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 15)
         .padding(.bottom, 5)
+    }
+}
+
+struct CapsuleBackground: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background {
+                Capsule()
+                    .foregroundStyle(Color(.eggplant))
+            }
     }
 }
 
