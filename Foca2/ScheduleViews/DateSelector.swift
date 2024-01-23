@@ -23,10 +23,11 @@ struct DateSelector: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(DateModel.getDescriptiveDateStr(date: date, format: "MMM d"))
                 .fontWeight(.semibold)
                 .font(.title)
+                .padding(.bottom)
             
             HStack(spacing: 0) {
                 YearView

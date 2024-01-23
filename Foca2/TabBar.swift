@@ -35,12 +35,12 @@ struct TabBar: View {
                 }
             }
             .frame(height: 50)
-            .background(Color(.lightblue))
+            .background(LinearGradient(colors: [Color.clear, Color(.lightblue)], startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.75)))
         }
     }
 }
 
 #Preview {
     TabBar(selectedTab: .constant(.first))
-        .background(.black)
+        .background(Color(.lightblue))
 }
