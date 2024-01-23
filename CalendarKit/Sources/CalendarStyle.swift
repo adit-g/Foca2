@@ -70,7 +70,8 @@ public struct TimelineStyle {
     public var minimumEventDurationInMinutesWhileEditing: Int = 30
     public var splitMinuteInterval: Int = 15
     public var verticalDiff: Double = 50
-    public var verticalInset: Double = 10
+    public var topInset: Double = 10
+    public var bottomInset: Double = 70
     public var leadingInset: Double = 53
     public var eventGap: Double = 0
     public init() {}
