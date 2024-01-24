@@ -40,17 +40,7 @@ struct ReminderDateSelection: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    ZStack {
-                        Text("Reminder")
-                            .font(.system(size: 20, weight: .semibold))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        
-                        Button("Done") {
-                            dismiss()
-                        }
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding()
-                    }
+                    SheetHeader(title: "Reminder", doneAction: { dismiss() })
                     
                     getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Later Today", dateToSelect: laterToday, hideDate: isItLate)
                         .disabled(isItLate)
@@ -62,30 +52,12 @@ struct ReminderDateSelection: View {
                         .disabled(isItSunday)
                         .opacity(isItSunday ? 0.5 : 1)
                     
-                    HStack (spacing: 0) {
-                        Image(systemName: "calendar")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 24)
-                            .padding(.horizontal)
-                            .foregroundStyle(Color(.black))
-                        
-                        Text("Pick a Date & Time")
-                            .foregroundStyle(Color(.black))
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 12, maxHeight: 12)
-                            .padding(.horizontal)
-                    }
-                    .padding(.bottom)
-                    .onTapGesture {
-                        sheetLength = 520
-                        showDateView = true
-                    }
+                    PickADateButton(title: "Pick a Date & Time")
+                        .padding(.bottom)
+                        .onTapGesture {
+                            sheetLength = 520
+                            showDateView = true
+                        }
                 }
                 .readSize(onChange: { sheetLength = $0.height })
                 .navigationDestination(isPresented: $showDateView) {

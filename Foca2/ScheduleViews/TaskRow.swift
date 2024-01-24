@@ -19,7 +19,7 @@ struct TaskRow: View {
         ZStack {
             LinearGradient(gradient: .init(colors: [.pink, .red]), startPoint: .leading, endPoint: .trailing)
             
-            HStack(spacing: 0) {
+            HStack {
                 Spacer()
                 
                 Button(action: { moc.delete(passedTask) }) {

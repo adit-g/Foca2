@@ -16,17 +16,9 @@ struct NotesEditor: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                Text("Note")
-                    .font(.system(size: 20, weight: .semibold))
-                    .frame(maxWidth: .infinity, alignment: .center)
-                
-                Button("Done") {
-                    taskModel.setNote(notes)
-                    dismiss()
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding()
+            SheetHeader(title: "Note") {
+                taskModel.setNote(notes)
+                dismiss()
             }
             
             Divider()

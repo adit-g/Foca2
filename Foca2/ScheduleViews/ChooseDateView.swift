@@ -25,31 +25,34 @@ struct ChooseDateView: View {
         .scrollContentBackground(.hidden)
         .background(Color(.blue))
         .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    sheetSize = storedSheetLength
-                    dismiss()
-                } label: {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 12, maxHeight: 12)
-                        
-                        Text("Back")
-                    }
+        .toolbar { toolbarContents }
+    }
+    
+    @ToolbarContentBuilder
+    var toolbarContents: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button {
+                sheetSize = storedSheetLength
+                dismiss()
+            } label: {
+                HStack {
+                    Image(systemName: "chevron.left")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 12, maxHeight: 12)
+                    
+                    Text("Back")
                 }
             }
-            
-            ToolbarItem(placement: .principal) {
-                Text("Pick a Date")
-            }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                Button("Set") {
-                    setAction(chosenDate)
-                }
+        }
+        
+        ToolbarItem(placement: .principal) {
+            Text("Pick a Date")
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
+            Button("Set") {
+                setAction(chosenDate)
             }
         }
     }

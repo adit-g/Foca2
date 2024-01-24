@@ -34,13 +34,11 @@ struct ContentView: View {
                     .ignoresSafeArea(edges: .bottom)
                     .tag(Tab.first)
                 
-                
                 Color.red
                     .tag(Tab.second)
             }
             
             TabBar(selectedTab: $selectedTab)
-            
         }
     }
 }

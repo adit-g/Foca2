@@ -54,7 +54,7 @@ struct TaskTile: View {
     
     var TopBar: some View {
         HStack {
-            Text("Unscheduled Tasks: ")
+            Text("Tasks:")
             Spacer()
             Button("+ Add Task") {
                 taskCreaterOpen = true
