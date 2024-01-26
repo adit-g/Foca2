@@ -15,14 +15,14 @@ enum TaskModelError: Error {
 }
 
 class TaskModel: ObservableObject {
-    private var task: Task
+    private var task: TaskItem
     private var moc: NSManagedObjectContext
     
     @Published var hasDueDate: Bool
     @Published var hasReminderDate: Bool
     @Published var hasNotes: Bool
     
-    init(task: Task, moc: NSManagedObjectContext) {
+    init(task: TaskItem, moc: NSManagedObjectContext) {
         self.task = task
         self.moc = moc
         self._hasDueDate = Published(wrappedValue: task.doDate != nil)
@@ -93,30 +93,6 @@ class TaskModel: ObservableObject {
         hasDueDate = false
         hasReminderDate = false
         hasNotes = false
-        task = Task(context: moc)
+        task = TaskItem(context: moc)
     }
-    
-//    func deleteTask(_ task: Task) {
-//        task.managedObjectContext?.delete(task)
-//    }
-//    
-//    func addTask(title: String, notes: String, isScheduled: Bool, date: Date) throws {
-//        let newTask = Task(context: moc)
-//        newTask.createdDate = Date()
-//        try updateTask(task: newTask, title: title, notes: notes, isScheduled: isScheduled, date: date)
-//    }
-//    
-//    func updateTask(task: Task, title: String, notes: String, isScheduled: Bool, date: Date) throws {
-//        if title.isEmpty {
-//            throw TaskModelError.blankTitle
-//        }
-//        
-//        task.title = title
-//        task.completed = false
-//        
-//        if !notes.isEmpty { task.notes = notes }
-//        if isScheduled { task.doDate = date }
-//
-//        try? moc.save()
-//    }
 }

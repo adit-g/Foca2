@@ -33,5 +33,5 @@ struct PickADateButton: View {
 }
 
 #Preview {
-    PickADateButton()
+    PickADateButton(title: "Pick a Date")
 }

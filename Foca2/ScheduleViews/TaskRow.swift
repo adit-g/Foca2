@@ -12,8 +12,8 @@ struct TaskRow: View {
     @State var xOffset: CGFloat = 0
     @State var deleteButtonHidden = true
     
-    let passedTask: Task
-    @Binding var editTask: Task?
+    let passedTask: TaskItem
+    @Binding var editTask: TaskItem?
     
     var body: some View {
         ZStack {

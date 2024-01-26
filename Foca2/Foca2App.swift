@@ -6,14 +6,26 @@
 //
 
 import SwiftUI
+import FamilyControls
 
 @main
 struct Foca2App: App {
+    
     @StateObject private var dataController = DataController()
+    let center = AuthorizationCenter.shared
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .onAppear {
+                    Task {
+                        do {
+                            try await center.requestAuthorization(for: .individual)
+                        } catch {
+                            print("failed to enroll homie with error: \(error)")
+                        }
+                    }
+                }
         }
     }
 }

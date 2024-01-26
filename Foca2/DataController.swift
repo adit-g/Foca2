@@ -24,10 +24,10 @@ class DataController: ObservableObject {
         }
     }
     
-    static var previewTask: Task = {
+    static var previewTask: TaskItem = {
         let controller = DataController(inMemory: true)
 
-        let task = Task(context: controller.container.viewContext)
+        let task = TaskItem(context: controller.container.viewContext)
         task.title = "task 1"
         task.doDate = Date()
         try? controller.container.viewContext.save()

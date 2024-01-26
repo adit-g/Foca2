@@ -22,6 +22,7 @@ enum Tab: Int, CaseIterable {
 struct ContentView: View {
     
     @State private var selectedTab = Tab.first
+    @StateObject private var sessionModel = SessionModel()
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -34,7 +35,7 @@ struct ContentView: View {
                     .ignoresSafeArea(edges: .bottom)
                     .tag(Tab.first)
                 
-                Color.red
+                ScreenTimeView(sessionModel: sessionModel)
                     .tag(Tab.second)
             }
             

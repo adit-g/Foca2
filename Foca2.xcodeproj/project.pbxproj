@@ -26,13 +26,18 @@
 		A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */; };
 		A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8222B2AF358E2002E0F61 /* DataController.swift */; };
 		A9BFCEB32B58747E00F55EE3 /* ReminderDateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */; };
-		A9BFCEB62B587D7C00F55EE3 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB42B587D7C00F55EE3 /* Task+CoreDataClass.swift */; };
-		A9BFCEB72B587D7C00F55EE3 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB52B587D7C00F55EE3 /* Task+CoreDataProperties.swift */; };
 		A9BFCEBA2B59BC3000F55EE3 /* NotesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB92B59BC3000F55EE3 /* NotesEditor.swift */; };
 		A9BFCEBC2B5F0EE600F55EE3 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEBB2B5F0EE600F55EE3 /* TabBar.swift */; };
 		A9BFCEBF2B608C5000F55EE3 /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEBE2B608C5000F55EE3 /* SheetHeader.swift */; };
 		A9BFCEC12B608F4100F55EE3 /* PickADateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEC02B608F4100F55EE3 /* PickADateButton.swift */; };
 		A9BFCEC32B608FFF00F55EE3 /* ScreenTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEC22B608FFF00F55EE3 /* ScreenTimeView.swift */; };
+		A9BFCEC72B61603F00F55EE3 /* TimeSelectionCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEC62B61603F00F55EE3 /* TimeSelectionCircle.swift */; };
+		A9BFCEC92B61604E00F55EE3 /* TimerCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEC82B61604E00F55EE3 /* TimerCircle.swift */; };
+		A9BFCECB2B6201EB00F55EE3 /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCECA2B6201EB00F55EE3 /* TimeSelectorView.swift */; };
+		A9BFCECE2B62F40D00F55EE3 /* SomeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCECD2B62F40D00F55EE3 /* SomeSettingsView.swift */; };
+		A9BFCED12B6324BF00F55EE3 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */; };
+		A9BFCED42B6415C100F55EE3 /* TaskItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */; };
+		A9BFCED52B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */; };
 		A9C651F22B17AADA000B3D2A /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
 		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
 		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
@@ -81,14 +86,20 @@
 		A9A822292AF356E9002E0F61 /* Foca2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foca2.xcdatamodel; sourceTree = "<group>"; };
 		A9A8222B2AF358E2002E0F61 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDateSelection.swift; sourceTree = "<group>"; };
-		A9BFCEB42B587D7C00F55EE3 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataClass.swift"; path = "../Task+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A9BFCEB52B587D7C00F55EE3 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "../Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A9BFCEB82B58E15E00F55EE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A9BFCEB92B59BC3000F55EE3 /* NotesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesEditor.swift; sourceTree = "<group>"; };
 		A9BFCEBB2B5F0EE600F55EE3 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		A9BFCEBE2B608C5000F55EE3 /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 		A9BFCEC02B608F4100F55EE3 /* PickADateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickADateButton.swift; sourceTree = "<group>"; };
 		A9BFCEC22B608FFF00F55EE3 /* ScreenTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeView.swift; sourceTree = "<group>"; };
+		A9BFCEC62B61603F00F55EE3 /* TimeSelectionCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionCircle.swift; sourceTree = "<group>"; };
+		A9BFCEC82B61604E00F55EE3 /* TimerCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCircle.swift; sourceTree = "<group>"; };
+		A9BFCECA2B6201EB00F55EE3 /* TimeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
+		A9BFCECC2B62F21800F55EE3 /* Foca2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Foca2.entitlements; sourceTree = "<group>"; };
+		A9BFCECD2B62F40D00F55EE3 /* SomeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeSettingsView.swift; sourceTree = "<group>"; };
+		A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
+		A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskItem+CoreDataClass.swift"; path = "Foca2/TaskItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskItem+CoreDataProperties.swift"; path = "Foca2/TaskItem+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A9C651F12B17AADA000B3D2A /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
 		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -155,8 +166,8 @@
 		A9598ABB2B210D6000C14541 /* CoreDataDefs */ = {
 			isa = PBXGroup;
 			children = (
-				A9BFCEB42B587D7C00F55EE3 /* Task+CoreDataClass.swift */,
-				A9BFCEB52B587D7C00F55EE3 /* Task+CoreDataProperties.swift */,
+				A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */,
+				A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */,
 			);
 			path = CoreDataDefs;
 			sourceTree = "<group>";
@@ -185,14 +196,14 @@
 		A9A821FD2AF355FE002E0F61 /* Foca2 */ = {
 			isa = PBXGroup;
 			children = (
+				A9BFCECC2B62F21800F55EE3 /* Foca2.entitlements */,
 				A9BFCEB82B58E15E00F55EE3 /* Info.plist */,
 				A9598ABB2B210D6000C14541 /* CoreDataDefs */,
 				A9A821FE2AF355FE002E0F61 /* Foca2App.swift */,
 				A9A822002AF355FE002E0F61 /* ContentView.swift */,
 				A9BFCEBB2B5F0EE600F55EE3 /* TabBar.swift */,
 				A9C651F12B17AADA000B3D2A /* Random.swift */,
-				A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */,
-				A9C651FD2B19A308000B3D2A /* TaskModel.swift */,
+				A9BFCECF2B6320B300F55EE3 /* Logic */,
 				A9598ABA2B210D2E00C14541 /* ScheduleViews */,
 				A9BFCEBD2B60899600F55EE3 /* ScreenTimeViews */,
 				A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */,
@@ -233,8 +244,22 @@
 			isa = PBXGroup;
 			children = (
 				A9BFCEC22B608FFF00F55EE3 /* ScreenTimeView.swift */,
+				A9BFCECD2B62F40D00F55EE3 /* SomeSettingsView.swift */,
+				A9BFCEC62B61603F00F55EE3 /* TimeSelectionCircle.swift */,
+				A9BFCECA2B6201EB00F55EE3 /* TimeSelectorView.swift */,
+				A9BFCEC82B61604E00F55EE3 /* TimerCircle.swift */,
 			);
 			path = ScreenTimeViews;
+			sourceTree = "<group>";
+		};
+		A9BFCECF2B6320B300F55EE3 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */,
+				A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */,
+				A9C651FD2B19A308000B3D2A /* TaskModel.swift */,
+			);
+			path = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,11 +403,14 @@
 				A9BFCEC12B608F4100F55EE3 /* PickADateButton.swift in Sources */,
 				A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */,
 				A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */,
+				A9BFCEC72B61603F00F55EE3 /* TimeSelectionCircle.swift in Sources */,
+				A9BFCED52B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift in Sources */,
 				A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */,
 				A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */,
 				A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */,
 				A90CD7942B489FC5008036D4 /* EKWrapper.swift in Sources */,
-				A9BFCEB62B587D7C00F55EE3 /* Task+CoreDataClass.swift in Sources */,
+				A9BFCECE2B62F40D00F55EE3 /* SomeSettingsView.swift in Sources */,
+				A9BFCECB2B6201EB00F55EE3 /* TimeSelectorView.swift in Sources */,
 				A92F831C2B4EE61F00AFFFBD /* TaskEditor.swift in Sources */,
 				A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */,
 				A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */,
@@ -394,10 +422,12 @@
 				A9BFCEB32B58747E00F55EE3 /* ReminderDateSelection.swift in Sources */,
 				A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */,
 				A9C651F22B17AADA000B3D2A /* Random.swift in Sources */,
-				A9BFCEB72B587D7C00F55EE3 /* Task+CoreDataProperties.swift in Sources */,
 				A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */,
 				A9BFCEBF2B608C5000F55EE3 /* SheetHeader.swift in Sources */,
 				A9BFCEBC2B5F0EE600F55EE3 /* TabBar.swift in Sources */,
+				A9BFCED12B6324BF00F55EE3 /* SessionModel.swift in Sources */,
+				A9BFCEC92B61604E00F55EE3 /* TimerCircle.swift in Sources */,
+				A9BFCED42B6415C100F55EE3 /* TaskItem+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +585,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Foca2/Foca2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Foca2/Preview Content\"";
@@ -586,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Foca2/Foca2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Foca2/Preview Content\"";

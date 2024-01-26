@@ -25,8 +25,8 @@ struct TaskEditor: View {
     @State private var showAlert = false
     @State private var alertTitle = ""
     
-    init(task: Task? = nil, context: NSManagedObjectContext) {
-        let wrappedTask = task ?? Task(context: context)
+    init(task: TaskItem? = nil, context: NSManagedObjectContext) {
+        let wrappedTask = task ?? TaskItem(context: context)
         self._taskTitle = State(wrappedValue: wrappedTask.wrappedTitle)
         self._taskModel = StateObject(
             wrappedValue: TaskModel(

@@ -11,10 +11,10 @@ import CoreData
 struct TaskTile: View {
     @Environment(\.managedObjectContext) var moc
     @State private var taskCreaterOpen = false
-    @State private var taskToEdit: Task? = nil
+    @State private var taskToEdit: TaskItem? = nil
     
-    var itemsRequest : FetchRequest<Task>
-    var items : FetchedResults<Task> { itemsRequest.wrappedValue }
+    var itemsRequest : FetchRequest<TaskItem>
+    var items : FetchedResults<TaskItem> { itemsRequest.wrappedValue }
     
     init(at date: Date) {
         let startDate = Calendar.current.startOfDay(for: date)
@@ -24,7 +24,7 @@ struct TaskTile: View {
         let endDate = Calendar.current.date(byAdding: components, to: startDate)!
 
         self.itemsRequest = FetchRequest(
-            entity: Task.entity(),
+            entity: TaskItem.entity(),
             sortDescriptors: [NSSortDescriptor(key: "createdDate", ascending: true)],
             predicate: NSPredicate(
                 format: "doDate BETWEEN {%@, %@} AND title != %@ AND title != nil",

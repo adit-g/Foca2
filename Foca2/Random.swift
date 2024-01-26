@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import DeviceActivity
+import ManagedSettings
 
 struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
@@ -17,6 +19,23 @@ struct ViewOffsetKey: PreferenceKey {
     static var defaultValue = CGFloat.zero
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
+    }
+}
+
+extension DeviceActivityName {
+    static let focusSessions = Self("focusSessions")
+}
+
+extension ManagedSettingsStore.Name {
+    static let schedule = Self("schedule")
+}
+
+extension DateComponents {
+    func addDelta(_ minutes: Int) -> DateComponents {
+        var endDate = Calendar.current.date(from: self)
+        let delta = minutes * 60
+        endDate = endDate! + TimeInterval(delta)
+        return Calendar.current.dateComponents([.hour, .minute, .second], from: endDate!)
     }
 }
 
