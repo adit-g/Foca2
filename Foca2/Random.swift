@@ -30,12 +30,10 @@ extension ManagedSettingsStore.Name {
     static let schedule = Self("schedule")
 }
 
-extension DateComponents {
-    func addDelta(_ minutes: Int) -> DateComponents {
-        var endDate = Calendar.current.date(from: self)
-        let delta = minutes * 60
-        endDate = endDate! + TimeInterval(delta)
-        return Calendar.current.dateComponents([.hour, .minute, .second], from: endDate!)
+extension Date {
+    func getComponents(_ components: Set<Calendar.Component>, minutesAhead: Int = 0) -> DateComponents {
+        let endDate = self + TimeInterval(minutesAhead * 60)
+        return Calendar.current.dateComponents(components, from: endDate)
     }
 }
 

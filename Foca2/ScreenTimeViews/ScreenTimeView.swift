@@ -10,15 +10,10 @@ import FamilyControls
 
 struct ScreenTimeView: View {
     
+    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234")) var statusInt: Int = ScreenTimeStatus.noSession.rawValue
     @ObservedObject var sessionModel: SessionModel
     @State private var minutes = 5
     @State private var tokenPickerOpen = false
-    @State private var tokens: FamilyActivitySelection
-    
-    init(sessionModel: SessionModel) {
-        self.sessionModel = sessionModel
-        self._tokens = State(initialValue: sessionModel.tokens)
-    }
     
     var body: some View {
         ScrollView {
@@ -33,10 +28,6 @@ struct ScreenTimeView: View {
                     .padding(.vertical, 15)
                     .padding(.bottom)
             case .session:
-                TimerCircle()
-            case .onBreak:
-                TimerCircle()
-            case .scheduledSession:
                 TimerCircle()
             }
             
@@ -70,11 +61,24 @@ struct ScreenTimeView: View {
             )
             .padding(.bottom, 5)
             
+            switch sessionModel.status {
+            case .noSession:
+                Text("NO SESSION")
+            case .session:
+                Text("SESSION")
+            }
+            
             Spacer()
         }
         .background(Color(.blue))
-        .familyActivityPicker(isPresented: $tokenPickerOpen, selection: $tokens)
-        .onChange(of: tokens, { sessionModel.tokens = tokens })
+        .familyActivityPicker(
+            isPresented: $tokenPickerOpen,
+            selection: $sessionModel.tokens
+        )
+        .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
+        .onChange(of: statusInt) {
+            sessionModel.status = ScreenTimeStatus(rawValue: $1) ?? .noSession
+        }
     }
     
     var BigButton: some View {
@@ -84,17 +88,13 @@ struct ScreenTimeView: View {
                 sessionModel.startSession(minutes: minutes)
             case .session:
                 sessionModel.endSession()
-            case .onBreak:
-                break
-            case .scheduledSession:
-                break
             }
         } label: {
             Capsule()
                 .frame(width: UIScreen.width * 7 / 12, height: 40)
                 .foregroundStyle(.white)
                 .overlay {
-                    Text("Start a Session")
+                    Text(sessionModel.status.buttonTitle)
                         .foregroundStyle(Color(.darkblue))
                         .fontWeight(.semibold)
                 }

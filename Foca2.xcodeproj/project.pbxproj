@@ -38,6 +38,11 @@
 		A9BFCED12B6324BF00F55EE3 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */; };
 		A9BFCED42B6415C100F55EE3 /* TaskItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */; };
 		A9BFCED52B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */; };
+		A9BFCEDC2B64396A00F55EE3 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BFCEDB2B64396A00F55EE3 /* DeviceActivity.framework */; };
+		A9BFCEDF2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEDE2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift */; };
+		A9BFCEE42B64396A00F55EE3 /* DeviceActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A9BFCEDA2B64396A00F55EE3 /* DeviceActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A9BFCEEC2B64841B00F55EE3 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */; };
+		A9BFCEED2B6484C200F55EE3 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
 		A9C651F22B17AADA000B3D2A /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
 		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
 		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
@@ -61,7 +66,28 @@
 			remoteGlobalIDString = A9A821FA2AF355FE002E0F61;
 			remoteInfo = Foca2;
 		};
+		A9BFCEE22B64396A00F55EE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9A821F32AF355FE002E0F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9BFCED92B64396A00F55EE3;
+			remoteInfo = DeviceActivityMonitor;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A9BFCEE82B64396A00F55EE3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A9BFCEE42B64396A00F55EE3 /* DeviceActivityMonitor.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A90CD7912B489FB4008036D4 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = ../../../CalendarApp/Calendar/CalendarViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +126,11 @@
 		A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskItem+CoreDataClass.swift"; path = "Foca2/TaskItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskItem+CoreDataProperties.swift"; path = "Foca2/TaskItem+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		A9BFCEDA2B64396A00F55EE3 /* DeviceActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9BFCEDB2B64396A00F55EE3 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
+		A9BFCEDE2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
+		A9BFCEE02B64396A00F55EE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9BFCEE12B64396A00F55EE3 /* DeviceActivityMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeviceActivityMonitor.entitlements; sourceTree = "<group>"; };
 		A9C651F12B17AADA000B3D2A /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
 		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -131,12 +162,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A9BFCED72B64396A00F55EE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9BFCEDC2B64396A00F55EE3 /* DeviceActivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		A90CD79E2B4A651F008036D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A9BFCEDB2B64396A00F55EE3 /* DeviceActivity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,6 +218,7 @@
 				A9A821FD2AF355FE002E0F61 /* Foca2 */,
 				A9A8220E2AF355FF002E0F61 /* Foca2Tests */,
 				A9A822182AF355FF002E0F61 /* Foca2UITests */,
+				A9BFCEDD2B64396A00F55EE3 /* DeviceActivityMonitor */,
 				A9A821FC2AF355FE002E0F61 /* Products */,
 				A90CD79E2B4A651F008036D4 /* Frameworks */,
 			);
@@ -189,6 +230,7 @@
 				A9A821FB2AF355FE002E0F61 /* Foca2.app */,
 				A9A8220B2AF355FF002E0F61 /* Foca2Tests.xctest */,
 				A9A822152AF355FF002E0F61 /* Foca2UITests.xctest */,
+				A9BFCEDA2B64396A00F55EE3 /* DeviceActivityMonitor.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,6 +304,16 @@
 			path = Logic;
 			sourceTree = "<group>";
 		};
+		A9BFCEDD2B64396A00F55EE3 /* DeviceActivityMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				A9BFCEDE2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift */,
+				A9BFCEE02B64396A00F55EE3 /* Info.plist */,
+				A9BFCEE12B64396A00F55EE3 /* DeviceActivityMonitor.entitlements */,
+			);
+			path = DeviceActivityMonitor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,10 +324,12 @@
 				A9A821F72AF355FE002E0F61 /* Sources */,
 				A9A821F82AF355FE002E0F61 /* Frameworks */,
 				A9A821F92AF355FE002E0F61 /* Resources */,
+				A9BFCEE82B64396A00F55EE3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A9BFCEE32B64396A00F55EE3 /* PBXTargetDependency */,
 			);
 			name = Foca2;
 			packageProductDependencies = (
@@ -321,6 +375,23 @@
 			productReference = A9A822152AF355FF002E0F61 /* Foca2UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A9BFCED92B64396A00F55EE3 /* DeviceActivityMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9BFCEE52B64396A00F55EE3 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitor" */;
+			buildPhases = (
+				A9BFCED62B64396A00F55EE3 /* Sources */,
+				A9BFCED72B64396A00F55EE3 /* Frameworks */,
+				A9BFCED82B64396A00F55EE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeviceActivityMonitor;
+			productName = DeviceActivityMonitor;
+			productReference = A9BFCEDA2B64396A00F55EE3 /* DeviceActivityMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -328,7 +399,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					A9A821FA2AF355FE002E0F61 = {
@@ -341,6 +412,9 @@
 					A9A822142AF355FF002E0F61 = {
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = A9A821FA2AF355FE002E0F61;
+					};
+					A9BFCED92B64396A00F55EE3 = {
+						CreatedOnToolsVersion = 15.1;
 					};
 				};
 			};
@@ -362,6 +436,7 @@
 				A9A821FA2AF355FE002E0F61 /* Foca2 */,
 				A9A8220A2AF355FF002E0F61 /* Foca2Tests */,
 				A9A822142AF355FF002E0F61 /* Foca2UITests */,
+				A9BFCED92B64396A00F55EE3 /* DeviceActivityMonitor */,
 			);
 		};
 /* End PBXProject section */
@@ -384,6 +459,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A9A822132AF355FF002E0F61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9BFCED82B64396A00F55EE3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -448,6 +530,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A9BFCED62B64396A00F55EE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9BFCEDF2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift in Sources */,
+				A9BFCEEC2B64841B00F55EE3 /* SessionModel.swift in Sources */,
+				A9BFCEED2B6484C200F55EE3 /* Random.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -460,6 +552,11 @@
 			isa = PBXTargetDependency;
 			target = A9A821FA2AF355FE002E0F61 /* Foca2 */;
 			targetProxy = A9A822162AF355FF002E0F61 /* PBXContainerItemProxy */;
+		};
+		A9BFCEE32B64396A00F55EE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9BFCED92B64396A00F55EE3 /* DeviceActivityMonitor */;
+			targetProxy = A9BFCEE22B64396A00F55EE3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -583,6 +680,7 @@
 		A9A822202AF355FF002E0F61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Foca2/Foca2.entitlements;
@@ -615,6 +713,7 @@
 		A9A822212AF355FF002E0F61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Foca2/Foca2.entitlements;
@@ -720,6 +819,67 @@
 			};
 			name = Release;
 		};
+		A9BFCEE62B64396A00F55EE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitor/DeviceActivityMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2.DeviceActivityMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9BFCEE72B64396A00F55EE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_ENTITLEMENTS = DeviceActivityMonitor/DeviceActivityMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2L6XN9RA4T;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DeviceActivityMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DeviceActivityMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Foca2.DeviceActivityMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -755,6 +915,15 @@
 			buildConfigurations = (
 				A9A822262AF355FF002E0F61 /* Debug */,
 				A9A822272AF355FF002E0F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9BFCEE52B64396A00F55EE3 /* Build configuration list for PBXNativeTarget "DeviceActivityMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9BFCEE62B64396A00F55EE3 /* Debug */,
+				A9BFCEE72B64396A00F55EE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

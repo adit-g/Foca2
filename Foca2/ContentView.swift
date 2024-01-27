@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-enum Tab: Int, CaseIterable {
-    case first
-    case second
-    
-    var imageString: String {
-        switch self {
-        case .first: return "list.bullet.clipboard"
-        case .second: return "hourglass.circle"
-        }
-    }
-}
-
-
-
 struct ContentView: View {
     
     @State private var selectedTab = Tab.first
@@ -42,6 +28,18 @@ struct ContentView: View {
             }
             
             TabBar(selectedTab: $selectedTab)
+        }
+    }
+}
+
+enum Tab: Int, CaseIterable {
+    case first
+    case second
+    
+    var imageString: String {
+        switch self {
+        case .first: return "list.bullet.clipboard"
+        case .second: return "hourglass.circle"
         }
     }
 }

@@ -11,12 +11,13 @@ import FamilyControls
 @main
 struct Foca2App: App {
     
-    @StateObject private var dataController = DataController()
+    let dataController = DataController()
     let center = AuthorizationCenter.shared
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
                 .onAppear {
                     Task {
                         do {

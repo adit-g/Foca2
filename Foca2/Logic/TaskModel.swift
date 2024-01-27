@@ -8,12 +8,6 @@
 import SwiftUI
 import CoreData
 
-enum TaskModelError: Error {
-    case BlankTitle
-    case NilValue
-    case CoreDataIssue
-}
-
 class TaskModel: ObservableObject {
     private var task: TaskItem
     private var moc: NSManagedObjectContext
@@ -95,4 +89,10 @@ class TaskModel: ObservableObject {
         hasNotes = false
         task = TaskItem(context: moc)
     }
+}
+
+enum TaskModelError: Error {
+    case BlankTitle
+    case NilValue
+    case CoreDataIssue
 }
