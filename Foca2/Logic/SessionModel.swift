@@ -11,22 +11,39 @@ import ManagedSettings
 import FamilyControls
 
 class SessionModel: ObservableObject {
-    @Published var tokens: FamilyActivitySelection
-    @Published var status: ScreenTimeStatus
-    let managedStore = ManagedSettingsStore(named: .schedule)
-    let dac = DeviceActivityCenter()
+    @Published var tokens = SessionModel.loadTokens()
+    private let dac = DeviceActivityCenter()
     
-    init() {
-        self.tokens = SessionModel.loadTokens()
-        let statusInt = UserDefaults(suiteName: "group.sharedCode1234")?.integer(forKey: "status")
-        self.status = ScreenTimeStatus(rawValue: statusInt ?? ScreenTimeStatus.noSession.rawValue) ?? .noSession
+    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
+    private var statusInt: Int = ScreenTimeStatus.noSession.rawValue
+    
+    public var status: ScreenTimeStatus {
+        ScreenTimeStatus(rawValue: statusInt) ?? .noSession
     }
+    
+    @AppStorage("FSEndTime") var endTime = Date()
+    @AppStorage("SSFromTime") var fromTime = Date()
+    @AppStorage("SSToTime") var toTime = Date() + 3600
+    @AppStorage("SSEnabled") var sessionEnabled = false
+    
+    public var SSBeginTimeComps: DateComponents {
+        Calendar.current.dateComponents([.hour, .minute, .second], from: fromTime)
+    }
+    
+    public var SSEndTimeComps: DateComponents {
+        Calendar.current.dateComponents([.hour, .minute, .second], from: toTime)
+    }
+    
+    @AppStorage("SSDaysEnabled")
+    var daysEnabled = [false, true, true, true, true, true, false]
     
     public func startSession(minutes: Int) {
         let now = Date()
-        let endTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: minutes)
         let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
+        let endDate = now + TimeInterval(minutes * 60)
+        let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
+        endTime = endDate
         try? dac.startMonitoring(.focusSessions, during: DeviceActivitySchedule(
             intervalStart: beginTimeComps,
             intervalEnd: endTimeComps,
@@ -36,6 +53,33 @@ class SessionModel: ObservableObject {
     
     public func endSession() {
         dac.stopMonitoring([.focusSessions])
+        endTime = Date()
+    }
+    
+    public func createSS() {
+        for i in 0...6 {
+            if !daysEnabled[i] {
+                continue
+            }
+            var beginComp = SSBeginTimeComps
+            beginComp.setValue(i+1, for: .weekday)
+            var endComp = SSEndTimeComps
+            endComp.setValue(isSessionOvernight() ? (i+1)%7+1 : i+1, for: .weekday)
+            try? dac.startMonitoring(
+                .dayNames[i],
+                during: DeviceActivitySchedule(
+                    intervalStart: beginComp,
+                    intervalEnd: endComp,
+                    repeats: true
+                )
+            )
+        }
+        sessionEnabled = true
+    }
+    
+    public func cancelSS() {
+        dac.stopMonitoring(DeviceActivityName.dayNames)
+        sessionEnabled = false
     }
     
     public static func loadTokens() -> FamilyActivitySelection {
@@ -62,17 +106,23 @@ class SessionModel: ObservableObject {
             }
         }
     }
+    
+    public func isSessionOvernight() -> Bool {
+        (SSBeginTimeComps.hour! == SSEndTimeComps.hour!) ?
+            (SSBeginTimeComps.minute! > SSEndTimeComps.minute!) :
+            (SSBeginTimeComps.hour! > SSEndTimeComps.hour!)
+    }
 }
 
 enum ScreenTimeStatus: Int {
-    case noSession, session
+    case noSession, session, scheduledSession
     
     var buttonTitle: String {
         switch self {
         case .noSession:
             return "Start Focus Session"
-//        case .scheduledSession:
-//            return "Take a Break"
+        case .scheduledSession:
+            return "Take a Break"
 //        case .onBreak:
 //            return "End Break"
         case .session:

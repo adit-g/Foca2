@@ -16,13 +16,20 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.intervalDidStart(for: activity)
         
         // Handle the start of the interval.
-        let sessionModel = SessionModel()
+        let tokens = SessionModel.loadTokens()
         let managedStore = ManagedSettingsStore(named: .schedule)
-        managedStore.shield.applications = .some(sessionModel.tokens.applicationTokens)
-        managedStore.shield.webDomains = .some(sessionModel.tokens.webDomainTokens)
-        managedStore.shield.applicationCategories = .specific(sessionModel.tokens.categoryTokens)
-        managedStore.shield.webDomainCategories = .specific(sessionModel.tokens.categoryTokens)
-        UserDefaults(suiteName: "group.sharedCode1234")?.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+        managedStore.shield.applications = .some(tokens.applicationTokens)
+        managedStore.shield.webDomains = .some(tokens.webDomainTokens)
+        managedStore.shield.applicationCategories = .specific(tokens.categoryTokens)
+        managedStore.shield.webDomainCategories = .specific(tokens.categoryTokens)
+        
+        let currentStatus: Int
+        if DeviceActivityName.dayNames.contains(activity) {
+            currentStatus = ScreenTimeStatus.scheduledSession.rawValue
+        } else {
+            currentStatus = ScreenTimeStatus.session.rawValue
+        }
+        UserDefaults(suiteName: "group.sharedCode1234")?.set(currentStatus, forKey: "status")
     }
     
     override func intervalDidEnd(for activity: DeviceActivityName) {

@@ -9,11 +9,10 @@ import SwiftUI
 import FamilyControls
 
 struct ScreenTimeView: View {
-    
-    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234")) var statusInt: Int = ScreenTimeStatus.noSession.rawValue
-    @ObservedObject var sessionModel: SessionModel
+    @EnvironmentObject var sessionModel: SessionModel
     @State private var minutes = 5
     @State private var tokenPickerOpen = false
+    @State private var scheduleSheetOpen = false
     
     var body: some View {
         ScrollView {
@@ -22,13 +21,14 @@ struct ScreenTimeView: View {
                 .foregroundColor(Color(.darkblue))
                 .padding(.vertical, 10)
             
-            switch sessionModel.status {
-            case .noSession:
+            if sessionModel.status == .noSession {
                 TimeSelectionCircle(minutes: $minutes)
                     .padding(.vertical, 15)
                     .padding(.bottom)
-            case .session:
+            } else {
                 TimerCircle()
+                    .padding(.vertical, 15)
+                    .padding(.bottom)
             }
             
             BigButton
@@ -53,19 +53,25 @@ struct ScreenTimeView: View {
             )
             .padding(.bottom, 5)
             
-            SomeSettingsView(
-                image: "clock",
-                title: "Schedule",
-                subtitle: "",
-                subtitleMinimized: false
-            )
-            .padding(.bottom, 5)
+            Button {
+                scheduleSheetOpen = true
+            } label: {
+                SomeSettingsView(
+                    image: "clock",
+                    title: "Schedule",
+                    subtitle: sessionModel.sessionEnabled ? "On" : "Off",
+                    subtitleMinimized: false
+                )
+                .padding(.bottom, 5)
+            }
             
             switch sessionModel.status {
             case .noSession:
                 Text("NO SESSION")
             case .session:
                 Text("SESSION")
+            case .scheduledSession:
+                Text("SCHEDULED SESSION")
             }
             
             Spacer()
@@ -76,9 +82,7 @@ struct ScreenTimeView: View {
             selection: $sessionModel.tokens
         )
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
-        .onChange(of: statusInt) {
-            sessionModel.status = ScreenTimeStatus(rawValue: $1) ?? .noSession
-        }
+        .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
     }
     
     var BigButton: some View {
@@ -88,6 +92,8 @@ struct ScreenTimeView: View {
                 sessionModel.startSession(minutes: minutes)
             case .session:
                 sessionModel.endSession()
+            case .scheduledSession:
+                break
             }
         } label: {
             Capsule()
@@ -104,5 +110,7 @@ struct ScreenTimeView: View {
 }
 
 #Preview {
-    ScreenTimeView(sessionModel: SessionModel())
+    let sessionModel = SessionModel()
+    return ScreenTimeView()
+        .environmentObject(sessionModel)
 }
