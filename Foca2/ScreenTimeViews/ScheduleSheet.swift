@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ScheduleSheet: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sessionModel: SessionModel
     let weekdays = ["S", "M", "T", "W", "T", "F", "S"]
     @State private var sheetLength = CGFloat.zero
@@ -80,6 +81,7 @@ struct ScheduleSheet: View {
                         sessionModel.cancelSS()
                     } else {
                         sessionModel.createSS()
+                        dismiss()
                     }
                 } label: {
                     Capsule()

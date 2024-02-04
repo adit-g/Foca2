@@ -18,11 +18,7 @@ struct TimerCircle: View {
         case .session:
             sessionModel.endTime
         case .scheduledSession:
-            Calendar.current.nextDate(
-                after: Date(),
-                matching: sessionModel.SSEndTimeComps,
-                matchingPolicy: .nextTime
-            ) ?? Date()
+            sessionModel.nextEndDate
         }
     }
     
