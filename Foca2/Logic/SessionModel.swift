@@ -115,6 +115,7 @@ class SessionModel: ObservableObject {
             intervalEnd: endTimeComps,
             repeats: false)
         )
+        print("made it here")
     }
     
     public func endFS() {

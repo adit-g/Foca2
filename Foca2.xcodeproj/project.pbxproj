@@ -240,9 +240,6 @@
 		A9A821FD2AF355FE002E0F61 /* Foca2 */ = {
 			isa = PBXGroup;
 			children = (
-				A9BFCECC2B62F21800F55EE3 /* Foca2.entitlements */,
-				A9BFCEB82B58E15E00F55EE3 /* Info.plist */,
-				A9598ABB2B210D6000C14541 /* CoreDataDefs */,
 				A9A821FE2AF355FE002E0F61 /* Foca2App.swift */,
 				A9A822002AF355FE002E0F61 /* ContentView.swift */,
 				A9BFCEBB2B5F0EE600F55EE3 /* TabBar.swift */,
@@ -253,7 +250,10 @@
 				A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */,
 				A90CD79D2B4A64C8008036D4 /* CalendarKit */,
 				A9A8222B2AF358E2002E0F61 /* DataController.swift */,
+				A9598ABB2B210D6000C14541 /* CoreDataDefs */,
 				A9A822022AF355FF002E0F61 /* Assets.xcassets */,
+				A9BFCECC2B62F21800F55EE3 /* Foca2.entitlements */,
+				A9BFCEB82B58E15E00F55EE3 /* Info.plist */,
 				A9A822042AF355FF002E0F61 /* Preview Content */,
 			);
 			path = Foca2;

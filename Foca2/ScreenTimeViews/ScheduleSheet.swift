@@ -2,7 +2,7 @@
 //  ScheduleSheet.swift
 //  Foca2
 //
-//  Created by Adit G on 2/7/24.
+//  Created by Adit G on 1/29/24.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct ScheduleSheet: View {
                     .font(.system(size: 14))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
-                
+              
                 TimeSelector
                 
                 DaySelector
