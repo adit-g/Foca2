@@ -57,6 +57,7 @@ struct ViewOffsetKey: PreferenceKey {
 
 extension DeviceActivityName {
     static let focusSessions = Self("focusSessions")
+    static let breaks = Self("breaks")
     
     static let day1 = Self("day1")
     static let day2 = Self("day2")

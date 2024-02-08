@@ -10,16 +10,30 @@ import SwiftUI
 struct TimerCircle: View {
     @EnvironmentObject var sessionModel: SessionModel
     
+    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
+    var statusInt: Int = ScreenTimeStatus.noSession.rawValue
+    
     @State private var size = CGSize.zero
+    
+    private var status: ScreenTimeStatus {
+        ScreenTimeStatus(rawValue: statusInt) ?? .noSession
+    }
+    
     var endTime: Date {
-        switch sessionModel.status {
+        switch status {
         case .noSession:
             Date()
         case .session:
-            sessionModel.endTime
+            sessionModel.fsEndTime
         case .scheduledSession:
-            sessionModel.nextEndDate
+            sessionModel.ssToDate
+        case .onBreak:
+            sessionModel.brEndTime
         }
+    }
+    
+    var secondsToEnd: Int {
+        Int(endTime.timeIntervalSinceNow)
     }
     
     private func secondsToString(seconds: Int) -> String {
@@ -36,12 +50,11 @@ struct TimerCircle: View {
             
             TimelineView(.periodic(from: Date(), by: 1)) { context in
                 ZStack {
-                    let seconds = Int(endTime.timeIntervalSinceNow)
-                    let percentage = CGFloat(seconds) / 3600
-                    let formattedStr = secondsToString(seconds: seconds)
+                    let percentage = CGFloat(secondsToEnd) / 3600
+                    let formattedStr = secondsToString(seconds: secondsToEnd)
                     
                     VStack {
-                        Text("Focus Session")
+                        Text(status.sessionName)
                             .font(.title)
                         Text("Remaining Time: " + formattedStr)
                     }

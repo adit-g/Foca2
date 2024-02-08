@@ -25,80 +25,94 @@ struct ScheduleSheet: View {
                     .font(.system(size: 14))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
+              
+                TimeSelector
                 
-                VStack(spacing: 0) {
-                    DatePicker("From", selection: $sessionModel.fromTime, displayedComponents: .hourAndMinute)
-                        .datePickerStyle(.compact)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                    
-                    Divider()
-                    
-                    DatePicker("To", selection: $sessionModel.toTime, displayedComponents: .hourAndMinute)
-                        .datePickerStyle(.compact)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                }
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(.white)
-                }
-                .padding(.horizontal)
+                DaySelector
                 
-                VStack(spacing: 0) {
-                    Text("Days of Week Active")
-                        .fontWeight(.medium)
-                        .foregroundColor(Color("eggplant"))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical)
-                    
-                    HStack {
-                        ForEach(sessionModel.daysEnabled.indices, id: \.self) { index in
-                            Circle()
-                                .foregroundStyle(Color(.eggplant))
-                                .opacity(sessionModel.daysEnabled[index] ? 1 : 0.3)
-                                .overlay {
-                                    Text(weekdays[index])
-                                        .foregroundStyle(.white)
-                                }
-                                .frame(width: 40)
-                                .onTapGesture {
-                                    sessionModel.daysEnabled[index].toggle()
-                                }
-                        }
-                    }
-                    .padding(.bottom)
-                }
-                .padding(.horizontal)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundStyle(.white)
-                }
-                .padding(.horizontal)
-                
-                Button {
-                    if sessionModel.sessionEnabled {
-                        sessionModel.cancelSS()
-                    } else {
-                        sessionModel.createSS()
-                        dismiss()
-                    }
-                } label: {
-                    Capsule()
-                        .frame(height: 45)
-                        .foregroundStyle(.white)
-                        .overlay {
-                            Text(sessionModel.sessionEnabled ? "Cancel Session" : "Save")
-                                .foregroundStyle(sessionModel.sessionEnabled ? Color.red : Color(.eggplant))
-                                .fontWeight(.semibold)
-                        }
-                        .padding(.horizontal)
-                }
+                BigButton
             }
             .readSize(onChange: { sheetLength = $0.height })
         }
         .background(Color(.blue))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
+    }
+    
+    var BigButton: some View {
+        Button {
+            if sessionModel.ssEnabled {
+                sessionModel.cancelSS()
+            } else {
+                sessionModel.scheduleSS()
+            }
+        } label: {
+            Capsule()
+                .frame(height: 45)
+                .foregroundStyle(.white)
+                .overlay {
+                    Text(sessionModel.ssEnabled ? "Cancel Session" : "Save")
+                        .foregroundStyle(sessionModel.ssEnabled ? Color.red : Color(.eggplant))
+                        .fontWeight(.semibold)
+                }
+                .padding(.horizontal)
+        }
+    }
+    
+    var DaySelector: some View {
+        VStack(spacing: 0) {
+            Text("Days of Week Active")
+                .fontWeight(.medium)
+                .foregroundColor(Color("eggplant"))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.vertical)
+            
+            HStack {
+                ForEach(sessionModel.daysEnabled.indices, id: \.self) { index in
+                    Circle()
+                        .foregroundStyle(Color(.eggplant))
+                        .opacity(sessionModel.daysEnabled[index] ? 1 : 0.3)
+                        .overlay {
+                            Text(weekdays[index])
+                                .foregroundStyle(.white)
+                        }
+                        .frame(width: 40)
+                        .onTapGesture {
+                            sessionModel.daysEnabled[index].toggle()
+                        }
+                        .disabled(sessionModel.ssEnabled)
+                }
+            }
+            .padding(.bottom)
+        }
+        .padding(.horizontal)
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(.white)
+        }
+        .padding(.horizontal)
+    }
+    
+    var TimeSelector: some View {
+        VStack(spacing: 0) {
+            DatePicker("From", selection: $sessionModel.ssFromTime, displayedComponents: .hourAndMinute)
+                .datePickerStyle(.compact)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .disabled(sessionModel.ssEnabled)
+            
+            Divider()
+            
+            DatePicker("To", selection: $sessionModel.ssToTime, displayedComponents: .hourAndMinute)
+                .datePickerStyle(.compact)
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+                .disabled(sessionModel.ssEnabled)
+        }
+        .background {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(.white)
+        }
+        .padding(.horizontal)
     }
 }

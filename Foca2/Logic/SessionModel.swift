@@ -12,94 +12,53 @@ import FamilyControls
 
 class SessionModel: ObservableObject {
     @Published var tokens = SessionModel.loadTokens()
-    private let dac = DeviceActivityCenter()
+    let managedStore = ManagedSettingsStore(named: .schedule)
+    let dac = DeviceActivityCenter()
+
+    @AppStorage("FSEndTime") var fsEndTime = Date()
+    @AppStorage("BREndTime") var brEndTime = Date()
     
-    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
-    private var statusInt: Int = ScreenTimeStatus.noSession.rawValue
+    @AppStorage("SSFromTime") var ssFromTime = Date()
+    @AppStorage("SSToTime") var ssToTime = Date() + 3600
+    @AppStorage("SSEnabled") var ssEnabled = false
+    @AppStorage("SSDaysEnabled")
+    var daysEnabled = [false, true, true, true, true, true, false]
     
-    public var status: ScreenTimeStatus {
-        ScreenTimeStatus(rawValue: statusInt) ?? .noSession
+    public var ssFromTimeComps: DateComponents {
+        Calendar.current.dateComponents([.hour, .minute, .second], from: ssFromTime)
     }
     
-    init() {
-        let now = Date()
-        let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
-        if sessionEnabled && daysEnabled[weekday-1] {
-            if now.compare(todayStartDate) == .orderedAscending && now.compare(nextEndDate) == .orderedDescending {
-                statusInt = ScreenTimeStatus.scheduledSession.rawValue
-            }
-        } else if now.compare(endTime) == .orderedAscending {
-            statusInt = ScreenTimeStatus.session.rawValue
-        } else {
-            statusInt = ScreenTimeStatus.noSession.rawValue
-        }
-        
-        print(status)
+    public var ssToTimeComps: DateComponents {
+        Calendar.current.dateComponents([.hour, .minute, .second], from: ssToTime)
     }
     
-    @AppStorage("FSEndTime") var endTime = Date()
-    @AppStorage("SSFromTime") var fromTime = Date()
-    @AppStorage("SSToTime") var toTime = Date() + 3600
-    @AppStorage("SSEnabled") var sessionEnabled = false
-    
-    public var SSBeginTimeComps: DateComponents {
-        Calendar.current.dateComponents([.hour, .minute, .second], from: fromTime)
-    }
-    
-    public var SSEndTimeComps: DateComponents {
-        Calendar.current.dateComponents([.hour, .minute, .second], from: toTime)
-    }
-    
-    public var todayStartDate: Date {
+    public var ssFromDate: Date {
         Calendar.current.date(
-            bySettingHour: SSBeginTimeComps.hour!,
-            minute: SSBeginTimeComps.minute!,
-            second: SSBeginTimeComps.second!,
+            bySettingHour: ssFromTimeComps.hour!,
+            minute: ssFromTimeComps.minute!,
+            second: ssFromTimeComps.second!,
             of: Date()
         )!
     }
     
-    public var nextEndDate: Date {
+    public var ssToDate: Date {
         Calendar.current.nextDate(
-            after: Date(),
-            matching: SSEndTimeComps,
+            after: ssFromDate,
+            matching: ssToTimeComps,
             matchingPolicy: .nextTime
-        ) ?? Date()
+        )!
     }
     
-    @AppStorage("SSDaysEnabled")
-    var daysEnabled = [false, true, true, true, true, true, false]
-    
-    public func startSession(minutes: Int) {
-        let now = Date()
-        let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
-        let endDate = now + TimeInterval(minutes * 60)
-        let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
-        
-        endTime = endDate
-        try! dac.startMonitoring(.focusSessions, during: DeviceActivitySchedule(
-            intervalStart: beginTimeComps,
-            intervalEnd: endTimeComps,
-            repeats: false)
-        )
-        print("made it here")
-    }
-    
-    public func endSession() {
-        dac.stopMonitoring([.focusSessions])
-        endTime = Date()
-    }
-    
-    public func createSS() {
+    public func scheduleSS() {
         var ignoredDays: [DeviceActivityName] = []
         for i in 0...6 {
             if !daysEnabled[i] {
                 ignoredDays.append(DeviceActivityName.dayNames[i])
                 continue
             }
-            var beginComp = SSBeginTimeComps
+            var beginComp = ssFromTimeComps
             beginComp.setValue(i+1, for: .weekday)
-            var endComp = SSEndTimeComps
+            var endComp = ssToTimeComps
             endComp.setValue(isSessionOvernight() ? (i+1)%7+1 : i+1, for: .weekday)
             try! dac.startMonitoring(
                 .dayNames[i],
@@ -110,11 +69,58 @@ class SessionModel: ObservableObject {
                 )
             )
         }
+        ssEnabled = true
         dac.stopMonitoring(ignoredDays)
     }
     
     public func cancelSS() {
+        ssEnabled = false
         dac.stopMonitoring(DeviceActivityName.dayNames)
+    }
+    
+    public func isSessionOvernight() -> Bool {
+        (ssFromTimeComps.hour! == ssToTimeComps.hour!) ?
+            (ssFromTimeComps.minute! >= ssToTimeComps.minute!) :
+            (ssFromTimeComps.hour! > ssToTimeComps.hour!)
+    }
+    
+    public func startBreak(minutes: Int) {
+        let now = Date()
+        let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
+        let endDate = now + TimeInterval(minutes * 3)
+        let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
+        
+        brEndTime = endDate
+        try! dac.startMonitoring(.breaks, during: DeviceActivitySchedule(
+            intervalStart: beginTimeComps,
+            intervalEnd: endTimeComps,
+            repeats: false)
+        )
+    }
+    
+    public func endBreak() {
+        dac.stopMonitoring([.breaks])
+        brEndTime = Date()
+    }
+    
+    public func startFS(minutes: Int) {
+        let now = Date()
+        let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
+        let endDate = now + TimeInterval(minutes * 3)
+        let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
+        
+        fsEndTime = endDate
+        try! dac.startMonitoring(.focusSessions, during: DeviceActivitySchedule(
+            intervalStart: beginTimeComps,
+            intervalEnd: endTimeComps,
+            repeats: false)
+        )
+        print("made it here")
+    }
+    
+    public func endFS() {
+        dac.stopMonitoring([.focusSessions])
+        fsEndTime = Date()
     }
     
     public static func loadTokens() -> FamilyActivitySelection {
@@ -142,15 +148,26 @@ class SessionModel: ObservableObject {
         }
     }
     
-    public func isSessionOvernight() -> Bool {
-        (SSBeginTimeComps.hour! == SSEndTimeComps.hour!) ?
-            (SSBeginTimeComps.minute! > SSEndTimeComps.minute!) :
-            (SSBeginTimeComps.hour! > SSEndTimeComps.hour!)
-    }
+//    public func updateStatus() {
+//        let now = Date()
+//        let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
+//        if now.compare(fsEndTime) == .orderedAscending {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+//        } else if now.compare(brEndTime) == .orderedAscending {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
+//        } else if ssEnabled
+//                    && daysEnabled[weekday-1]
+//                    && now.compare(ssFromDate) == .orderedDescending
+//                    && now.compare(ssToDate) == .orderedAscending {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+//        } else {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+//        }
+//    }
 }
 
 enum ScreenTimeStatus: Int {
-    case noSession, session, scheduledSession
+    case noSession, session, scheduledSession, onBreak
     
     var buttonTitle: String {
         switch self {
@@ -158,10 +175,23 @@ enum ScreenTimeStatus: Int {
             return "Start Focus Session"
         case .scheduledSession:
             return "Take a Break"
-//        case .onBreak:
-//            return "End Break"
+        case .onBreak:
+            return "End Break"
         case .session:
             return "End Focus Session"
+        }
+    }
+    
+    var sessionName: String {
+        switch self {
+        case .noSession:
+            ""
+        case .session:
+            "Focus Session"
+        case .scheduledSession:
+            "Scheduled Session"
+        case .onBreak:
+            "Break"
         }
     }
 }
