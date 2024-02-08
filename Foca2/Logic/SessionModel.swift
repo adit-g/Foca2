@@ -12,30 +12,56 @@ import FamilyControls
 
 class SessionModel: ObservableObject {
     @Published var tokens: FamilyActivitySelection
-    @Published var status: ScreenTimeStatus
     let managedStore = ManagedSettingsStore(named: .schedule)
     let dac = DeviceActivityCenter()
     
+    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
+    var statusInt: Int = ScreenTimeStatus.noSession.rawValue
+    @AppStorage("FSEndTime") var fsEndTime = Date()
+    
+    @AppStorage("SSFromTime") var ssFromTime = Date()
+    @AppStorage("SSToTime") var ssToTime = Date() + 3600
+    @AppStorage("SSEnabled") var ssEnabled = false
+    
+    @AppStorage("SSDaysEnabled")
+    var daysEnabled = [false, true, true, true, true, true, false]
+    
+    public var status: ScreenTimeStatus {
+        ScreenTimeStatus(rawValue: statusInt) ?? .noSession
+    }
+    
     init() {
         self.tokens = SessionModel.loadTokens()
-        let statusInt = UserDefaults(suiteName: "group.sharedCode1234")?.integer(forKey: "status")
-        self.status = ScreenTimeStatus(rawValue: statusInt ?? ScreenTimeStatus.noSession.rawValue) ?? .noSession
+    }
+    
+    public func updateStatus() {
+        let now = Date()
+        if now.compare(fsEndTime) == .orderedAscending {
+            statusInt = ScreenTimeStatus.session.rawValue
+        } else {
+            statusInt = ScreenTimeStatus.noSession.rawValue
+        }
     }
     
     public func startSession(minutes: Int) {
         let now = Date()
-        let endTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: minutes)
         let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
+        let endDate = now + TimeInterval(minutes * 60)
+        let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
-        try? dac.startMonitoring(.focusSessions, during: DeviceActivitySchedule(
+        fsEndTime = endDate
+        try! dac.startMonitoring(.focusSessions, during: DeviceActivitySchedule(
             intervalStart: beginTimeComps,
             intervalEnd: endTimeComps,
             repeats: false)
         )
+        updateStatus()
     }
     
     public func endSession() {
         dac.stopMonitoring([.focusSessions])
+        fsEndTime = Date()
+        updateStatus()
     }
     
     public static func loadTokens() -> FamilyActivitySelection {

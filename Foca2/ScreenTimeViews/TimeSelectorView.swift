@@ -50,6 +50,7 @@ struct TimeSelectorView: View {
             
             Spacer()
         }
+        .onAppear { minutes = 5 }
         .onChange(of: selectedMinutes) {
             withAnimation {
                 if hourSelection == 0 && minuteSelection == 0 {

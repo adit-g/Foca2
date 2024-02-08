@@ -23,7 +23,8 @@ struct ContentView: View {
                     .ignoresSafeArea(edges: .bottom)
                     .tag(Tab.first)
                 
-                ScreenTimeView(sessionModel: sessionModel)
+                ScreenTimeView()
+                    .environmentObject(sessionModel)
                     .tag(Tab.second)
             }
             
