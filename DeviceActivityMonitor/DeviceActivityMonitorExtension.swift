@@ -22,7 +22,11 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         managedStore.shield.webDomains = .some(sessionModel.tokens.webDomainTokens)
         managedStore.shield.applicationCategories = .specific(sessionModel.tokens.categoryTokens)
         managedStore.shield.webDomainCategories = .specific(sessionModel.tokens.categoryTokens)
-        UserDefaults(suiteName: "group.sharedCode1234")?.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+        if activity == .focusSessions {
+            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+        } else {
+            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+        }
     }
     
     override func intervalDidEnd(for activity: DeviceActivityName) {
@@ -31,7 +35,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         // Handle the end of the interval.
         let managedStore = ManagedSettingsStore(named: .schedule)
         managedStore.clearAllSettings()
-        UserDefaults(suiteName: "group.sharedCode1234")?.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+        UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
     }
     
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {

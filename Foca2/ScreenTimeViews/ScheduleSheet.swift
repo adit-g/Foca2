@@ -41,7 +41,11 @@ struct ScheduleSheet: View {
     
     var BigButton: some View {
         Button {
-            
+            if sessionModel.ssEnabled {
+                sessionModel.cancelSS()
+            } else {
+                sessionModel.scheduleSS()
+            }
         } label: {
             Capsule()
                 .frame(height: 45)
@@ -76,6 +80,7 @@ struct ScheduleSheet: View {
                         .onTapGesture {
                             sessionModel.daysEnabled[index].toggle()
                         }
+                        .disabled(sessionModel.ssEnabled)
                 }
             }
             .padding(.bottom)
@@ -94,6 +99,7 @@ struct ScheduleSheet: View {
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)
+                .disabled(sessionModel.ssEnabled)
             
             Divider()
             
@@ -101,6 +107,7 @@ struct ScheduleSheet: View {
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)
+                .disabled(sessionModel.ssEnabled)
         }
         .background {
             RoundedRectangle(cornerRadius: 10)

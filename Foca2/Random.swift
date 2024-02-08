@@ -57,6 +57,16 @@ struct ViewOffsetKey: PreferenceKey {
 
 extension DeviceActivityName {
     static let focusSessions = Self("focusSessions")
+    
+    static let day1 = Self("day1")
+    static let day2 = Self("day2")
+    static let day3 = Self("day3")
+    static let day4 = Self("day4")
+    static let day5 = Self("day5")
+    static let day6 = Self("day6")
+    static let day7 = Self("day7")
+    
+    static let dayNames : [DeviceActivityName] = [.day1, .day2, .day3, .day4, .day5, .day6, .day7]
 }
 
 extension ManagedSettingsStore.Name {

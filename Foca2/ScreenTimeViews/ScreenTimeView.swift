@@ -11,9 +11,16 @@ import FamilyControls
 struct ScreenTimeView: View {
     @EnvironmentObject var sessionModel: SessionModel
     
+    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
+    var statusInt: Int = ScreenTimeStatus.noSession.rawValue
+    
     @State private var minutes = 5
     @State private var tokenPickerOpen = false
     @State private var scheduleSheetOpen = false
+    
+    private var status: ScreenTimeStatus {
+        ScreenTimeStatus(rawValue: statusInt) ?? .noSession
+    }
     
     var body: some View {
         ScrollView {
@@ -22,7 +29,7 @@ struct ScreenTimeView: View {
                 .foregroundColor(Color(.darkblue))
                 .padding(.vertical, 10)
             
-            if sessionModel.status == .noSession {
+            if status == .noSession {
                 TimeSelectionCircle(minutes: $minutes)
                     .padding(.vertical, 15)
                     .padding(.bottom)
@@ -66,11 +73,13 @@ struct ScreenTimeView: View {
                 .padding(.bottom, 5)
             }
             
-            switch sessionModel.status {
+            switch status {
             case .noSession:
                 Text("NO SESSION")
             case .session:
                 Text("SESSION")
+            case .scheduledSession:
+                Text("SCHEDULED")
             }
             
             Spacer()
@@ -82,22 +91,25 @@ struct ScreenTimeView: View {
         )
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
+        .onAppear { sessionModel.updateStatus() }
     }
     
     var BigButton: some View {
         Button {
-            switch sessionModel.status {
+            switch status {
             case .noSession:
-                sessionModel.startSession(minutes: minutes)
+                sessionModel.startFS(minutes: minutes)
             case .session:
-                sessionModel.endSession()
+                sessionModel.endFS()
+            case .scheduledSession:
+                sessionModel.cancelSS()
             }
         } label: {
             Capsule()
                 .frame(width: UIScreen.width * 7 / 12, height: 40)
                 .foregroundStyle(.white)
                 .overlay {
-                    Text(sessionModel.status.buttonTitle)
+                    Text(status.buttonTitle)
                         .foregroundStyle(Color(.darkblue))
                         .fontWeight(.semibold)
                 }
