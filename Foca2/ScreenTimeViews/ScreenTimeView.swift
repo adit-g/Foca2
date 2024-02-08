@@ -80,6 +80,8 @@ struct ScreenTimeView: View {
                 Text("SESSION")
             case .scheduledSession:
                 Text("SCHEDULED")
+            case .onBreak:
+                Text("BREAK")
             }
             
             Spacer()
@@ -91,7 +93,6 @@ struct ScreenTimeView: View {
         )
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
-        .onAppear { sessionModel.updateStatus() }
     }
     
     var BigButton: some View {
@@ -102,7 +103,9 @@ struct ScreenTimeView: View {
             case .session:
                 sessionModel.endFS()
             case .scheduledSession:
-                sessionModel.cancelSS()
+                sessionModel.startBreak(minutes: 10)
+            case .onBreak:
+                sessionModel.endBreak()
             }
         } label: {
             Capsule()

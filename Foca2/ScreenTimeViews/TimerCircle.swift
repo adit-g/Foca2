@@ -27,6 +27,8 @@ struct TimerCircle: View {
             sessionModel.fsEndTime
         case .scheduledSession:
             sessionModel.ssToDate
+        case .onBreak:
+            sessionModel.brEndTime
         }
     }
     
@@ -52,7 +54,7 @@ struct TimerCircle: View {
                     let formattedStr = secondsToString(seconds: secondsToEnd)
                     
                     VStack {
-                        Text(sessionModel.ssEnabled ? "Scheduled Session" : "Focus Session")
+                        Text(status.sessionName)
                             .font(.title)
                         Text("Remaining Time: " + formattedStr)
                     }
@@ -89,11 +91,6 @@ struct TimerCircle: View {
                         .transaction { transaction in
                             transaction.animation = nil
                         }
-                }
-                .onChange(of: context.date) {
-                    if secondsToEnd <= 0 {
-                        sessionModel.updateStatus()
-                    }
                 }
             }
         }

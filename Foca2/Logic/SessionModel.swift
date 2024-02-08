@@ -11,11 +11,12 @@ import ManagedSettings
 import FamilyControls
 
 class SessionModel: ObservableObject {
-    @Published var tokens: FamilyActivitySelection
+    @Published var tokens = SessionModel.loadTokens()
     let managedStore = ManagedSettingsStore(named: .schedule)
     let dac = DeviceActivityCenter()
 
     @AppStorage("FSEndTime") var fsEndTime = Date()
+    @AppStorage("BREndTime") var brEndTime = Date()
     
     @AppStorage("SSFromTime") var ssFromTime = Date()
     @AppStorage("SSToTime") var ssToTime = Date() + 3600
@@ -48,11 +49,6 @@ class SessionModel: ObservableObject {
         )!
     }
     
-    init() {
-        self.tokens = SessionModel.loadTokens()
-        updateStatus()
-    }
-    
     public func scheduleSS() {
         var ignoredDays: [DeviceActivityName] = []
         for i in 0...6 {
@@ -75,13 +71,11 @@ class SessionModel: ObservableObject {
         }
         ssEnabled = true
         dac.stopMonitoring(ignoredDays)
-        updateStatus()
     }
     
     public func cancelSS() {
         ssEnabled = false
         dac.stopMonitoring(DeviceActivityName.dayNames)
-        updateStatus()
     }
     
     public func isSessionOvernight() -> Bool {
@@ -90,25 +84,29 @@ class SessionModel: ObservableObject {
             (ssFromTimeComps.hour! > ssToTimeComps.hour!)
     }
     
-    public func updateStatus() {
+    public func startBreak(minutes: Int) {
         let now = Date()
-        let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
-        if now.compare(fsEndTime) == .orderedAscending {
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
-        } else if ssEnabled
-                    && daysEnabled[weekday-1]
-                    && now.compare(ssFromDate) == .orderedDescending
-                    && now.compare(ssToDate) == .orderedAscending {
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
-        } else {
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
-        }
+        let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
+        let endDate = now + TimeInterval(minutes * 3)
+        let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
+        
+        brEndTime = endDate
+        try! dac.startMonitoring(.breaks, during: DeviceActivitySchedule(
+            intervalStart: beginTimeComps,
+            intervalEnd: endTimeComps,
+            repeats: false)
+        )
+    }
+    
+    public func endBreak() {
+        dac.stopMonitoring([.breaks])
+        brEndTime = Date()
     }
     
     public func startFS(minutes: Int) {
         let now = Date()
         let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
-        let endDate = now + TimeInterval(minutes * 60)
+        let endDate = now + TimeInterval(minutes * 3)
         let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
         fsEndTime = endDate
@@ -117,13 +115,11 @@ class SessionModel: ObservableObject {
             intervalEnd: endTimeComps,
             repeats: false)
         )
-        updateStatus()
     }
     
     public func endFS() {
         dac.stopMonitoring([.focusSessions])
         fsEndTime = Date()
-        updateStatus()
     }
     
     public static func loadTokens() -> FamilyActivitySelection {
@@ -150,21 +146,51 @@ class SessionModel: ObservableObject {
             }
         }
     }
+    
+//    public func updateStatus() {
+//        let now = Date()
+//        let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
+//        if now.compare(fsEndTime) == .orderedAscending {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+//        } else if now.compare(brEndTime) == .orderedAscending {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
+//        } else if ssEnabled
+//                    && daysEnabled[weekday-1]
+//                    && now.compare(ssFromDate) == .orderedDescending
+//                    && now.compare(ssToDate) == .orderedAscending {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+//        } else {
+//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+//        }
+//    }
 }
 
 enum ScreenTimeStatus: Int {
-    case noSession, session, scheduledSession
+    case noSession, session, scheduledSession, onBreak
     
     var buttonTitle: String {
         switch self {
         case .noSession:
             return "Start Focus Session"
         case .scheduledSession:
-            return "Cancel"
-//        case .onBreak:
-//            return "End Break"
+            return "Take a Break"
+        case .onBreak:
+            return "End Break"
         case .session:
             return "End Focus Session"
+        }
+    }
+    
+    var sessionName: String {
+        switch self {
+        case .noSession:
+            ""
+        case .session:
+            "Focus Session"
+        case .scheduledSession:
+            "Scheduled Session"
+        case .onBreak:
+            "Break"
         }
     }
 }

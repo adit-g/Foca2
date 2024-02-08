@@ -16,26 +16,47 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.intervalDidStart(for: activity)
         
         // Handle the start of the interval.
-        let sessionModel = SessionModel()
-        let managedStore = ManagedSettingsStore(named: .schedule)
-        managedStore.shield.applications = .some(sessionModel.tokens.applicationTokens)
-        managedStore.shield.webDomains = .some(sessionModel.tokens.webDomainTokens)
-        managedStore.shield.applicationCategories = .specific(sessionModel.tokens.categoryTokens)
-        managedStore.shield.webDomainCategories = .specific(sessionModel.tokens.categoryTokens)
+        
         if activity == .focusSessions {
+            blockApps()
             UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+        } else if activity == .breaks {
+            unblockApps()
+            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
         } else {
+            blockApps()
             UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         }
+    }
+    
+    private func blockApps() {
+        let tokens = SessionModel.loadTokens()
+        let managedStore = ManagedSettingsStore(named: .schedule)
+        managedStore.shield.applications = .some(tokens.applicationTokens)
+        managedStore.shield.webDomains = .some(tokens.webDomainTokens)
+        managedStore.shield.applicationCategories = .specific(tokens.categoryTokens)
+        managedStore.shield.webDomainCategories = .specific(tokens.categoryTokens)
+    }
+    
+    private func unblockApps() {
+        let managedStore = ManagedSettingsStore(named: .schedule)
+        managedStore.clearAllSettings()
     }
     
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
         
         // Handle the end of the interval.
-        let managedStore = ManagedSettingsStore(named: .schedule)
-        managedStore.clearAllSettings()
-        UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+        if activity == .focusSessions {
+            unblockApps()
+            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+        } else if activity == .breaks {
+            blockApps()
+            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+        } else {
+            unblockApps()
+            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+        }
     }
     
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
