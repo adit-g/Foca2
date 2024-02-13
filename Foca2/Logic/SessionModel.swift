@@ -12,8 +12,8 @@ import FamilyControls
 
 class SessionModel: ObservableObject {
     @Published var tokens = SessionModel.loadTokens()
-    let managedStore = ManagedSettingsStore(named: .schedule)
-    let dac = DeviceActivityCenter()
+    private let managedStore = ManagedSettingsStore(named: .schedule)
+    private let dac = DeviceActivityCenter()
 
     @AppStorage("FSEndTime") var fsEndTime = Date()
     @AppStorage("BREndTime") var brEndTime = Date()
@@ -87,7 +87,7 @@ class SessionModel: ObservableObject {
     public func startBreak(minutes: Int) {
         let now = Date()
         let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
-        let endDate = now + TimeInterval(minutes * 3)
+        let endDate = now + TimeInterval(minutes * 60)
         let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
         brEndTime = endDate
@@ -106,7 +106,7 @@ class SessionModel: ObservableObject {
     public func startFS(minutes: Int) {
         let now = Date()
         let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
-        let endDate = now + TimeInterval(minutes * 3)
+        let endDate = now + TimeInterval(minutes * 60)
         let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
         fsEndTime = endDate

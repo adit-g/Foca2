@@ -14,6 +14,10 @@ class DataController: ObservableObject {
     init(inMemory: Bool = false) {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            let storeURL = URL.storeURL(for: "group.sharedCode1234", databaseName: "Foca2")
+            let storeDescription = NSPersistentStoreDescription(url: storeURL)
+            container.persistentStoreDescriptions = [storeDescription]
         }
         container.loadPersistentStores { description, error in
             if let error = error {

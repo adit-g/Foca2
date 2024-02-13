@@ -47,6 +47,7 @@
 		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
 		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
 		A9F5B1752B74820B00CD4F69 /* ScheduleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1742B74820B00CD4F69 /* ScheduleSheet.swift */; };
+		A9F5B1772B7B326200CD4F69 /* StartBreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1762B7B326200CD4F69 /* StartBreakView.swift */; };
 		A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA71282AF4A31800B5E1EC /* Schedule.swift */; };
 		A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */; };
 		A9FA712D2AF4B38B00B5E1EC /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */; };
@@ -136,6 +137,7 @@
 		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
 		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		A9F5B1742B74820B00CD4F69 /* ScheduleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSheet.swift; sourceTree = "<group>"; };
+		A9F5B1762B7B326200CD4F69 /* StartBreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBreakView.swift; sourceTree = "<group>"; };
 		A9FA71282AF4A31800B5E1EC /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		A9FA712C2AF4B38B00B5E1EC /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				A9BFCEC22B608FFF00F55EE3 /* ScreenTimeView.swift */,
+				A9F5B1762B7B326200CD4F69 /* StartBreakView.swift */,
 				A9BFCECD2B62F40D00F55EE3 /* SomeSettingsView.swift */,
 				A9BFCEC62B61603F00F55EE3 /* TimeSelectionCircle.swift */,
 				A9BFCECA2B6201EB00F55EE3 /* TimeSelectorView.swift */,
@@ -511,6 +514,7 @@
 				A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */,
 				A9BFCEBF2B608C5000F55EE3 /* SheetHeader.swift in Sources */,
 				A9BFCEBC2B5F0EE600F55EE3 /* TabBar.swift in Sources */,
+				A9F5B1772B7B326200CD4F69 /* StartBreakView.swift in Sources */,
 				A9BFCED12B6324BF00F55EE3 /* SessionModel.swift in Sources */,
 				A9BFCEC92B61604E00F55EE3 /* TimerCircle.swift in Sources */,
 				A9BFCED42B6415C100F55EE3 /* TaskItem+CoreDataClass.swift in Sources */,

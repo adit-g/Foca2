@@ -20,7 +20,7 @@ struct TimeSelectorView: View {
     var body: some View {
         HStack(spacing: 0) {
             Spacer()
-            Picker("picks2", selection: $hourSelection) {
+            Picker("Hour Picker", selection: $hourSelection) {
                 ForEach(0..<24) { row in
                     Text(row.description)
                         .fontWeight(.bold)
@@ -33,7 +33,7 @@ struct TimeSelectorView: View {
             
             Text("Hours")
             
-            Picker("picks1", selection: $minuteSelection) {
+            Picker("Minute Picker", selection: $minuteSelection) {
                 ForEach(0..<12) { row in
                     let row2 = row * 5
                     Text(row2.description)

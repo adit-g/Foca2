@@ -17,6 +17,7 @@ struct ScreenTimeView: View {
     @State private var minutes = 5
     @State private var tokenPickerOpen = false
     @State private var scheduleSheetOpen = false
+    @State private var startBreakOpen = false
     
     private var status: ScreenTimeStatus {
         ScreenTimeStatus(rawValue: statusInt) ?? .noSession
@@ -73,17 +74,6 @@ struct ScreenTimeView: View {
                 .padding(.bottom, 5)
             }
             
-            switch status {
-            case .noSession:
-                Text("NO SESSION")
-            case .session:
-                Text("SESSION")
-            case .scheduledSession:
-                Text("SCHEDULED")
-            case .onBreak:
-                Text("BREAK")
-            }
-            
             Spacer()
         }
         .background(Color(.blue))
@@ -93,6 +83,7 @@ struct ScreenTimeView: View {
         )
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
+        .sheet(isPresented: $startBreakOpen) { StartBreakView() }
     }
     
     var BigButton: some View {
@@ -103,7 +94,7 @@ struct ScreenTimeView: View {
             case .session:
                 sessionModel.endFS()
             case .scheduledSession:
-                sessionModel.startBreak(minutes: 10)
+                startBreakOpen = true
             case .onBreak:
                 sessionModel.endBreak()
             }
