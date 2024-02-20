@@ -65,8 +65,7 @@ class SessionModel: ObservableObject {
                 during: DeviceActivitySchedule(
                     intervalStart: beginComp,
                     intervalEnd: endComp,
-                    repeats: true
-                )
+                    repeats: true)
             )
         }
         ssEnabled = true
@@ -91,10 +90,12 @@ class SessionModel: ObservableObject {
         let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
         brEndTime = endDate
-        try! dac.startMonitoring(.breaks, during: DeviceActivitySchedule(
-            intervalStart: beginTimeComps,
-            intervalEnd: endTimeComps,
-            repeats: false)
+        try! dac.startMonitoring(
+            .breaks,
+            during: DeviceActivitySchedule(
+                intervalStart: beginTimeComps,
+                intervalEnd: endTimeComps,
+                repeats: false)
         )
     }
     
@@ -110,12 +111,13 @@ class SessionModel: ObservableObject {
         let endTimeComps = Calendar.current.dateComponents([.hour, .minute, .second], from: endDate)
         
         fsEndTime = endDate
-        try! dac.startMonitoring(.focusSessions, during: DeviceActivitySchedule(
-            intervalStart: beginTimeComps,
-            intervalEnd: endTimeComps,
-            repeats: false)
+        try! dac.startMonitoring(
+            .focusSessions,
+            during: DeviceActivitySchedule(
+                intervalStart: beginTimeComps,
+                intervalEnd: endTimeComps,
+                repeats: false)
         )
-        print("made it here")
     }
     
     public func endFS() {
@@ -124,7 +126,7 @@ class SessionModel: ObservableObject {
     }
     
     public static func loadTokens() -> FamilyActivitySelection {
-        let documentsDirectory = FileManager().containerURL(forSecurityApplicationGroupIdentifier: "group.sharedCode1234")
+        let documentsDirectory = FileManager().containerURL(forSecurityApplicationGroupIdentifier: "group.2L6XN9RA4T.focashared")
         guard let archiveURL = documentsDirectory?.appendingPathComponent("tokens.data") else { return FamilyActivitySelection() }
         guard let codeData = try? Data(contentsOf: archiveURL) else { return FamilyActivitySelection() }
 
@@ -135,7 +137,7 @@ class SessionModel: ObservableObject {
     }
     
     public func saveTokens() {
-        let documentsDirectory = FileManager().containerURL(forSecurityApplicationGroupIdentifier: "group.sharedCode1234")
+        let documentsDirectory = FileManager().containerURL(forSecurityApplicationGroupIdentifier: "group.2L6XN9RA4T.focashared")
         let archiveURL = documentsDirectory?.appendingPathComponent("tokens.data")
         let encoder = JSONEncoder()
         if let dataToSave = try? encoder.encode(tokens) {
@@ -148,22 +150,22 @@ class SessionModel: ObservableObject {
         }
     }
     
-//    public func updateStatus() {
-//        let now = Date()
-//        let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
-//        if now.compare(fsEndTime) == .orderedAscending {
-//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
-//        } else if now.compare(brEndTime) == .orderedAscending {
-//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
-//        } else if ssEnabled
-//                    && daysEnabled[weekday-1]
-//                    && now.compare(ssFromDate) == .orderedDescending
-//                    && now.compare(ssToDate) == .orderedAscending {
-//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
-//        } else {
-//            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
-//        }
-//    }
+    public func updateStatus() {
+        let now = Date()
+        let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
+        if now.compare(fsEndTime) == .orderedAscending {
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+        } else if now.compare(brEndTime) == .orderedAscending {
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
+        } else if ssEnabled
+                    && daysEnabled[weekday-1]
+                    && now.compare(ssFromDate) == .orderedDescending
+                    && now.compare(ssToDate) == .orderedAscending {
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+        } else {
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+        }
+    }
 }
 
 enum ScreenTimeStatus: Int {

@@ -8,4 +8,8 @@
         <attribute name="reminderDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="TileImage" representedClassName="TileImage" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="storedImage" optional="YES" attributeType="Binary"/>
+    </entity>
 </model>

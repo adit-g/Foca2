@@ -61,7 +61,7 @@ struct DueDateSelection: View {
         }
         .presentationCornerRadius(20)
         .presentationDetents([.height(sheetLength)])
-        .presentationBackground(Color(.blue))
+        .presentationBackground(Color(.mediumBlue))
     }
     
     private func setAction(_ date: Date) {

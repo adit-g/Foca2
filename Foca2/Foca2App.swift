@@ -11,7 +11,7 @@ import FamilyControls
 @main
 struct Foca2App: App {
     
-    let dataController = DataController()
+    let dataController = DataController.shared
     let center = AuthorizationCenter.shared
     
     var body: some Scene {
@@ -24,6 +24,14 @@ struct Foca2App: App {
                             try await center.requestAuthorization(for: .individual)
                         } catch {
                             print("failed to enroll homie with error: \(error)")
+                        }
+                    }
+                    
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
                         }
                     }
                 }

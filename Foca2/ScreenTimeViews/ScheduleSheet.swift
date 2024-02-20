@@ -34,7 +34,7 @@ struct ScheduleSheet: View {
             }
             .readSize(onChange: { sheetLength = $0.height })
         }
-        .background(Color(.blue))
+        .background(Color(.mediumBlue))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
     }

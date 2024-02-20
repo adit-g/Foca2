@@ -31,6 +31,6 @@ struct NotesEditor: View {
             }
         }
         .presentationCornerRadius(20)
-        .presentationBackground(Color(.blue))
+        .presentationBackground(Color(.mediumBlue))
     }
 }

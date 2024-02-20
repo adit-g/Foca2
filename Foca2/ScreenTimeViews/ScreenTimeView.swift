@@ -11,7 +11,7 @@ import FamilyControls
 struct ScreenTimeView: View {
     @EnvironmentObject var sessionModel: SessionModel
     
-    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
+    @AppStorage("status", store: UserDefaults(suiteName: "group.2L6XN9RA4T.focashared"))
     var statusInt: Int = ScreenTimeStatus.noSession.rawValue
     
     @State private var minutes = 5
@@ -76,7 +76,7 @@ struct ScreenTimeView: View {
             
             Spacer()
         }
-        .background(Color(.blue))
+        .background(Color(.mediumBlue))
         .familyActivityPicker(
             isPresented: $tokenPickerOpen,
             selection: $sessionModel.tokens
@@ -84,6 +84,9 @@ struct ScreenTimeView: View {
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
         .sheet(isPresented: $startBreakOpen) { StartBreakView() }
+        .onAppear {
+            sessionModel.updateStatus()
+        }
     }
     
     var BigButton: some View {

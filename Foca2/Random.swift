@@ -45,6 +45,15 @@ extension Date: RawRepresentable {
         let endDate = self + TimeInterval(minutesAhead * 60)
         return Calendar.current.dateComponents(components, from: endDate)
     }
+    
+    static func getTodayStartEndDates() -> (Date, Date) {
+        let startDate = Calendar.current.startOfDay(for: Date())
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        let endDate = Calendar.current.date(byAdding: components, to: startDate)!
+        return (startDate, endDate)
+    }
 }
 
 struct ViewOffsetKey: PreferenceKey {
@@ -56,13 +65,30 @@ struct ViewOffsetKey: PreferenceKey {
 }
 
 public extension URL {
-    /// Returns a URL for the given app group and database pointing to the sqlite database.
     static func storeURL(for appGroup: String, databaseName: String) -> URL {
         guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
             fatalError("Shared file container could not be created.")
         }
 
         return fileContainer.appendingPathComponent("\(databaseName).sqlite")
+    }
+}
+
+extension String {
+    func textToImage() -> UIImage? {
+        let nsString = (self as NSString)
+        let font = UIFont.systemFont(ofSize: 200) // you can change your font size here
+        let stringAttributes = [NSAttributedString.Key.font: font]
+        let imageSize = nsString.size(withAttributes: stringAttributes)
+
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0) //  begin image context
+        UIColor.clear.set() // clear background
+        UIRectFill(CGRect(origin: CGPoint(), size: imageSize)) // set rect size
+        nsString.draw(at: CGPoint.zero, withAttributes: stringAttributes) // draw text within rect
+        let image = UIGraphicsGetImageFromCurrentImageContext() // create image from context
+        UIGraphicsEndImageContext() //  end image context
+
+        return image ?? UIImage()
     }
 }
 

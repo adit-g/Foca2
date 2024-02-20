@@ -17,11 +17,7 @@ struct TaskTile: View {
     var items : FetchedResults<TaskItem> { itemsRequest.wrappedValue }
     
     init(at date: Date) {
-        let startDate = Calendar.current.startOfDay(for: date)
-        var components = DateComponents()
-        components.day = 1
-        components.second = -1
-        let endDate = Calendar.current.date(byAdding: components, to: startDate)!
+        let (startDate, endDate) = Date.getTodayStartEndDates()
 
         self.itemsRequest = FetchRequest(
             entity: TaskItem.entity(),
@@ -63,7 +59,7 @@ struct TaskTile: View {
         .foregroundStyle(Color(.darkgray))
         .padding(.horizontal)
         .padding(.vertical, 10)
-        .background(Rectangle().fill(Color("blue")))
+        .background(Rectangle().fill(Color(.mediumBlue)))
     }
 }
 

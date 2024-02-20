@@ -71,7 +71,7 @@ class TaskModel: ObservableObject {
         task.reminderDate = nil
     }
     
-    public func rinseAndRepeat() throws {
+    @MainActor public func rinseAndRepeat() throws {
         if task.wrappedTitle.isEmpty {
             throw TaskModelError.BlankTitle
         }
@@ -79,6 +79,7 @@ class TaskModel: ObservableObject {
         do {
             task.createdDate = Date()
             try moc.save()
+            DataController.shared.saveTasksImage()
         } catch {
             task.createdDate = nil
             throw TaskModelError.CoreDataIssue
@@ -95,4 +96,5 @@ enum TaskModelError: Error {
     case BlankTitle
     case NilValue
     case CoreDataIssue
+    case ImageSaveError
 }

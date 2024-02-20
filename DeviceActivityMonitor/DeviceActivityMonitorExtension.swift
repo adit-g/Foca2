@@ -12,19 +12,34 @@ import SwiftUI
 // Optionally override any of the functions below.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
+    
+    private func scheduleNoti(title: String, subtitle: String, identifier: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = subtitle
+        content.sound = UNNotificationSound.default
+        
+        let request = UNNotificationRequest(
+            identifier: identifier,
+            content: content,
+            trigger: nil
+        )
+        UNUserNotificationCenter.current().add(request)
+    }
+    
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
-        
+        scheduleNoti(title: "Interval started", subtitle: "", identifier: "start")
         // Handle the start of the interval.
         if activity == .focusSessions {
             blockApps()
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
         } else if activity == .breaks {
             unblockApps()
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
         } else {
             blockApps()
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         }
     }
     
@@ -44,17 +59,17 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
-        
+        scheduleNoti(title: "Interval ended", subtitle: "", identifier: "end")
         // Handle the end of the interval.
         if activity == .focusSessions {
             unblockApps()
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         } else if activity == .breaks {
             blockApps()
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         } else {
             unblockApps()
-            UserDefaults(suiteName: "group.sharedCode1234")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         }
     }
     
@@ -62,6 +77,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.eventDidReachThreshold(event, activity: activity)
         
         // Handle the event reaching its threshold.
+        scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
     }
     
     override func intervalWillStartWarning(for activity: DeviceActivityName) {

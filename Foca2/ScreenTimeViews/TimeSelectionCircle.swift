@@ -68,5 +68,5 @@ struct TimeSelectionCircle: View {
             .padding(.top)
         Spacer()
     }
-    .background(Color(.blue))
+    .background(Color(.mediumBlue))
 }

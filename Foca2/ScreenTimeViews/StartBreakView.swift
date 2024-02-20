@@ -53,7 +53,7 @@ struct StartBreakView: View {
                 if $1 == 0 { withAnimation { minuteSelection = 1 } }
             }
         }
-        .background(Color(.blue))
+        .background(Color(.mediumBlue))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
     }

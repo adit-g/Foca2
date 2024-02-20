@@ -46,7 +46,7 @@ struct TaskEditor: View {
             .readSize(onChange: { sheetLength = $0.height })
             .onAppear { safeAreaBottom = getSafeAreaBottom() }
         }
-        .background(Color(.blue))
+        .background(Color(.mediumBlue))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
         .safeAreaPadding(.top, min(15, safeAreaBottom / 2))
@@ -129,11 +129,11 @@ struct TaskEditor: View {
     
     var NotesCapsule: some View {
         HStack (spacing: 10) {
-            ImageTemplate("pencil.and.scribble", 20, Color(.blue))
+            ImageTemplate("pencil.and.scribble", 20, Color(.mediumBlue))
                 .onTapGesture { showNotesEditor = true }
             
             Text("Note")
-                .foregroundStyle(Color(.blue))
+                .foregroundStyle(Color(.mediumBlue))
                 .font(.system(size: 16))
                 .onTapGesture { showNotesEditor = true }
             
@@ -148,7 +148,7 @@ struct TaskEditor: View {
         let timeString = DateModel.getDateStr(date: reminderDate, format: "h:mm a")
         let dateString = DateModel.getDescriptiveDateStr(date: reminderDate, format: "E, MMMM d")
         return HStack(spacing: 10) {
-            ImageTemplate("bell", 20, Color(.blue))
+            ImageTemplate("bell", 20, Color(.mediumBlue))
                 .onTapGesture { showReminderDatePicker = true }
             
             VStack {
@@ -158,7 +158,7 @@ struct TaskEditor: View {
                 Text(dateString)
                     .font(.system(size: 10))
             }
-            .foregroundStyle(Color(.blue))
+            .foregroundStyle(Color(.mediumBlue))
             .onTapGesture { showReminderDatePicker = true }
             
             XButton
@@ -170,7 +170,7 @@ struct TaskEditor: View {
     var XButton: some View {
         Circle()
             .frame(width: 20, height: 20)
-            .foregroundStyle(Color(.blue))
+            .foregroundStyle(Color(.mediumBlue))
             .overlay{
                 ImageTemplate("xmark", 10, Color(.eggplant))
                     .fontWeight(.bold)
@@ -180,11 +180,11 @@ struct TaskEditor: View {
     var DueDateCapsule: some View {
         let dueDateStr = DateModel.getDescriptiveDateStr(date: try! taskModel.getDueDate(), format: "E, MMM d")
         return HStack(spacing: 10) {
-            ImageTemplate("calendar", 20, Color(.blue))
+            ImageTemplate("calendar", 20, Color(.mediumBlue))
                 .onTapGesture { showDueDatePicker = true }
             
             Text("Due \(dueDateStr)")
-                .foregroundStyle(Color(.blue))
+                .foregroundStyle(Color(.mediumBlue))
                 .font(.system(size: 16))
                 .onTapGesture { showDueDatePicker = true }
             

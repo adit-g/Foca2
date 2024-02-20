@@ -23,7 +23,7 @@ struct ChooseDateView: View {
                 .datePickerStyle(.graphical)
         }
         .scrollContentBackground(.hidden)
-        .background(Color(.blue))
+        .background(Color(.mediumBlue))
         .navigationBarBackButtonHidden()
         .toolbar { toolbarContents }
     }

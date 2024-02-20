@@ -7,12 +7,37 @@
 		<key>DeviceActivityMonitor.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Foca2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>3</integer>
+		</dict>
+		<key>ShieldConfiguration.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A9A821FA2AF355FE002E0F61</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9BFCED92B64396A00F55EE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9F5B17B2B7DE65300CD4F69</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

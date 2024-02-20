@@ -10,7 +10,7 @@ import SwiftUI
 struct TimerCircle: View {
     @EnvironmentObject var sessionModel: SessionModel
     
-    @AppStorage("status", store: UserDefaults(suiteName: "group.sharedCode1234"))
+    @AppStorage("status", store: UserDefaults(suiteName: "group.2L6XN9RA4T.focashared"))
     var statusInt: Int = ScreenTimeStatus.noSession.rawValue
     
     @State private var size = CGSize.zero
@@ -106,5 +106,5 @@ struct TimerCircle: View {
             .padding(.top)
         Spacer()
     }
-    .background(Color(.blue))
+    .background(Color(.mediumBlue))
 }
