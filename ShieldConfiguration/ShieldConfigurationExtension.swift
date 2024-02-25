@@ -46,6 +46,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
         let content = UNMutableNotificationContent()
         content.title = title
         content.subtitle = subtitle
+        content.sound = UNNotificationSound.default
         
         let request = UNNotificationRequest(
             identifier: identifier,

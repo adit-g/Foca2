@@ -62,6 +62,29 @@ class TaskModel: ObservableObject {
     }
     
     public func setReminderDate(_ date: Date) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = task.wrappedTitle
+        content.subtitle = date.formatted(date: .abbreviated, time: .shortened)
+        content.interruptionLevel = .timeSensitive
+        content.sound = UNNotificationSound.default
+        
+        let components = Calendar.current.dateComponents([.year, .month, .day, .minute, .hour], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let request = UNNotificationRequest(
+            identifier: task.wrappedTitle,
+            content: content,
+            trigger: trigger
+        )
+        UNUserNotificationCenter.current().add(request)
+        
         task.reminderDate = date
         self.hasReminderDate = true
     }

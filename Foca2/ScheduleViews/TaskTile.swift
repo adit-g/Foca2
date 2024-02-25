@@ -16,7 +16,10 @@ struct TaskTile: View {
     var itemsRequest : FetchRequest<TaskItem>
     var items : FetchedResults<TaskItem> { itemsRequest.wrappedValue }
     
+    let date: Date
+    
     init(at date: Date) {
+        self.date = date
         let (startDate, endDate) = Date.getTodayStartEndDates()
 
         self.itemsRequest = FetchRequest(
@@ -41,7 +44,7 @@ struct TaskTile: View {
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding(.horizontal)
         .sheet(isPresented: $taskCreaterOpen) {
-            TaskEditor(context: moc)
+            TaskEditor(date: date, context: moc)
         }
         .sheet(item: $taskToEdit) {
             TaskEditor(task: $0, context: moc)

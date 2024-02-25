@@ -15,7 +15,6 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Calendar"
         // The app must have access to the user's calendar to show the events on the timeline
         requestAccessToCalendar()
         // Subscribe to notifications to reload the UI when 

@@ -13,6 +13,29 @@ struct ScheduleSheet: View {
     let weekdays = ["S", "M", "T", "W", "T", "F", "S"]
     @State private var sheetLength = CGFloat.zero
     
+    @State private var timeRemaining = 5
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var buttonTitle: String {
+        if !sessionModel.ssEnabled {
+            return "Save"
+        } else if sessionModel.getStatus() == .scheduledSession && timeRemaining > 0 {
+            return "Cancel Available in \(timeRemaining)"
+        } else {
+            return "Cancel"
+        }
+    }
+    
+    var buttonColor: Color {
+        if !sessionModel.ssEnabled {
+            return Color(.eggplant)
+        } else if sessionModel.getStatus() == .scheduledSession && timeRemaining > 0 {
+            return .gray
+        } else {
+            return .red
+        }
+    }
+    
     var body: some View {
         ScrollView {
             VStack (spacing: 10) {
@@ -51,11 +74,24 @@ struct ScheduleSheet: View {
                 .frame(height: 45)
                 .foregroundStyle(.white)
                 .overlay {
-                    Text(sessionModel.ssEnabled ? "Cancel Session" : "Save")
-                        .foregroundStyle(sessionModel.ssEnabled ? Color.red : Color(.eggplant))
+                    Text(buttonTitle)
+                        .foregroundStyle(buttonColor)
                         .fontWeight(.semibold)
                 }
                 .padding(.horizontal)
+        }
+        .disabled(timeRemaining > 0)
+        .onAppear {
+            if sessionModel.getStatus() == .scheduledSession {
+                timeRemaining = sessionModel.getCurrentWaitTime()
+            } else {
+                timeRemaining = 0
+            }
+        }
+        .onReceive(timer) { _ in
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            }
         }
     }
     

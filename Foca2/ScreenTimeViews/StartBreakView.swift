@@ -13,6 +13,9 @@ struct StartBreakView: View {
     @State private var sheetLength = CGFloat.zero
     @State private var minuteSelection = 5
     
+    @State private var timeRemaining = 5
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -35,17 +38,28 @@ struct StartBreakView: View {
                 }
                 
                 Button {
+                    sessionModel.breakTimes.append(Date() + TimeInterval(minuteSelection*60))
+                    if sessionModel.breakTimes.count > 10 {
+                        sessionModel.breakTimes.removeFirst()
+                    }
                     sessionModel.startBreak(minutes: minuteSelection)
                 } label: {
                     Capsule()
                         .frame(height: 45)
                         .foregroundStyle(.white)
                         .overlay {
-                            Text("Start Break")
-                                .foregroundStyle(Color(.eggplant))
+                            Text(timeRemaining > 0 ? "Break Available in \(timeRemaining)" : "Start Break")
+                                .foregroundStyle(timeRemaining > 0 ? Color.gray : Color(.eggplant))
                                 .fontWeight(.semibold)
                         }
                         .padding(.horizontal)
+                }
+                .disabled(timeRemaining > 0)
+                .onAppear { timeRemaining = sessionModel.getCurrentWaitTime() }
+                .onReceive(timer) { _ in
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
+                    }
                 }
             }
             .readSize(onChange: { sheetLength = $0.height })

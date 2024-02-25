@@ -46,6 +46,7 @@
 		A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F52B17ACF6000B3D2A /* TaskTile.swift */; };
 		A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651FD2B19A308000B3D2A /* TaskModel.swift */; };
 		A9E127722B864B6300FEEFBC /* EKWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E127712B864B6300FEEFBC /* EKWrapper.swift */; };
+		A9E127742B88196C00FEEFBC /* DifficultySelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E127732B88196C00FEEFBC /* DifficultySelect.swift */; };
 		A9F5B1752B74820B00CD4F69 /* ScheduleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1742B74820B00CD4F69 /* ScheduleSheet.swift */; };
 		A9F5B1772B7B326200CD4F69 /* StartBreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1762B7B326200CD4F69 /* StartBreakView.swift */; };
 		A9F5B17E2B7DE65300CD4F69 /* ManagedSettings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F5B17D2B7DE65300CD4F69 /* ManagedSettings.framework */; };
@@ -159,6 +160,7 @@
 		A9C651F52B17ACF6000B3D2A /* TaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTile.swift; sourceTree = "<group>"; };
 		A9C651FD2B19A308000B3D2A /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		A9E127712B864B6300FEEFBC /* EKWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWrapper.swift; sourceTree = "<group>"; };
+		A9E127732B88196C00FEEFBC /* DifficultySelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultySelect.swift; sourceTree = "<group>"; };
 		A9F5B1742B74820B00CD4F69 /* ScheduleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSheet.swift; sourceTree = "<group>"; };
 		A9F5B1762B7B326200CD4F69 /* StartBreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBreakView.swift; sourceTree = "<group>"; };
 		A9F5B17C2B7DE65300CD4F69 /* ShieldConfiguration.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShieldConfiguration.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -344,6 +346,7 @@
 				A9BFCECA2B6201EB00F55EE3 /* TimeSelectorView.swift */,
 				A9BFCEC82B61604E00F55EE3 /* TimerCircle.swift */,
 				A9F5B1742B74820B00CD4F69 /* ScheduleSheet.swift */,
+				A9E127732B88196C00FEEFBC /* DifficultySelect.swift */,
 			);
 			path = ScreenTimeViews;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				A9E127722B864B6300FEEFBC /* EKWrapper.swift in Sources */,
 				A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */,
 				A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */,
+				A9E127742B88196C00FEEFBC /* DifficultySelect.swift in Sources */,
 				A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */,
 				A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */,
 				A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */,

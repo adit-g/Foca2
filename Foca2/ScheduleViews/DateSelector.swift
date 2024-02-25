@@ -37,6 +37,37 @@ struct DateSelector: View {
                 DatesView
             }
         }
+        .onChange(of: date) { _, newVal in
+            if newVal >= dateModel.week[14] {
+                incWeek()
+            } else if newVal < dateModel.week[7] {
+                decWeek()
+            }
+        }
+    }
+    
+    private func decWeek() {
+        withAnimation(.linear(duration: 0.2)) {
+            xOffset = datesWidth
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            withAnimation(.none) {
+                dateModel.decrementWeek()
+                xOffset = 0
+            }
+        }
+    }
+    
+    private func incWeek() {
+        withAnimation(.linear(duration: 0.2)) {
+            xOffset = -datesWidth
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            withAnimation(.none) {
+                dateModel.incrementWeek()
+                xOffset = 0
+            }
+        }
     }
     
     var YearView: some View {
@@ -86,25 +117,9 @@ struct DateSelector: View {
     
     func handleWeekChange(swipeOffset: CGFloat) {
         if swipeOffset > 80 {
-            withAnimation(.linear(duration: 0.2)) {
-                xOffset = datesWidth
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                withAnimation(.none) {
-                    dateModel.decrementWeek()
-                    xOffset = 0
-                }
-            }
+            decWeek()
         } else if swipeOffset < -80 {
-            withAnimation(.linear(duration: 0.2)) {
-                xOffset = -datesWidth
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                withAnimation(.none) {
-                    dateModel.incrementWeek()
-                    xOffset = 0
-                }
-            }
+            incWeek()
         } else {
             withAnimation(.linear.speed(2)) {
                 xOffset = 0

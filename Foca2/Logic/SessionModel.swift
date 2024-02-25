@@ -14,6 +14,10 @@ class SessionModel: ObservableObject {
     @Published var tokens = SessionModel.loadTokens()
     private let managedStore = ManagedSettingsStore(named: .schedule)
     private let dac = DeviceActivityCenter()
+    
+    @AppStorage("difficulty") var difficultyInt = Difficulty.normal.rawValue
+    
+    @AppStorage("breakTimes") var breakTimes: [Date] = []
 
     @AppStorage("FSEndTime") var fsEndTime = Date()
     @AppStorage("BREndTime") var brEndTime = Date()
@@ -49,6 +53,29 @@ class SessionModel: ObservableObject {
         )!
     }
     
+    public func getCurrentWaitTime() -> Int {
+        let level = Difficulty(rawValue: difficultyInt) ?? .normal
+        let now = Date()
+        var wait = 0
+        switch level {
+        case .normal: wait = 5
+        case .timeout:
+            wait = 15
+            for time in breakTimes {
+                if time > now - 60 * 60 {
+                    wait += 30
+                } else if time > now - 120 * 60 {
+                    wait += 20
+                } else if time > now - 180 * 60 {
+                    wait += 10
+                }
+            }
+            wait = min(120, wait)
+        case .deepfocus: break
+        }
+        return wait
+    }
+    
     public func scheduleSS() {
         var ignoredDays: [DeviceActivityName] = []
         for i in 0...6 {
@@ -75,6 +102,7 @@ class SessionModel: ObservableObject {
     public func cancelSS() {
         ssEnabled = false
         dac.stopMonitoring(DeviceActivityName.dayNames)
+        updateStatus()
     }
     
     public func isSessionOvernight() -> Bool {
@@ -150,20 +178,76 @@ class SessionModel: ObservableObject {
         }
     }
     
-    public func updateStatus() {
+    public func getStatus() -> ScreenTimeStatus {
         let now = Date()
         let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
         if now.compare(fsEndTime) == .orderedAscending {
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+            return .session
         } else if now.compare(brEndTime) == .orderedAscending {
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
+            return .onBreak
         } else if ssEnabled
                     && daysEnabled[weekday-1]
                     && now.compare(ssFromDate) == .orderedDescending
                     && now.compare(ssToDate) == .orderedAscending {
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+            return .scheduledSession
         } else {
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+            return .noSession
+        }
+    }
+    
+    public func updateStatus() {
+        let status = getStatus()
+        UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(status.rawValue, forKey: "status")
+        
+        switch status {
+        case .noSession:
+            SessionModel.unblockApps()
+        case .session:
+            SessionModel.blockApps()
+        case .scheduledSession:
+            SessionModel.blockApps()
+        case .onBreak:
+            SessionModel.unblockApps()
+        }
+    }
+    
+    public static func blockApps() {
+        let tokens = SessionModel.loadTokens()
+        let managedStore = ManagedSettingsStore(named: .schedule)
+        managedStore.shield.applications = .some(tokens.applicationTokens)
+        managedStore.shield.webDomains = .some(tokens.webDomainTokens)
+        managedStore.shield.applicationCategories = .specific(tokens.categoryTokens)
+        managedStore.shield.webDomainCategories = .specific(tokens.categoryTokens)
+    }
+    
+    public static func unblockApps() {
+        let managedStore = ManagedSettingsStore(named: .schedule)
+        managedStore.clearAllSettings()
+    }
+}
+
+enum Difficulty: Int {
+    case normal, timeout, deepfocus
+    
+    var name: String {
+        switch self {
+        case .normal:
+            return "Normal"
+        case .timeout:
+            return "Timeout"
+        case .deepfocus:
+            return "Deep Focus"
+        }
+    }
+    
+    var caption: String {
+        switch self {
+        case .normal:
+            return "You can easily take breaks or cancel this session"
+        case .timeout:
+            return "There will be increasing delays before you can take a break or cancel"
+        case .deepfocus:
+            return "You can't take breaks or end the session early"
         }
     }
 }

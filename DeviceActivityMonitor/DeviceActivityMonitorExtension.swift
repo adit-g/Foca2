@@ -32,29 +32,15 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         scheduleNoti(title: "Interval started", subtitle: "", identifier: "start")
         // Handle the start of the interval.
         if activity == .focusSessions {
-            blockApps()
+            SessionModel.blockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
         } else if activity == .breaks {
-            unblockApps()
+            SessionModel.unblockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
         } else {
-            blockApps()
+            SessionModel.blockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         }
-    }
-    
-    private func blockApps() {
-        let tokens = SessionModel.loadTokens()
-        let managedStore = ManagedSettingsStore(named: .schedule)
-        managedStore.shield.applications = .some(tokens.applicationTokens)
-        managedStore.shield.webDomains = .some(tokens.webDomainTokens)
-        managedStore.shield.applicationCategories = .specific(tokens.categoryTokens)
-        managedStore.shield.webDomainCategories = .specific(tokens.categoryTokens)
-    }
-    
-    private func unblockApps() {
-        let managedStore = ManagedSettingsStore(named: .schedule)
-        managedStore.clearAllSettings()
     }
     
     override func intervalDidEnd(for activity: DeviceActivityName) {
@@ -62,13 +48,13 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         scheduleNoti(title: "Interval ended", subtitle: "", identifier: "end")
         // Handle the end of the interval.
         if activity == .focusSessions {
-            unblockApps()
+            SessionModel.unblockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         } else if activity == .breaks {
-            blockApps()
+            SessionModel.blockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         } else {
-            unblockApps()
+            SessionModel.unblockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         }
     }
