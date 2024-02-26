@@ -250,7 +250,6 @@ public final class TimelinePagerView: UIView, UIGestureRecognizerDelegate, UIScr
             }
         }
         editedEventView = eventView
-        accentDateForEditedEventView()
     }
 
     /// Puts timeline in the editing mode and highlights a single event as being edited.

@@ -24,23 +24,9 @@ public class DayView: UIView, TimelinePagerViewDelegate {
     
     public weak var delegate: DayViewDelegate?
     
-    /// Hides or shows header view
-    public var isHeaderViewVisible = true {
-        didSet {
-            headerHeight = isHeaderViewVisible ? DayView.headerVisibleHeight : 0
-            dayHeaderView.isHidden = !isHeaderViewVisible
-            setNeedsLayout()
-            configureLayout()
-        }
-    }
-    
     public var timelineScrollOffset: CGPoint {
         timelinePagerView.timelineScrollOffset
     }
-    
-    // set to zero to delete the day selector
-    private static let headerVisibleHeight: Double = 0
-    public var headerHeight: Double = headerVisibleHeight
     
     public var autoScrollToFirstEvent: Bool {
         get {
@@ -51,12 +37,10 @@ public class DayView: UIView, TimelinePagerViewDelegate {
         }
     }
     
-    public let dayHeaderView: DayHeaderView
     public let timelinePagerView: TimelinePagerView
     
     public var state: DayViewState? {
         didSet {
-            dayHeaderView.state = state
             timelinePagerView.state = state
         }
     }
@@ -76,21 +60,18 @@ public class DayView: UIView, TimelinePagerViewDelegate {
     
     public init(calendar: Calendar = Calendar.autoupdatingCurrent) {
         self.calendar = calendar
-        self.dayHeaderView = DayHeaderView(calendar: calendar)
         self.timelinePagerView = TimelinePagerView(calendar: calendar)
         super.init(frame: .zero)
         configure()
     }
     
     override public init(frame: CGRect) {
-        self.dayHeaderView = DayHeaderView(calendar: calendar)
         self.timelinePagerView = TimelinePagerView(calendar: calendar)
         super.init(frame: frame)
         configure()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        self.dayHeaderView = DayHeaderView(calendar: calendar)
         self.timelinePagerView = TimelinePagerView(calendar: calendar)
         super.init(coder: aDecoder)
         configure()
@@ -98,31 +79,21 @@ public class DayView: UIView, TimelinePagerViewDelegate {
     
     private func configure() {
         addSubview(timelinePagerView)
-        addSubview(dayHeaderView)
         configureLayout()
         timelinePagerView.delegate = self
     }
     
     private func configureLayout() {
-        dayHeaderView.translatesAutoresizingMaskIntoConstraints = false
         timelinePagerView.translatesAutoresizingMaskIntoConstraints = false
-
-        dayHeaderView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        dayHeaderView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
-        dayHeaderView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        let heightConstraint = dayHeaderView.heightAnchor.constraint(equalToConstant: headerHeight)
-        heightConstraint.priority = .defaultLow
-        heightConstraint.isActive = true
 
         timelinePagerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         timelinePagerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
-        timelinePagerView.topAnchor.constraint(equalTo: dayHeaderView.bottomAnchor).isActive = true
+        timelinePagerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         timelinePagerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     public func updateStyle(_ newStyle: CalendarStyle) {
         style = newStyle
-        dayHeaderView.updateStyle(style.header)
         timelinePagerView.updateStyle(style.timeline)
     }
     
@@ -147,7 +118,6 @@ public class DayView: UIView, TimelinePagerViewDelegate {
     }
     
     public func transitionToHorizontalSizeClass(_ sizeClass: UIUserInterfaceSizeClass) {
-        dayHeaderView.transitionToHorizontalSizeClass(sizeClass)
         updateStyle(style)
     }
     

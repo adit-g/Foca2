@@ -96,6 +96,27 @@ open class EventView: UIView {
     }
     
     override open func draw(_ rect: CGRect) {
+//        let radius: CGFloat = 10
+//        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: rect.minX, y: rect.minY + radius))
+//        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - radius))
+//        path.addCurve(to: CGPoint(x: rect.minX + radius, y: rect.maxY), controlPoint1: CGPoint(x: rect.minX, y: rect.maxY), controlPoint2: CGPoint(x: rect.minX, y: rect.maxY))
+//        path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.maxY + radius))
+//        path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.maxY + radius))
+//        path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.maxY))
+//        path.addCurve(to: CGPoint(x: rect.maxX, y: rect.maxY - radius), controlPoint1: CGPoint(x: rect.maxX, y: rect.maxY), controlPoint2: CGPoint(x: rect.maxX, y: rect.maxY))
+//        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY + radius))
+//        path.addCurve(to: CGPoint(x: rect.maxX - radius, y: rect.minY), controlPoint1: CGPoint(x: rect.maxX, y: rect.minY), controlPoint2: CGPoint(x: rect.maxX, y: rect.minY))
+//        path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY - radius))
+//        path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.minY - radius))
+//        path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.minY))
+//        path.addCurve(to: CGPoint(x: rect.minX, y: rect.minY + radius), controlPoint1: CGPoint(x: rect.minX, y: rect.minY), controlPoint2: CGPoint(x: rect.minX, y: rect.minY))
+//        
+//        let shape = CAShapeLayer()
+//        shape.path = path.cgPath
+//        layer.mask = shape
+        layer.cornerRadius = 5
+        layer.masksToBounds = true
         super.draw(rect)
         guard let context = UIGraphicsGetCurrentContext() else {
             return
@@ -103,7 +124,7 @@ open class EventView: UIView {
         context.interpolationQuality = .none
         context.saveGState()
         context.setStrokeColor(color.cgColor)
-        context.setLineWidth(3)
+        context.setLineWidth(5)
         context.translateBy(x: 0, y: 0.5)
         let leftToRight = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
         let x: Double = leftToRight ? 0 : frame.width - 1.0  // 1 is the line width
@@ -115,7 +136,7 @@ open class EventView: UIView {
         context.restoreGState()
     }
     
-    private var drawsShadow = false
+    private var drawsShadow = true
     
     override open func layoutSubviews() {
         super.layoutSubviews()
@@ -139,9 +160,9 @@ open class EventView: UIView {
         let width = bounds.width
         let height = bounds.height
         let size = CGSize(width: radius, height: radius)
-        first?.frame = CGRect(origin: CGPoint(x: width - radius - layoutMargins.right, y: yPad),
+        first?.frame = CGRect(origin: CGPoint(x: width - radius - layoutMargins.right, y: yPad + 3),
                               size: size)
-        last?.frame = CGRect(origin: CGPoint(x: layoutMargins.left, y: height - yPad - radius),
+        last?.frame = CGRect(origin: CGPoint(x: layoutMargins.left, y: height - yPad - radius - 3),
                              size: size)
         
         if drawsShadow {

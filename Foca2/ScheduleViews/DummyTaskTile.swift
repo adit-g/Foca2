@@ -26,8 +26,6 @@ struct DummyTaskTile: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(items, id: \.self) { item in
-                Divider()
-                
                 HStack(spacing: 0) {
                     Image(systemName: "circle")
                         .font(.system(size: 15))
@@ -37,6 +35,8 @@ struct DummyTaskTile: View {
                 .padding(.vertical, 10)
                 .padding(.trailing, 10)
                 .background(Rectangle().fill(.white))
+                
+                Divider()
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 20))

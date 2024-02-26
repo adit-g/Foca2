@@ -14,7 +14,6 @@ struct CalendarView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> CalendarNavigationController {
         let calendarController = CalendarViewController()
-        calendarController.dayView.isHeaderViewVisible = false
         return CalendarNavigationController(date: $date, rootViewController: calendarController)
     }
 

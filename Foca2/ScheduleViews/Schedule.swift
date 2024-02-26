@@ -17,6 +17,7 @@ struct Schedule: View {
             DateSelector(date: $selectedDate, bgColor: backgroundColor)
             TaskTile(at: selectedDate)
             CalendarView(date: $selectedDate)
+                .ignoresSafeArea()
         }
         .background(Color(backgroundColor))
     }
