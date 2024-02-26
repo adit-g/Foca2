@@ -25,6 +25,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         super.viewWillAppear(animated)
         // Need to set toolbar hidden, as it might be displayed in black due to EventKitUI / EditingViewController setting it
         navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.isNavigationBarHidden = true
     }
     
     private func requestAccessToCalendar() {
@@ -102,6 +103,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         eventController.event = ekEvent
         eventController.allowsCalendarPreview = true
         eventController.allowsEditing = true
+        navigationController?.isNavigationBarHidden = false
         navigationController?.pushViewController(eventController,
                                                  animated: true)
     }
