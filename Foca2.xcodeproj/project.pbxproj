@@ -19,9 +19,6 @@
 		A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A822002AF355FE002E0F61 /* ContentView.swift */; };
 		A9A822032AF355FF002E0F61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A822022AF355FF002E0F61 /* Assets.xcassets */; };
 		A9A822062AF355FF002E0F61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A822052AF355FF002E0F61 /* Preview Assets.xcassets */; };
-		A9A822102AF355FF002E0F61 /* Foca2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8220F2AF355FF002E0F61 /* Foca2Tests.swift */; };
-		A9A8221A2AF355FF002E0F61 /* Foca2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A822192AF355FF002E0F61 /* Foca2UITests.swift */; };
-		A9A8221C2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */; };
 		A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */; };
 		A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8222B2AF358E2002E0F61 /* DataController.swift */; };
 		A9BFCEB32B58747E00F55EE3 /* ReminderDateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */; };
@@ -130,10 +127,7 @@
 		A9A822022AF355FF002E0F61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A822052AF355FF002E0F61 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A9A8220B2AF355FF002E0F61 /* Foca2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Foca2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9A8220F2AF355FF002E0F61 /* Foca2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2Tests.swift; sourceTree = "<group>"; };
 		A9A822152AF355FF002E0F61 /* Foca2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Foca2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9A822192AF355FF002E0F61 /* Foca2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2UITests.swift; sourceTree = "<group>"; };
-		A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A9A822292AF356E9002E0F61 /* Foca2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foca2.xcdatamodel; sourceTree = "<group>"; };
 		A9A8222B2AF358E2002E0F61 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A9BFCEB22B58747E00F55EE3 /* ReminderDateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDateSelection.swift; sourceTree = "<group>"; };
@@ -268,8 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				A9A821FD2AF355FE002E0F61 /* Foca2 */,
-				A9A8220E2AF355FF002E0F61 /* Foca2Tests */,
-				A9A822182AF355FF002E0F61 /* Foca2UITests */,
 				A9BFCEDD2B64396A00F55EE3 /* DeviceActivityMonitor */,
 				A9F5B1812B7DE65300CD4F69 /* ShieldConfiguration */,
 				A9A821FC2AF355FE002E0F61 /* Products */,
@@ -317,23 +309,6 @@
 				A9A822052AF355FF002E0F61 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		A9A8220E2AF355FF002E0F61 /* Foca2Tests */ = {
-			isa = PBXGroup;
-			children = (
-				A9A8220F2AF355FF002E0F61 /* Foca2Tests.swift */,
-			);
-			path = Foca2Tests;
-			sourceTree = "<group>";
-		};
-		A9A822182AF355FF002E0F61 /* Foca2UITests */ = {
-			isa = PBXGroup;
-			children = (
-				A9A822192AF355FF002E0F61 /* Foca2UITests.swift */,
-				A9A8221B2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift */,
-			);
-			path = Foca2UITests;
 			sourceTree = "<group>";
 		};
 		A9BFCEBD2B60899600F55EE3 /* ScreenTimeViews */ = {
@@ -620,7 +595,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A822102AF355FF002E0F61 /* Foca2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,8 +602,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A8221C2AF355FF002E0F61 /* Foca2UITestsLaunchTests.swift in Sources */,
-				A9A8221A2AF355FF002E0F61 /* Foca2UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
