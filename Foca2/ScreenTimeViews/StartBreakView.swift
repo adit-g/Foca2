@@ -37,30 +37,13 @@ struct StartBreakView: View {
                         .offset(x: 50)
                 }
                 
-                Button {
-                    sessionModel.breakTimes.append(Date() + TimeInterval(minuteSelection*60))
-                    if sessionModel.breakTimes.count > 10 {
-                        sessionModel.breakTimes.removeFirst()
-                    }
-                    sessionModel.startBreak(minutes: minuteSelection)
-                } label: {
-                    Capsule()
-                        .frame(height: 45)
-                        .foregroundStyle(.white)
-                        .overlay {
-                            Text(timeRemaining > 0 ? "Break Available in \(timeRemaining)" : "Start Break")
-                                .foregroundStyle(timeRemaining > 0 ? Color.gray : Color(.eggplant))
-                                .fontWeight(.semibold)
+                BreakButton(counter: $timeRemaining, minutes: minuteSelection)
+                    .onReceive(timer) { _ in
+                        if timeRemaining > 0 {
+                            timeRemaining -= 1
                         }
-                        .padding(.horizontal)
-                }
-                .disabled(timeRemaining > 0)
-                .onAppear { timeRemaining = sessionModel.getCurrentWaitTime() }
-                .onReceive(timer) { _ in
-                    if timeRemaining > 0 {
-                        timeRemaining -= 1
                     }
-                }
+                
             }
             .readSize(onChange: { sheetLength = $0.height })
             .onChange(of: minuteSelection) {
@@ -70,6 +53,35 @@ struct StartBreakView: View {
         .background(Color(.mediumBlue))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
+    }
+}
+
+struct BreakButton: View {
+    @EnvironmentObject var sessionModel: SessionModel
+    
+    @Binding fileprivate var counter: Int
+    let minutes: Int
+    
+    var body: some View {
+        Button {
+            sessionModel.breakTimes.append(Date() + TimeInterval(minutes*60))
+            if sessionModel.breakTimes.count > 10 {
+                sessionModel.breakTimes.removeFirst()
+            }
+            sessionModel.startBreak(minutes: minutes)
+        } label: {
+            Capsule()
+                .frame(height: 45)
+                .foregroundStyle(.white)
+                .overlay {
+                    Text(counter > 0 ? "Break Available in \(counter)" : "Start Break")
+                        .foregroundStyle(counter > 0 ? Color.gray : Color(.eggplant))
+                        .fontWeight(.semibold)
+                }
+                .padding(.horizontal)
+        }
+        .disabled(counter > 0)
+        .onAppear { counter = sessionModel.getCurrentWaitTime() }
     }
 }
 

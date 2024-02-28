@@ -29,28 +29,41 @@ class SessionModel: ObservableObject {
     var daysEnabled = [false, true, true, true, true, true, false]
     
     public var ssFromTimeComps: DateComponents {
-        Calendar.current.dateComponents([.hour, .minute, .second], from: ssFromTime)
+        Calendar.current.dateComponents([.hour, .minute], from: ssFromTime)
     }
     
     public var ssToTimeComps: DateComponents {
-        Calendar.current.dateComponents([.hour, .minute, .second], from: ssToTime)
+        Calendar.current.dateComponents([.hour, .minute], from: ssToTime)
     }
     
-    public var ssFromDate: Date {
-        Calendar.current.date(
-            bySettingHour: ssFromTimeComps.hour!,
-            minute: ssFromTimeComps.minute!,
-            second: ssFromTimeComps.second!,
-            of: Date()
-        )!
+    public static func compareComps(_ comp1: DateComponents, _ comp2: DateComponents) -> ComparisonResult {
+        if comp1.hour! == comp2.hour! {
+            if comp1.minute! == comp2.minute! {
+                return .orderedSame
+            } else if comp1.minute! < comp2.minute! {
+                return .orderedAscending
+            } else {
+                return .orderedDescending
+            }
+        } else {
+            if comp1.hour! < comp2.hour! {
+                return .orderedAscending
+            } else {
+                return .orderedDescending
+            }
+        }
     }
     
-    public var ssToDate: Date {
-        Calendar.current.nextDate(
-            after: ssFromDate,
-            matching: ssToTimeComps,
-            matchingPolicy: .nextTime
-        )!
+    public var inScheduledSession: Bool {
+        let nowComps = Calendar.current.dateComponents([.hour, .minute], from: Date())
+        switch SessionModel.compareComps(ssFromTimeComps, ssToTimeComps) {
+        case .orderedAscending:
+            return SessionModel.compareComps(nowComps, ssFromTimeComps) != .orderedAscending && SessionModel.compareComps(nowComps, ssToTimeComps) == .orderedAscending
+        case .orderedSame:
+            return true
+        case .orderedDescending:
+            return SessionModel.compareComps(nowComps, ssFromTimeComps) != .orderedAscending || SessionModel.compareComps(nowComps, ssToTimeComps) == .orderedAscending
+        }
     }
     
     public func getCurrentWaitTime() -> Int {
@@ -106,9 +119,7 @@ class SessionModel: ObservableObject {
     }
     
     public func isSessionOvernight() -> Bool {
-        (ssFromTimeComps.hour! == ssToTimeComps.hour!) ?
-            (ssFromTimeComps.minute! >= ssToTimeComps.minute!) :
-            (ssFromTimeComps.hour! > ssToTimeComps.hour!)
+        return SessionModel.compareComps(ssFromTimeComps, ssToTimeComps) != .orderedAscending
     }
     
     public func startBreak(minutes: Int) {
@@ -187,8 +198,7 @@ class SessionModel: ObservableObject {
             return .onBreak
         } else if ssEnabled
                     && daysEnabled[weekday-1]
-                    && now.compare(ssFromDate) == .orderedDescending
-                    && now.compare(ssToDate) == .orderedAscending {
+                    && inScheduledSession {
             return .scheduledSession
         } else {
             return .noSession

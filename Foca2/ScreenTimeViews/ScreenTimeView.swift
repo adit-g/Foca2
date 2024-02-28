@@ -104,6 +104,13 @@ struct ScreenTimeView: View {
         .sheet(isPresented: $difficultySelectOpen) { DifficultySelect() }
         .alert(alertTitle, isPresented: $showingAlert, actions: {})
         .onAppear {
+            Task {
+                do {
+                    try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+                } catch {
+                    print("failed to enroll homie with error: \(error)")
+                }
+            }
             sessionModel.updateStatus()
         }
     }
