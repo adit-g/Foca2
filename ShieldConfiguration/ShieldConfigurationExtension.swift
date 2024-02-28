@@ -15,8 +15,9 @@ import UIKit
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     private func getShield(appName: String?) -> ShieldConfiguration {
-        scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
-        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "todayImage") as? Data
+        UNUserNotificationCenter.scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
+        NotificationCenter.default.post(name: .shieldStarted, object: "it happened")
+        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "image") as? Data
         let image: UIImage
         if data != nil {
             image = UIImage(data: data!) ?? "✋".textToImage()!
@@ -40,20 +41,6 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
                 color: .darkText),
             primaryButtonBackgroundColor: .white
         )
-    }
-    
-    private func scheduleNoti(title: String, subtitle: String, identifier: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.subtitle = subtitle
-        content.sound = UNNotificationSound.default
-        
-        let request = UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: nil
-        )
-        UNUserNotificationCenter.current().add(request)
     }
     
     override func configuration(shielding application: Application) -> ShieldConfiguration {

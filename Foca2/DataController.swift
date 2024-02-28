@@ -33,11 +33,7 @@ class DataController: ObservableObject {
         let today = Date()
         let data0 = renderTaskImage(for: today)?.jpegData(compressionQuality: 1.0)
         
-        let tomorrow = today.advanced(by: 24 * 60 * 60)
-        let data1 = renderTaskImage(for: tomorrow)?.jpegData(compressionQuality: 1.0)
-        
-        UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(data0, forKey: "todayImage")
-        UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(data1, forKey: "tomorrowImage")
+        UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(data0, forKey: "image")
     }
     
     @MainActor func renderTaskImage(for date: Date) -> UIImage? {
@@ -49,7 +45,7 @@ class DataController: ObservableObject {
     }
     
     func getTasksImage() -> UIImage? {
-        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "todayImage")
+        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "image")
         return UIImage(data: data as! Data)
     }
     

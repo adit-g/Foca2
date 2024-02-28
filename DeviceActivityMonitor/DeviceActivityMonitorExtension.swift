@@ -13,23 +13,9 @@ import SwiftUI
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
-    private func scheduleNoti(title: String, subtitle: String, identifier: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.subtitle = subtitle
-        content.sound = UNNotificationSound.default
-        
-        let request = UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: nil
-        )
-        UNUserNotificationCenter.current().add(request)
-    }
-    
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
-        scheduleNoti(title: "Interval started", subtitle: "", identifier: "start")
+        UNUserNotificationCenter.scheduleNoti(title: "Interval started", subtitle: "", identifier: "start")
         // Handle the start of the interval.
         if activity == .focusSessions {
             SessionModel.blockApps()
@@ -45,7 +31,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
-        scheduleNoti(title: "Interval ended", subtitle: "", identifier: "end")
+        UNUserNotificationCenter.scheduleNoti(title: "Interval ended", subtitle: "", identifier: "end")
         // Handle the end of the interval.
         if activity == .focusSessions {
             SessionModel.unblockApps()
@@ -63,7 +49,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.eventDidReachThreshold(event, activity: activity)
         
         // Handle the event reaching its threshold.
-        scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
+        UNUserNotificationCenter.scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
     }
     
     override func intervalWillStartWarning(for activity: DeviceActivityName) {

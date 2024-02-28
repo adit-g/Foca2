@@ -12,7 +12,7 @@ struct DummyTaskTile: View {
     var items : FetchedResults<TaskItem> { itemsRequest.wrappedValue }
     
     init(at date: Date) {
-        let (startDate, endDate) = Date.getTodayStartEndDates()
+        let (startDate, endDate) = Date().getStartEndDates()
 
         self.itemsRequest = FetchRequest(
             entity: TaskItem.entity(),
@@ -36,7 +36,9 @@ struct DummyTaskTile: View {
                 .padding(.trailing, 10)
                 .background(Rectangle().fill(.white))
                 
-                Divider()
+                if item.id != items.last?.id {
+                    Divider()
+                }
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 20))

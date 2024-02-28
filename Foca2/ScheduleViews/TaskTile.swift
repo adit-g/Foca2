@@ -20,7 +20,7 @@ struct TaskTile: View {
     
     init(at date: Date) {
         self.date = date
-        let (startDate, endDate) = Date.getTodayStartEndDates()
+        let (startDate, endDate) = date.getStartEndDates()
 
         self.itemsRequest = FetchRequest(
             entity: TaskItem.entity(),

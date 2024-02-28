@@ -46,13 +46,33 @@ extension Date: RawRepresentable {
         return Calendar.current.dateComponents(components, from: endDate)
     }
     
-    static func getTodayStartEndDates() -> (Date, Date) {
-        let startDate = Calendar.current.startOfDay(for: Date())
+    func getStartEndDates() -> (Date, Date) {
+        let startDate = Calendar.current.startOfDay(for: self)
         var components = DateComponents()
         components.day = 1
         components.second = -1
         let endDate = Calendar.current.date(byAdding: components, to: startDate)!
         return (startDate, endDate)
+    }
+}
+
+extension Notification.Name {
+    static let shieldStarted = Notification.Name("shieldStarted")
+}
+
+extension UNUserNotificationCenter {
+    static func scheduleNoti(title: String, subtitle: String, identifier: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = subtitle
+        content.sound = UNNotificationSound.default
+        
+        let request = UNNotificationRequest(
+            identifier: identifier,
+            content: content,
+            trigger: nil
+        )
+        UNUserNotificationCenter.current().add(request)
     }
 }
 
