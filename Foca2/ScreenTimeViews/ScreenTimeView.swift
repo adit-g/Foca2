@@ -94,6 +94,7 @@ struct ScreenTimeView: View {
             Spacer()
         }
         .background(Color(.mediumBlue))
+        .foregroundStyle(.black)
         .familyActivityPicker(
             isPresented: $tokenPickerOpen,
             selection: $sessionModel.tokens

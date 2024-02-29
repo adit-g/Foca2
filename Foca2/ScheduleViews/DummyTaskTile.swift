@@ -30,7 +30,9 @@ struct DummyTaskTile: View {
                     Image(systemName: "circle")
                         .font(.system(size: 15))
                         .padding(.horizontal, 10)
+                        .foregroundStyle(.black)
                     Text(item.wrappedTitle)
+                        .foregroundStyle(.black)
                 }
                 .padding(.vertical, 10)
                 .padding(.trailing, 10)

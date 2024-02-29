@@ -21,6 +21,7 @@ struct ChooseDateView: View {
         Form {
             DatePicker("Pick a Date", selection: $chosenDate, displayedComponents: components)
                 .datePickerStyle(.graphical)
+                .preferredColorScheme(.light)
         }
         .scrollContentBackground(.hidden)
         .background(Color(.mediumBlue))

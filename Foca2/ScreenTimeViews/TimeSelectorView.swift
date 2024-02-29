@@ -26,10 +26,12 @@ struct TimeSelectorView: View {
                         .fontWeight(.bold)
                 }
             }
+            .preferredColorScheme(.light)
             .pickerStyle(.wheel)
             .frame(
                 width: size.width / 4,
                 height: size.height)
+            .foregroundStyle(.black)
             
             Text("Hours")
             
@@ -44,6 +46,7 @@ struct TimeSelectorView: View {
             .frame(
                 width: size.width / 4,
                 height: size.height)
+            .foregroundStyle(.black)
             
             
             Text("Mins")

@@ -56,6 +56,7 @@ struct ScheduleSheet: View {
                 BigButton
             }
             .readSize(onChange: { sheetLength = $0.height })
+            .foregroundStyle(.black)
         }
         .background(Color(.mediumBlue))
         .presentationDetents([.height(sheetLength)])
@@ -132,6 +133,7 @@ struct ScheduleSheet: View {
     var TimeSelector: some View {
         VStack(spacing: 0) {
             DatePicker("From", selection: $sessionModel.ssFromTime, displayedComponents: .hourAndMinute)
+                .preferredColorScheme(.light)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)
@@ -140,6 +142,7 @@ struct ScheduleSheet: View {
             Divider()
             
             DatePicker("To", selection: $sessionModel.ssToTime, displayedComponents: .hourAndMinute)
+                .preferredColorScheme(.light)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)

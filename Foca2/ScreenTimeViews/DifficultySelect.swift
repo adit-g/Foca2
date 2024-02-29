@@ -23,6 +23,7 @@ struct DifficultySelect: View {
                     .bold()
                     .fontWeight(.semibold)
                     .padding(.vertical)
+                    .foregroundStyle(.black)
                 
                 getDiffButton(diff: .normal, image: "shield")
                 getDiffButton(diff: .timeout, image: "shield.lefthalf.filled")

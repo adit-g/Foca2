@@ -28,6 +28,7 @@ struct DateSelector: View {
                 .fontWeight(.semibold)
                 .font(.title)
                 .padding(.bottom)
+                .foregroundStyle(.black)
             
             HStack(spacing: 0) {
                 YearView
@@ -75,11 +76,13 @@ struct DateSelector: View {
             Text(DateModel.getDateStr(date: dateModel.week[7], format: "yyyy"))
                 .fontWeight(.semibold)
                 .font(.subheadline)
+                .foregroundStyle(.black)
             
             Text(DateModel.getDateStr(date: dateModel.week[7], format: "MMM"))
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding(.vertical, 5)
+                .foregroundStyle(.black)
         }
         .frame(minWidth: 50)
         .padding(.leading)
@@ -134,6 +137,7 @@ struct DateSelector: View {
             Text(DateModel.getDateStr(date: day, format: "EEEEE"))
                 .font(.subheadline)
                 .fontWeight(.semibold)
+                .foregroundStyle(.black)
                 
             Text(DateModel.getDateStr(date: day, format: "d"))
                 .foregroundColor(isSelected ? .white : .black)
@@ -143,6 +147,7 @@ struct DateSelector: View {
                     Circle()
                         .frame(width: datesWidth / 7)
                         .opacity(isSelected ? 1 : 0)
+                        .foregroundStyle(.black)
                 }
                 .padding(5)
         }

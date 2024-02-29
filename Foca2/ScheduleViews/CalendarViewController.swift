@@ -13,6 +13,8 @@ import EventKitUI
 final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     private var eventStore = EKEventStore()
     
+    private var isAuthorized: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // The app must have access to the user's calendar to show the events on the timeline
@@ -31,7 +33,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     private func requestAccessToCalendar() {
         // Code to handle the response to the request.
         // We create the completion handler first, as we need to ask for a permission differently in iOS 17
-        let completionHandler: EKEventStoreRequestAccessCompletionHandler =  { [weak self] granted, error in
+        let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, error in
             // Looks like starting iOS 17 completion handler is not executed on the main thread by default.
             // iOS 17 error?
             DispatchQueue.main.async {
@@ -39,16 +41,14 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
                 self.initializeStore()
                 self.subscribeToNotifications()
                 self.reloadData()
+                self.isAuthorized = granted
             }
         }
 
         // Request access to the events
         // More info: https://developer.apple.com/documentation/technotes/tn3152-migrating-to-the-latest-calendar-access-levels
-        if #available(iOS 17.0, *) {
-            eventStore.requestFullAccessToEvents(completion: completionHandler)
-        } else {
-            eventStore.requestAccess(to: .event, completion: completionHandler)
-        }
+        eventStore.requestFullAccessToEvents(completion: completionHandler)
+        
     }
 
     private func subscribeToNotifications() {
@@ -113,8 +113,10 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     override func dayView(dayView: DayView, didLongPressTimelineAt date: Date) {
         // Cancel editing current event and start creating a new one
         endEventEditing()
-        let newEKWrapper = createNewEvent(at: date)
-        create(event: newEKWrapper, animated: true)
+        if isAuthorized {
+            let newEKWrapper = createNewEvent(at: date)
+            create(event: newEKWrapper, animated: true)
+        }
     }
     
     private func createNewEvent(at date: Date) -> EKWrapper {

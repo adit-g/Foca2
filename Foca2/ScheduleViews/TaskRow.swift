@@ -35,7 +35,9 @@ struct TaskRow: View {
                 Image(systemName: "circle")
                     .font(.system(size: 18))
                     .padding(.horizontal, 15)
+                    .foregroundStyle(.black)
                 Text(passedTask.wrappedTitle)
+                    .foregroundStyle(.black)
                 Spacer()
             }
             .padding(.vertical, 10)

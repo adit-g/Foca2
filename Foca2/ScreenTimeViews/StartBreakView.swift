@@ -31,6 +31,7 @@ struct StartBreakView: View {
                                 .fontWeight(.bold)
                         }
                     }
+                    .preferredColorScheme(.light)
                     .pickerStyle(.wheel)
                     
                     Text(minuteSelection < 2 ? "minute" : "minutes")
