@@ -16,14 +16,8 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     private func getShield(appName: String?) -> ShieldConfiguration {
         UNUserNotificationCenter.scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
-        NotificationCenter.default.post(name: .shieldStarted, object: "it happened")
-        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "image") as? Data
-        let image: UIImage
-        if data != nil {
-            image = UIImage(data: data!) ?? "✋".textToImage()!
-        } else {
-            image = "✋".textToImage()!
-        }
+        
+        let image = "✋".textToImage()!
         
         
         return ShieldConfiguration(

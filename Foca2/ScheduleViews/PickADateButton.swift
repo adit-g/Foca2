@@ -16,10 +16,10 @@ struct PickADateButton: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: 24)
                 .padding(.horizontal)
-                .foregroundStyle(Color(.black))
+                .foregroundStyle(Color(.spaceCadet))
             
             Text(title)
-                .foregroundStyle(Color(.black))
+                .foregroundStyle(Color(.spaceCadet))
             
             Spacer()
             

@@ -29,25 +29,25 @@ class DataController: ObservableObject {
         }
     }
     
-    @MainActor func saveTasksImage() {
-        let today = Date()
-        let data0 = renderTaskImage(for: today)?.jpegData(compressionQuality: 1.0)
-        
-        UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(data0, forKey: "image")
-    }
+//    @MainActor func saveTasksImage() {
+//        let today = Date()
+//        let data0 = renderTaskImage(for: today)?.jpegData(compressionQuality: 1.0)
+//        
+//        UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(data0, forKey: "image")
+//    }
     
-    @MainActor func renderTaskImage(for date: Date) -> UIImage? {
-        let renderer = ImageRenderer(content:
-            DummyTaskTile(at: date)
-                .environment(\.managedObjectContext, container.viewContext)
-        )
-        return renderer.uiImage
-    }
+//    @MainActor func renderTaskImage(for date: Date) -> UIImage? {
+//        let renderer = ImageRenderer(content:
+//            DummyTaskTile(at: date)
+//                .environment(\.managedObjectContext, container.viewContext)
+//        )
+//        return renderer.uiImage
+//    }
     
-    func getTasksImage() -> UIImage? {
-        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "image")
-        return UIImage(data: data as! Data)
-    }
+//    func getTasksImage() -> UIImage? {
+//        let data = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.value(forKey: "image")
+//        return UIImage(data: data as! Data)
+//    }
     
     static var previewTask: TaskItem = {
         let controller = DataController(inMemory: true)

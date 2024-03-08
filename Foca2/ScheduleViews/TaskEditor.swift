@@ -49,7 +49,7 @@ struct TaskEditor: View {
             .readSize(onChange: { sheetLength = $0.height })
             .onAppear { safeAreaBottom = getSafeAreaBottom() }
         }
-        .background(Color(.mediumBlue))
+        .background(Color(.ghostWhite))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
         .safeAreaPadding(.top, min(15, safeAreaBottom / 2))
@@ -132,11 +132,11 @@ struct TaskEditor: View {
     
     var NotesCapsule: some View {
         HStack (spacing: 10) {
-            ImageTemplate("pencil.and.scribble", 20, Color(.mediumBlue))
+            ImageTemplate("pencil.and.scribble", 20, Color(.ghostWhite))
                 .onTapGesture { showNotesEditor = true }
             
             Text("Note")
-                .foregroundStyle(Color(.mediumBlue))
+                .foregroundStyle(Color(.ghostWhite))
                 .font(.system(size: 16))
                 .onTapGesture { showNotesEditor = true }
             
@@ -151,7 +151,7 @@ struct TaskEditor: View {
         let timeString = DateModel.getDateStr(date: reminderDate, format: "h:mm a")
         let dateString = DateModel.getDescriptiveDateStr(date: reminderDate, format: "E, MMMM d")
         return HStack(spacing: 10) {
-            ImageTemplate("bell", 20, Color(.mediumBlue))
+            ImageTemplate("bell", 20, Color(.ghostWhite))
                 .onTapGesture { showReminderDatePicker = true }
             
             VStack {
@@ -161,7 +161,7 @@ struct TaskEditor: View {
                 Text(dateString)
                     .font(.system(size: 10))
             }
-            .foregroundStyle(Color(.mediumBlue))
+            .foregroundStyle(Color(.ghostWhite))
             .onTapGesture { showReminderDatePicker = true }
             
             XButton
@@ -173,9 +173,9 @@ struct TaskEditor: View {
     var XButton: some View {
         Circle()
             .frame(width: 20, height: 20)
-            .foregroundStyle(Color(.mediumBlue))
+            .foregroundStyle(Color(.ghostWhite))
             .overlay{
-                ImageTemplate("xmark", 10, Color(.eggplant))
+                ImageTemplate("xmark", 10, Color(.coolGray))
                     .fontWeight(.bold)
             }
     }
@@ -183,11 +183,11 @@ struct TaskEditor: View {
     var DueDateCapsule: some View {
         let dueDateStr = DateModel.getDescriptiveDateStr(date: try! taskModel.getDueDate(), format: "E, MMM d")
         return HStack(spacing: 10) {
-            ImageTemplate("calendar", 20, Color(.mediumBlue))
+            ImageTemplate("calendar", 20, Color(.ghostWhite))
                 .onTapGesture { showDueDatePicker = true }
             
             Text("Due \(dueDateStr)")
-                .foregroundStyle(Color(.mediumBlue))
+                .foregroundStyle(Color(.ghostWhite))
                 .font(.system(size: 16))
                 .onTapGesture { showDueDatePicker = true }
             
@@ -213,32 +213,36 @@ struct TaskEditor: View {
             
             TextField("Add a Task", text: $taskTitle)
                 .padding(.leading, 5)
-                .foregroundStyle(Color(.darkgray))
+                .foregroundStyle(Color(.spaceCadet))
                 .focused($isFocused)
-                .onSubmit {}
+                .onSubmit { submit(); dismiss() }
                 .onAppear { self.isFocused = true }
             
             Spacer()
             
             Button {
-                taskModel.setTitle(taskTitle)
-                
-                do {
-                    try taskModel.rinseAndRepeat()
-                    taskTitle = ""
-                } catch TaskModelError.BlankTitle {
-                    alertTitle = "The task title cannot be blank"
-                    showAlert = true
-                } catch TaskModelError.CoreDataIssue {
-                    alertTitle = "There was an issue saving your task. Please try again later"
-                    showAlert = true
-                } catch { print(error.localizedDescription) }
+                submit()
             } label: {
-                ImageTemplate("arrow.up.circle.fill", 30, .blue)
+                ImageTemplate("arrow.up.circle.fill", 30, Color(.blue))
             }
         }
         .padding(.horizontal, 15)
         .padding(.bottom, 5)
+    }
+    
+    private func submit() {
+        taskModel.setTitle(taskTitle)
+        
+        do {
+            try taskModel.rinseAndRepeat()
+            taskTitle = ""
+        } catch TaskModelError.BlankTitle {
+            alertTitle = "The task title cannot be blank"
+            showAlert = true
+        } catch TaskModelError.CoreDataIssue {
+            alertTitle = "There was an issue saving your task. Please try again later"
+            showAlert = true
+        } catch { print(error.localizedDescription) }
     }
 }
 
@@ -249,7 +253,7 @@ struct CapsuleBackground: ViewModifier {
             .padding(.vertical, 5)
             .background {
                 Capsule()
-                    .foregroundStyle(Color(.eggplant))
+                    .foregroundStyle(Color(.coolGray))
             }
     }
 }

@@ -17,13 +17,14 @@ struct DifficultySelect: View {
     }
     
     var body: some View {
-        ScrollView {
+        VStack {
             VStack(spacing: 15) {
                 Text("Session Difficulty")
                     .bold()
                     .fontWeight(.semibold)
-                    .padding(.vertical)
-                    .foregroundStyle(.black)
+                    .padding(.vertical, 10)
+                    .padding(.top, 5)
+                    .foregroundStyle(Color(.spaceCadet))
                 
                 getDiffButton(diff: .normal, image: "shield")
                 getDiffButton(diff: .timeout, image: "shield.lefthalf.filled")
@@ -31,10 +32,13 @@ struct DifficultySelect: View {
                 
             }
             .readSize(onChange: { sheetLength = $0.height })
+            
+            Spacer()
         }
-        .background(Color(.mediumBlue))
+        .background(Color(.ghostWhite))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
+        .presentationDragIndicator(.visible)
     }
     
     func getDiffButton(diff: Difficulty, image: String) -> some View {
@@ -45,15 +49,17 @@ struct DifficultySelect: View {
                 .background {
                     RoundedRectangle(cornerRadius: 7)
                         .frame(width: 40, height: 40)
-                        .foregroundStyle(Color(.darkblue))
+                        .foregroundStyle(Color(.mountbattenPink))
                 }
                 .padding(.horizontal)
             
             VStack (spacing: 0) {
                 Text(diff.name)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(Color(.spaceCadet))
                 Text(diff.caption)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
                     .font(.system(size: 12))
                     .foregroundStyle(Color.secondary)
             }
@@ -75,7 +81,7 @@ struct DifficultySelect: View {
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.white.opacity(0.5))
-                .fill(Color(.darkblue).opacity(0.25))
+                .fill(Color(.coolGray).opacity(0.5))
         }
         .onTapGesture {
             sessionModel.difficultyInt = diff.rawValue
@@ -87,4 +93,5 @@ struct DifficultySelect: View {
 
 #Preview {
     DifficultySelect()
+        .environmentObject(SessionModel())
 }

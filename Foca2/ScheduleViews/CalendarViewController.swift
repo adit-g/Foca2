@@ -108,6 +108,14 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
                                                  animated: true)
     }
     
+    private func presentUnauthorizedAlert() {
+        let alert = UIAlertController(title: "Foca is not authorized to make changes to your calendar", message: "Please go to Foca in the settings app and ensure that full access is granted to the Calendars setting", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
+    }
+    
     // MARK: Event Editing
     
     override func dayView(dayView: DayView, didLongPressTimelineAt date: Date) {
@@ -116,6 +124,8 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         if isAuthorized {
             let newEKWrapper = createNewEvent(at: date)
             create(event: newEKWrapper, animated: true)
+        } else {
+            presentUnauthorizedAlert()
         }
     }
     
@@ -176,10 +186,16 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     
     override func dayView(dayView: DayView, didTapTimelineAt date: Date) {
         endEventEditing()
+        if !isAuthorized {
+            presentUnauthorizedAlert()
+        }
     }
     
     override func dayViewDidBeginDragging(dayView: DayView) {
         endEventEditing()
+        if !isAuthorized {
+            presentUnauthorizedAlert()
+        }
     }
     
     // MARK: - EKEventEditViewDelegate

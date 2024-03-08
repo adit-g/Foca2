@@ -20,7 +20,6 @@ struct ContentView: View {
         ZStack {
             TabView(selection: $selectedTab) {
                 Schedule()
-                    .ignoresSafeArea(edges: .bottom)
                     .tag(Tab.first)
                 
                 ScreenTimeView()
@@ -30,6 +29,7 @@ struct ContentView: View {
             
             TabBar(selectedTab: $selectedTab)
         }
+        .onAppear { sessionModel.updateStatus() }
     }
 }
 

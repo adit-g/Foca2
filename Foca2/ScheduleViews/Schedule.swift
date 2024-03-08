@@ -10,7 +10,7 @@ import SwiftUI
 struct Schedule: View {
     
     @State private var selectedDate = Date()
-    let backgroundColor = "lightblue"
+    let backgroundColor = "ghostWhite"
     
     var body: some View {
         VStack {

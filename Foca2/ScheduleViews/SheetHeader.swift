@@ -24,6 +24,7 @@ struct SheetHeader: View {
             .frame(maxWidth: .infinity, alignment: .trailing)
             .padding()
         }
+        .padding(.top, 10)
     }
 }
 

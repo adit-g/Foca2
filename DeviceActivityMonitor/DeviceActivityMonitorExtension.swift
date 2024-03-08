@@ -49,7 +49,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.eventDidReachThreshold(event, activity: activity)
         
         // Handle the event reaching its threshold.
-        UNUserNotificationCenter.scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
     }
     
     override func intervalWillStartWarning(for activity: DeviceActivityName) {

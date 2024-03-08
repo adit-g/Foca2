@@ -35,7 +35,7 @@ struct ScreenTimeView: View {
         ScrollView {
             Text("Focus")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundColor(Color(.darkblue))
+                .foregroundColor(Color(.spaceCadet))
                 .padding(.vertical, 10)
             
             if status == .noSession {
@@ -93,7 +93,7 @@ struct ScreenTimeView: View {
             
             Spacer()
         }
-        .background(Color(.mediumBlue))
+        .background(Color(.ghostWhite))
         .foregroundStyle(.black)
         .familyActivityPicker(
             isPresented: $tokenPickerOpen,
@@ -112,7 +112,6 @@ struct ScreenTimeView: View {
                     print("failed to enroll homie with error: \(error)")
                 }
             }
-            sessionModel.updateStatus()
         }
     }
     
@@ -131,17 +130,19 @@ struct ScreenTimeView: View {
         } label: {
             Capsule()
                 .frame(width: UIScreen.width * 7 / 12, height: 40)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color(.coolGray))
                 .overlay {
                     Text(status.buttonTitle)
-                        .foregroundStyle(Color(.darkblue))
+                        .foregroundStyle(Color(.ghostWhite))
                         .fontWeight(.semibold)
                 }
                 .padding(.bottom)
+                .shadow(radius: 3)
         }
     }
 }
 
 #Preview {
     ScreenTimeView()
+        .environmentObject(SessionModel())
 }

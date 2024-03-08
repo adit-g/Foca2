@@ -24,7 +24,7 @@ struct ChooseDateView: View {
                 .preferredColorScheme(.light)
         }
         .scrollContentBackground(.hidden)
-        .background(Color(.mediumBlue))
+        .background(Color(.ghostWhite))
         .navigationBarBackButtonHidden()
         .toolbar { toolbarContents }
     }

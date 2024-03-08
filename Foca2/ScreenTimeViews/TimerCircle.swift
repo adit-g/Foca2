@@ -15,6 +15,8 @@ struct TimerCircle: View {
     
     @State private var size = CGSize.zero
     
+    let circleColor = "coolGray"
+    
     private var status: ScreenTimeStatus {
         ScreenTimeStatus(rawValue: statusInt) ?? .noSession
     }
@@ -65,7 +67,7 @@ struct TimerCircle: View {
                     Circle()
                         .trim(from: 0, to: percentage)
                         .stroke(
-                            Color("eggplant"),
+                            Color(circleColor),
                             style: StrokeStyle(
                                 lineWidth: percentage < 0.98 ? 30 : 35,
                                 lineCap: .round
@@ -82,7 +84,7 @@ struct TimerCircle: View {
                     let yShadow = 20 * sin(shadowAngle)
                     
                     Circle()
-                        .fill(Color("eggplant"))
+                        .fill(Color(circleColor))
                         .opacity(percentage < 0.98 ? 0 : 1)
                         .frame(width: 34, height: 34)
                         .offset(x: xOffset,

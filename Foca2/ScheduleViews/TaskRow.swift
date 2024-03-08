@@ -12,7 +12,7 @@ struct TaskRow: View {
     @State var xOffset: CGFloat = 0
     @State var deleteButtonHidden = true
     
-    let passedTask: TaskItem
+    @ObservedObject var passedTask: TaskItem
     @Binding var editTask: TaskItem?
     
     var body: some View {
@@ -32,15 +32,24 @@ struct TaskRow: View {
             }
             
             HStack(spacing: 0) {
-                Image(systemName: "circle")
-                    .font(.system(size: 18))
+                Image(systemName: passedTask.completed ? "largecircle.fill.circle" : "circle")
+                    .resizable()
+                    .frame(width: 18, height: 18)
                     .padding(.horizontal, 15)
-                    .foregroundStyle(.black)
+                    .onTapGesture {
+                        withAnimation {
+                            passedTask.completed.toggle()
+                            try? moc.save()
+                        }
+                    }
+                
                 Text(passedTask.wrappedTitle)
-                    .foregroundStyle(.black)
+                    .strikethrough(passedTask.completed)
+                
                 Spacer()
             }
             .padding(.vertical, 10)
+            .foregroundStyle(passedTask.completed ? .gray : .black)
             .background(Rectangle().fill(.white))
             .offset(x: xOffset)
             .onTapGesture { editTask = passedTask }

@@ -31,7 +31,7 @@ struct SomeSettingsView: View {
                         .padding(.leading, 5)
                 }
                 .padding(.horizontal)
-                .foregroundStyle(.black)
+                .foregroundStyle(Color(.spaceCadet))
             }
             .padding(.horizontal)
     }

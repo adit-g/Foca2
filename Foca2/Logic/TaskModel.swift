@@ -69,6 +69,18 @@ class TaskModel: ObservableObject {
             }
         }
         
+        task.reminderDate = date
+        self.hasReminderDate = true
+    }
+    
+    public func removeReminderDate() {
+        self.hasReminderDate = false
+        task.reminderDate = nil
+        
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [task.id?.uuidString ?? ""])
+    }
+    
+    public func scheduleNotification(date: Date, id: String) {
         let content = UNMutableNotificationContent()
         content.title = task.wrappedTitle
         content.subtitle = date.formatted(date: .abbreviated, time: .shortened)
@@ -79,39 +91,41 @@ class TaskModel: ObservableObject {
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
         
         let request = UNNotificationRequest(
-            identifier: task.wrappedTitle,
+            identifier: id,
             content: content,
             trigger: trigger
         )
         UNUserNotificationCenter.current().add(request)
-        
-        task.reminderDate = date
-        self.hasReminderDate = true
     }
     
-    public func removeReminderDate() {
-        self.hasReminderDate = false
-        task.reminderDate = nil
-    }
-    
-    @MainActor public func rinseAndRepeat() throws {
+    public func rinseAndRepeat() throws {
         if task.wrappedTitle.isEmpty {
             throw TaskModelError.BlankTitle
         }
         
         do {
+            if task.id == nil {
+                task.id = UUID()
+            }
             task.createdDate = Date()
             try moc.save()
-            DataController.shared.saveTasksImage()
         } catch {
             task.createdDate = nil
             throw TaskModelError.CoreDataIssue
         }
         
+        if hasReminderDate {
+            scheduleNotification(date: task.reminderDate!, id: task.id!.uuidString)
+        }
+        
         hasDueDate = false
         hasReminderDate = false
         hasNotes = false
+        let cachedDate = task.doDate
         task = TaskItem(context: moc)
+        if cachedDate != nil {
+            setDueDate(cachedDate!)
+        }
     }
 }
 

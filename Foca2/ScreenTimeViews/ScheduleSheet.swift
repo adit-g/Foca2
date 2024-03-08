@@ -28,7 +28,7 @@ struct ScheduleSheet: View {
     
     var buttonColor: Color {
         if !sessionModel.ssEnabled {
-            return Color(.eggplant)
+            return Color(.chineseViolet)
         } else if sessionModel.getStatus() == .scheduledSession && timeRemaining > 0 {
             return .gray
         } else {
@@ -37,7 +37,7 @@ struct ScheduleSheet: View {
     }
     
     var body: some View {
-        ScrollView {
+        VStack {
             VStack (spacing: 10) {
                 Text("Scheduled Session")
                     .fontWeight(.semibold)
@@ -56,11 +56,14 @@ struct ScheduleSheet: View {
                 BigButton
             }
             .readSize(onChange: { sheetLength = $0.height })
-            .foregroundStyle(.black)
+            .foregroundStyle(Color(.spaceCadet))
+            
+            Spacer()
         }
-        .background(Color(.mediumBlue))
+        .background(Color(.ghostWhite))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
+        .presentationDragIndicator(.visible)
     }
     
     var BigButton: some View {
@@ -100,20 +103,20 @@ struct ScheduleSheet: View {
         VStack(spacing: 0) {
             Text("Days of Week Active")
                 .fontWeight(.medium)
-                .foregroundColor(Color("eggplant"))
+                .foregroundColor(Color(.spaceCadet))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical)
             
             HStack {
                 ForEach(sessionModel.daysEnabled.indices, id: \.self) { index in
                     Circle()
-                        .foregroundStyle(Color(.eggplant))
+                        .foregroundStyle(Color(.chineseViolet))
                         .opacity(sessionModel.daysEnabled[index] ? 1 : 0.3)
                         .overlay {
                             Text(weekdays[index])
                                 .foregroundStyle(.white)
                         }
-                        .frame(width: 40)
+                        .frame(width: 40, height: 40)
                         .onTapGesture {
                             sessionModel.daysEnabled[index].toggle()
                         }
@@ -154,4 +157,9 @@ struct ScheduleSheet: View {
         }
         .padding(.horizontal)
     }
+}
+
+#Preview {
+    ScheduleSheet()
+        .environmentObject(SessionModel())
 }

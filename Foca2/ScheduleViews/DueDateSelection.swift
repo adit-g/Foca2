@@ -28,40 +28,42 @@ struct DueDateSelection: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    SheetHeader(title: "Schedule", doneAction: { dismiss() })
-                    
-                    getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Today", dateToSelect: today)
-                    getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
-                    getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
-                        .disabled(isItSunday)
-                        .opacity(isItSunday ? 0.5 : 1)
-                    
-                    PickADateButton(title: "Pick a Date")
-                        .padding(.bottom)
-                        .onTapGesture {
-                            sheetLength = 450
-                            showDateView = true
-                        }
-                }
-                .readSize(onChange: { sheetLength = $0.height })
-                .navigationDestination(isPresented: $showDateView) {
-                    ChooseDateView(
-                        sheetSize: $sheetLength,
-                        setAction: setAction,
-                        storedSheetLength: storedSheetLength,
-                        components: .date
-                    )
-                }
-                .onAppear {
-                    self.storedSheetLength = sheetLength
-                }
+            VStack {
+                SheetHeader(title: "Schedule", doneAction: { dismiss() })
+                
+                getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Today", dateToSelect: today)
+                getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
+                getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
+                    .disabled(isItSunday)
+                    .opacity(isItSunday ? 0.5 : 1)
+                
+                PickADateButton(title: "Pick a Date")
+                    .padding(.bottom)
+                    .onTapGesture {
+                        sheetLength = 450
+                        showDateView = true
+                    }
             }
+            .readSize(onChange: { sheetLength = $0.height })
+            .navigationDestination(isPresented: $showDateView) {
+                ChooseDateView(
+                    sheetSize: $sheetLength,
+                    setAction: setAction,
+                    storedSheetLength: storedSheetLength,
+                    components: .date
+                )
+            }
+            .onAppear {
+                self.storedSheetLength = sheetLength
+            }
+            
+            Spacer()
+            
         }
         .presentationCornerRadius(20)
         .presentationDetents([.height(sheetLength)])
-        .presentationBackground(Color(.mediumBlue))
+        .presentationBackground(Color(.ghostWhite))
+        .presentationDragIndicator(.visible)
     }
     
     private func setAction(_ date: Date) {
@@ -85,14 +87,14 @@ struct DueDateSelection: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 24)
                     .padding(.horizontal)
-                    .foregroundStyle(Color(.black))
+                    .foregroundStyle(Color(.spaceCadet))
                     .rotation3DEffect(
                         flipImage ? .degrees(180) : .zero,
                         axis: (x: 0.0, y: 1.0, z: 0.0)
                     )
                 
                 Text(text)
-                    .foregroundStyle(Color(.black))
+                    .foregroundStyle(Color(.spaceCadet))
                 
                 Spacer()
                 

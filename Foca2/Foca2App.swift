@@ -16,10 +16,6 @@ struct Foca2App: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
-                .onAppear{ dataController.saveTasksImage() }
-                .onReceive(NotificationCenter.default.publisher(for: Notification.Name.shieldStarted), perform: { _ in
-                    UNUserNotificationCenter.scheduleNoti(title: "Click Me", subtitle: "nothing", identifier: "portal")
-                })
         }
     }
 }

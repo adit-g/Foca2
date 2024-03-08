@@ -13,6 +13,8 @@
 		A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83252B521A8700AFFFBD /* DueDateSelection.swift */; };
 		A92F83282B54572300AFFFBD /* ChooseDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92F83272B54572300AFFFBD /* ChooseDateView.swift */; };
 		A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9598AB82B1E445A00C14541 /* TaskRow.swift */; };
+		A962ECF42B953E37008B9F97 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962ECF32B953E37008B9F97 /* TaskItem+CoreDataProperties.swift */; };
+		A962ECF52B955B10008B9F97 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962ECF32B953E37008B9F97 /* TaskItem+CoreDataProperties.swift */; };
 		A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */; };
 		A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97798712B4E06CD00ACA144 /* CalendarView.swift */; };
 		A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A821FE2AF355FE002E0F61 /* Foca2App.swift */; };
@@ -33,7 +35,6 @@
 		A9BFCECE2B62F40D00F55EE3 /* SomeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCECD2B62F40D00F55EE3 /* SomeSettingsView.swift */; };
 		A9BFCED12B6324BF00F55EE3 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */; };
 		A9BFCED42B6415C100F55EE3 /* TaskItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */; };
-		A9BFCED52B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */; };
 		A9BFCEDC2B64396A00F55EE3 /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BFCEDB2B64396A00F55EE3 /* DeviceActivity.framework */; };
 		A9BFCEDF2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCEDE2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift */; };
 		A9BFCEE42B64396A00F55EE3 /* DeviceActivityMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A9BFCEDA2B64396A00F55EE3 /* DeviceActivityMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -52,10 +53,7 @@
 		A9F5B1882B7DE65300CD4F69 /* ShieldConfiguration.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A9F5B17C2B7DE65300CD4F69 /* ShieldConfiguration.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A9F5B18C2B7DE67C00CD4F69 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C651F12B17AADA000B3D2A /* Random.swift */; };
 		A9F5B1902B7DE6CA00CD4F69 /* TaskItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */; };
-		A9F5B1912B7DE6CE00CD4F69 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */; };
 		A9F5B1922B7DF94D00CD4F69 /* Foca2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9A822282AF356E9002E0F61 /* Foca2.xcdatamodeld */; };
-		A9F5B1A42B7F433B00CD4F69 /* DummyTaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1A32B7F433B00CD4F69 /* DummyTaskTile.swift */; };
-		A9F5B1A52B7F443900CD4F69 /* DummyTaskTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1A32B7F433B00CD4F69 /* DummyTaskTile.swift */; };
 		A9F5B1A62B7F444F00CD4F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A822022AF355FF002E0F61 /* Assets.xcassets */; };
 		A9F5B1A92B80255E00CD4F69 /* TileImage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1A72B80255E00CD4F69 /* TileImage+CoreDataClass.swift */; };
 		A9F5B1AA2B80255E00CD4F69 /* TileImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F5B1A82B80255E00CD4F69 /* TileImage+CoreDataProperties.swift */; };
@@ -105,6 +103,7 @@
 		A92F83252B521A8700AFFFBD /* DueDateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateSelection.swift; sourceTree = "<group>"; };
 		A92F83272B54572300AFFFBD /* ChooseDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDateView.swift; sourceTree = "<group>"; };
 		A9598AB82B1E445A00C14541 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		A962ECF32B953E37008B9F97 /* TaskItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		A97798712B4E06CD00ACA144 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		A9A821FB2AF355FE002E0F61 /* Foca2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foca2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +127,6 @@
 		A9BFCECD2B62F40D00F55EE3 /* SomeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeSettingsView.swift; sourceTree = "<group>"; };
 		A9BFCED02B6324BF00F55EE3 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskItem+CoreDataClass.swift"; path = "Foca2/TaskItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskItem+CoreDataProperties.swift"; path = "Foca2/TaskItem+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A9BFCEDA2B64396A00F55EE3 /* DeviceActivityMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeviceActivityMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9BFCEDB2B64396A00F55EE3 /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		A9BFCEDE2B64396A00F55EE3 /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 		A9F5B1822B7DE65300CD4F69 /* ShieldConfigurationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationExtension.swift; sourceTree = "<group>"; };
 		A9F5B1842B7DE65300CD4F69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9F5B1852B7DE65300CD4F69 /* ShieldConfiguration.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShieldConfiguration.entitlements; sourceTree = "<group>"; };
-		A9F5B1A32B7F433B00CD4F69 /* DummyTaskTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTaskTile.swift; sourceTree = "<group>"; };
 		A9F5B1A72B80255E00CD4F69 /* TileImage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TileImage+CoreDataClass.swift"; path = "Foca2/CoreDataDefs/TileImage+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		A9F5B1A82B80255E00CD4F69 /* TileImage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TileImage+CoreDataProperties.swift"; path = "Foca2/CoreDataDefs/TileImage+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		A9FA71282AF4A31800B5E1EC /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -201,7 +198,6 @@
 				A9FA712A2AF4A3AC00B5E1EC /* DateSelector.swift */,
 				A9BFCEBE2B608C5000F55EE3 /* SheetHeader.swift */,
 				A9C651F52B17ACF6000B3D2A /* TaskTile.swift */,
-				A9F5B1A32B7F433B00CD4F69 /* DummyTaskTile.swift */,
 				A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */,
 				A92F83252B521A8700AFFFBD /* DueDateSelection.swift */,
 				A9BFCEC02B608F4100F55EE3 /* PickADateButton.swift */,
@@ -223,7 +219,7 @@
 				A9F5B1A72B80255E00CD4F69 /* TileImage+CoreDataClass.swift */,
 				A9F5B1A82B80255E00CD4F69 /* TileImage+CoreDataProperties.swift */,
 				A9BFCED22B6415C100F55EE3 /* TaskItem+CoreDataClass.swift */,
-				A9BFCED32B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift */,
+				A962ECF32B953E37008B9F97 /* TaskItem+CoreDataProperties.swift */,
 			);
 			path = CoreDataDefs;
 			sourceTree = "<group>";
@@ -467,13 +463,13 @@
 				A90CD7922B489FB4008036D4 /* CalendarViewController.swift in Sources */,
 				A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */,
 				A9BFCEC72B61603F00F55EE3 /* TimeSelectionCircle.swift in Sources */,
-				A9BFCED52B6415C100F55EE3 /* TaskItem+CoreDataProperties.swift in Sources */,
 				A9A8222C2AF358E2002E0F61 /* DataController.swift in Sources */,
 				A9598AB92B1E445A00C14541 /* TaskRow.swift in Sources */,
 				A9C651F62B17ACF6000B3D2A /* TaskTile.swift in Sources */,
 				A9BFCECE2B62F40D00F55EE3 /* SomeSettingsView.swift in Sources */,
 				A9BFCECB2B6201EB00F55EE3 /* TimeSelectorView.swift in Sources */,
 				A92F831C2B4EE61F00AFFFBD /* TaskEditor.swift in Sources */,
+				A962ECF42B953E37008B9F97 /* TaskItem+CoreDataProperties.swift in Sources */,
 				A9E127722B864B6300FEEFBC /* EKWrapper.swift in Sources */,
 				A92F83262B521A8700AFFFBD /* DueDateSelection.swift in Sources */,
 				A9FA71292AF4A31800B5E1EC /* Schedule.swift in Sources */,
@@ -491,7 +487,6 @@
 				A9FA712B2AF4A3AC00B5E1EC /* DateSelector.swift in Sources */,
 				A9BFCEBF2B608C5000F55EE3 /* SheetHeader.swift in Sources */,
 				A9BFCEBC2B5F0EE600F55EE3 /* TabBar.swift in Sources */,
-				A9F5B1A42B7F433B00CD4F69 /* DummyTaskTile.swift in Sources */,
 				A9F5B1772B7B326200CD4F69 /* StartBreakView.swift in Sources */,
 				A9BFCED12B6324BF00F55EE3 /* SessionModel.swift in Sources */,
 				A9BFCEC92B61604E00F55EE3 /* TimerCircle.swift in Sources */,
@@ -516,11 +511,10 @@
 				A9F5B18C2B7DE67C00CD4F69 /* Random.swift in Sources */,
 				A9F5B1AC2B8296EB00CD4F69 /* TileImage+CoreDataProperties.swift in Sources */,
 				A9F5B1922B7DF94D00CD4F69 /* Foca2.xcdatamodeld in Sources */,
-				A9F5B1A52B7F443900CD4F69 /* DummyTaskTile.swift in Sources */,
+				A962ECF52B955B10008B9F97 /* TaskItem+CoreDataProperties.swift in Sources */,
 				A9F5B1832B7DE65300CD4F69 /* ShieldConfigurationExtension.swift in Sources */,
 				A9F5B1AB2B8296E800CD4F69 /* TileImage+CoreDataClass.swift in Sources */,
 				A9F5B1902B7DE6CA00CD4F69 /* TaskItem+CoreDataClass.swift in Sources */,
-				A9F5B1912B7DE6CE00CD4F69 /* TaskItem+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

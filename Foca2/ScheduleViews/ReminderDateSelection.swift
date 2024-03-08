@@ -38,44 +38,45 @@ struct ReminderDateSelection: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    SheetHeader(title: "Reminder", doneAction: { dismiss() })
-                    
-                    getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Later Today", dateToSelect: laterToday, hideDate: isItLate)
-                        .disabled(isItLate)
-                        .opacity(isItLate ? 0.5 : 1)
-                    
-                    getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
-                    
-                    getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
-                        .disabled(isItSunday)
-                        .opacity(isItSunday ? 0.5 : 1)
-                    
-                    PickADateButton(title: "Pick a Date & Time")
-                        .padding(.bottom)
-                        .onTapGesture {
-                            sheetLength = 520
-                            showDateView = true
-                        }
-                }
-                .readSize(onChange: { sheetLength = $0.height })
-                .navigationDestination(isPresented: $showDateView) {
-                    ChooseDateView(
-                        sheetSize: $sheetLength,
-                        setAction: setAction,
-                        storedSheetLength: storedSheetLength,
-                        components: [.date, .hourAndMinute]
-                    )
-                }
-                .onAppear {
-                    self.storedSheetLength = sheetLength
-                }
+            VStack {
+                SheetHeader(title: "Reminder", doneAction: { dismiss() })
+                
+                getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Later Today", dateToSelect: laterToday, hideDate: isItLate)
+                    .disabled(isItLate)
+                    .opacity(isItLate ? 0.5 : 1)
+                
+                getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
+                
+                getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
+                    .disabled(isItSunday)
+                    .opacity(isItSunday ? 0.5 : 1)
+                
+                PickADateButton(title: "Pick a Date & Time")
+                    .padding(.bottom)
+                    .onTapGesture {
+                        sheetLength = 520
+                        showDateView = true
+                    }
             }
+            .readSize(onChange: { sheetLength = $0.height })
+            .navigationDestination(isPresented: $showDateView) {
+                ChooseDateView(
+                    sheetSize: $sheetLength,
+                    setAction: setAction,
+                    storedSheetLength: storedSheetLength,
+                    components: [.date, .hourAndMinute]
+                )
+            }
+            .onAppear {
+                self.storedSheetLength = sheetLength
+            }
+            
+            Spacer()
         }
         .presentationCornerRadius(20)
         .presentationDetents([.height(sheetLength)])
-        .presentationBackground(Color(.mediumBlue))
+        .presentationBackground(Color(.ghostWhite))
+        .presentationDragIndicator(.visible)
     }
     
     private func setAction(_ date: Date) {

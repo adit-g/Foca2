@@ -2,7 +2,7 @@
 //  TaskItem+CoreDataProperties.swift
 //  Foca2
 //
-//  Created by Adit G on 1/26/24.
+//  Created by Adit G on 3/3/24.
 //
 //
 
@@ -22,6 +22,7 @@ extension TaskItem {
     @NSManaged public var notes: String?
     @NSManaged public var reminderDate: Date?
     @NSManaged public var title: String?
+    @NSManaged public var id: UUID?
     
     public var wrappedTitle: String {
         title ?? ""

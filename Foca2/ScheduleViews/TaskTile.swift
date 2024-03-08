@@ -42,6 +42,7 @@ struct TaskTile: View {
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(radius: 3)
         .padding(.horizontal)
         .sheet(isPresented: $taskCreaterOpen) {
             TaskEditor(date: date, context: moc)
@@ -54,15 +55,23 @@ struct TaskTile: View {
     var TopBar: some View {
         HStack {
             Text("Tasks:")
+                .foregroundStyle(Color(.ghostWhite))
             Spacer()
-            Button("+ Add Task") {
+            Button("+ Add") {
                 taskCreaterOpen = true
             }
+            .foregroundStyle(Color(.chineseViolet))
+            .padding(.horizontal, 10)
+            .padding(.vertical, 3)
+            .background {
+                Capsule()
+                    .foregroundStyle(Color(.ghostWhite))
+                    .shadow(radius: 3)
+            }
         }
-        .foregroundStyle(Color(.darkgray))
         .padding(.horizontal)
-        .padding(.vertical, 10)
-        .background(Rectangle().fill(Color(.mediumBlue)))
+        .padding(.vertical, 8)
+        .background(Rectangle().fill(Color(.coolGray)))
     }
 }
 

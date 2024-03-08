@@ -28,7 +28,7 @@ struct DateSelector: View {
                 .fontWeight(.semibold)
                 .font(.title)
                 .padding(.bottom)
-                .foregroundStyle(.black)
+                .foregroundStyle(Color(.spaceCadet))
             
             HStack(spacing: 0) {
                 YearView
@@ -76,13 +76,13 @@ struct DateSelector: View {
             Text(DateModel.getDateStr(date: dateModel.week[7], format: "yyyy"))
                 .fontWeight(.semibold)
                 .font(.subheadline)
-                .foregroundStyle(.black)
+                .foregroundStyle(Color(.spaceCadet))
             
             Text(DateModel.getDateStr(date: dateModel.week[7], format: "MMM"))
                 .fontWeight(.semibold)
                 .font(.title2)
                 .padding(.vertical, 5)
-                .foregroundStyle(.black)
+                .foregroundStyle(Color(.spaceCadet))
         }
         .frame(minWidth: 50)
         .padding(.leading)
@@ -94,7 +94,7 @@ struct DateSelector: View {
     var Divider: some View {
         RoundedRectangle(cornerRadius: 3)
             .frame(width: 2, height: 20)
-            .foregroundColor(.gray)
+            .foregroundStyle(.gray)
             .padding([.leading, .vertical])
             .padding(.trailing, 6)
             .zIndex(2.0)
@@ -137,10 +137,10 @@ struct DateSelector: View {
             Text(DateModel.getDateStr(date: day, format: "EEEEE"))
                 .font(.subheadline)
                 .fontWeight(.semibold)
-                .foregroundStyle(.black)
+                .foregroundStyle(Color(.spaceCadet))
                 
             Text(DateModel.getDateStr(date: day, format: "d"))
-                .foregroundColor(isSelected ? .white : .black)
+                .foregroundColor(isSelected ? Color(bgColor) : Color(.spaceCadet))
                 .font(.subheadline)
                 .padding(.vertical, 5)
                 .background {

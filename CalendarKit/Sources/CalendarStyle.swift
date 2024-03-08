@@ -63,7 +63,7 @@ public struct TimelineStyle {
     public var timeIndicator = CurrentTimeIndicatorStyle()
     public var timeColor = SystemColors.secondaryLabel
     public var separatorColor = SystemColors.systemSeparator
-    public var backgroundColor = UIColor(named: "lightblue")
+    public var backgroundColor = UIColor(named: "ghostWhite")
     public var font = UIFont.boldSystemFont(ofSize: 11)
     public var dateStyle : DateStyle = .system
     public var eventsWillOverlap: Bool = false

@@ -23,6 +23,7 @@ struct StartBreakView: View {
                     .font(.system(size: 20, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
+                    .padding(.top, 5)
                 
                 ZStack {
                     Picker("Minute Picker", selection: $minuteSelection) {
@@ -38,22 +39,27 @@ struct StartBreakView: View {
                         .offset(x: 50)
                 }
                 
-                BreakButton(counter: $timeRemaining, minutes: minuteSelection)
+                BreakButton(
+                    counter: $timeRemaining,
+                    minutes: minuteSelection,
+                    dismiss: dismiss
+                )
                     .onReceive(timer) { _ in
                         if timeRemaining > 0 {
                             timeRemaining -= 1
                         }
                     }
-                
             }
+            .foregroundStyle(Color(.spaceCadet))
             .readSize(onChange: { sheetLength = $0.height })
-            .onChange(of: minuteSelection) {
-                if $1 == 0 { withAnimation { minuteSelection = 1 } }
-            }
         }
-        .background(Color(.mediumBlue))
+        .onChange(of: minuteSelection) {
+            if $1 == 0 { withAnimation { minuteSelection = 1 } }
+        }
+        .background(Color(.ghostWhite))
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
+        .presentationDragIndicator(.visible)
     }
 }
 
@@ -62,6 +68,7 @@ struct BreakButton: View {
     
     @Binding fileprivate var counter: Int
     let minutes: Int
+    let dismiss: DismissAction
     
     var body: some View {
         Button {
@@ -70,6 +77,7 @@ struct BreakButton: View {
                 sessionModel.breakTimes.removeFirst()
             }
             sessionModel.startBreak(minutes: minutes)
+            dismiss()
         } label: {
             Capsule()
                 .frame(height: 45)

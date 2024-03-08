@@ -24,7 +24,7 @@ struct TabBar: View {
                 ForEach(Tab.allCases, id: \.imageString) { tab in
                     Image(systemName: selectedTab == tab ? fillImage : tab.imageString)
                         .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
-                        .foregroundStyle(selectedTab == tab ? Color(.eggplant) : .gray)
+                        .foregroundStyle(selectedTab == tab ? Color(.spaceCadet) : .gray)
                         .font(.system(size: 22))
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.1)) {
@@ -35,12 +35,16 @@ struct TabBar: View {
                 }
             }
             .frame(height: 50)
-            .background(LinearGradient(colors: [Color.clear, Color(.lightblue)], startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.75)))
+            .background(
+                Color(.ghostWhite)
+                .ignoresSafeArea()
+                .shadow(radius: 1)
+            )
         }
     }
 }
 
 #Preview {
-    TabBar(selectedTab: .constant(.first))
+    TabBar(selectedTab: .constant(.second))
         .background(Color(.lightblue))
 }
