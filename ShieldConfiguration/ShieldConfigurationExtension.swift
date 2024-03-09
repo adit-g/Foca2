@@ -15,11 +15,7 @@ import UIKit
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     private func getShield(appName: String?) -> ShieldConfiguration {
-        UNUserNotificationCenter.scheduleNoti(title: "Click Me", subtitle: "", identifier: "portal")
-        
         let image = "✋".textToImage()!
-        
-        
         return ShieldConfiguration(
             backgroundBlurStyle: .systemMaterial,
             backgroundColor: UIColor.black,

@@ -83,6 +83,15 @@ struct TaskEditor: View {
     var ButtonRow: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
+                if taskModel.hasDueDate {
+                    DueDateCapsule
+                } else {
+                    getPickerButton(
+                        onClickBool: $showDueDatePicker,
+                        imageName: "calendar"
+                    )
+                }
+                
                 if taskModel.hasReminderDate {
                     ReminderDateCapsule
                         .padding(.leading)
@@ -92,15 +101,6 @@ struct TaskEditor: View {
                         imageName: "bell"
                     )
                         .padding(.leading, 12)
-                }
-                
-                if taskModel.hasDueDate {
-                    DueDateCapsule
-                } else {
-                    getPickerButton(
-                        onClickBool: $showDueDatePicker,
-                        imageName: "calendar"
-                    )
                 }
                 
                 if taskModel.hasNotes {
