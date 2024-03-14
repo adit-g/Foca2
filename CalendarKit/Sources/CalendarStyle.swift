@@ -66,7 +66,7 @@ public struct TimelineStyle {
     public var backgroundColor = UIColor(named: "ghostWhite")
     public var font = UIFont.boldSystemFont(ofSize: 11)
     public var dateStyle : DateStyle = .system
-    public var eventsWillOverlap: Bool = false
+    public var eventsWillOverlap: Bool = true
     public var minimumEventDurationInMinutesWhileEditing: Int = 30
     public var splitMinuteInterval: Int = 15
     public var verticalDiff: Double = 50

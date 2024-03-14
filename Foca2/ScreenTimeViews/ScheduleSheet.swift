@@ -12,9 +12,14 @@ struct ScheduleSheet: View {
     @EnvironmentObject var sessionModel: SessionModel
     let weekdays = ["S", "M", "T", "W", "T", "F", "S"]
     @State private var sheetLength = CGFloat.zero
+    @State private var difficultySelectOpen = false
     
     @State private var timeRemaining = 5
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    private var difficultyLevel: Difficulty {
+        Difficulty(rawValue: sessionModel.difficultyInt) ?? .normal
+    }
     
     var buttonTitle: String {
         if !sessionModel.ssEnabled {
@@ -51,6 +56,19 @@ struct ScheduleSheet: View {
               
                 TimeSelector
                 
+                Button {
+                    difficultySelectOpen = true
+                } label: {
+                    SomeSettingsView(
+                        image: "speedometer",
+                        title: "Difficulty",
+                        subtitle: difficultyLevel.name,
+                        subtitleMinimized: false
+                    )
+                    .padding(.bottom, 5)
+                }
+                .disabled(timeRemaining > 0)
+                
                 DaySelector
                 
                 BigButton
@@ -64,6 +82,9 @@ struct ScheduleSheet: View {
         .presentationDetents([.height(sheetLength)])
         .presentationCornerRadius(20)
         .presentationDragIndicator(.visible)
+        .sheet(isPresented: $difficultySelectOpen) {
+            DifficultySelect()
+        }
     }
     
     var BigButton: some View {

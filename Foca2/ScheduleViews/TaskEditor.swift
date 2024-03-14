@@ -85,22 +85,22 @@ struct TaskEditor: View {
             HStack {
                 if taskModel.hasDueDate {
                     DueDateCapsule
+                        .padding(.leading)
                 } else {
                     getPickerButton(
                         onClickBool: $showDueDatePicker,
                         imageName: "calendar"
                     )
+                    .padding(.leading, 12)
                 }
                 
                 if taskModel.hasReminderDate {
                     ReminderDateCapsule
-                        .padding(.leading)
                 } else {
                     getPickerButton(
                         onClickBool:$showReminderDatePicker,
                         imageName: "bell"
                     )
-                        .padding(.leading, 12)
                 }
                 
                 if taskModel.hasNotes {

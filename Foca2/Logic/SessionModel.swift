@@ -29,11 +29,15 @@ class SessionModel: ObservableObject {
     var daysEnabled = [false, true, true, true, true, true, false]
     
     public var ssFromTimeComps: DateComponents {
-        Calendar.current.dateComponents([.hour, .minute], from: ssFromTime)
+        var c = Calendar.current.dateComponents([.hour, .minute], from: ssFromTime)
+        c.second = 0
+        return c
     }
     
     public var ssToTimeComps: DateComponents {
-        Calendar.current.dateComponents([.hour, .minute], from: ssToTime)
+        var c = Calendar.current.dateComponents([.hour, .minute], from: ssToTime)
+        c.second = 0
+        return c
     }
     
     public static func compareComps(_ comp1: DateComponents, _ comp2: DateComponents) -> ComparisonResult {
@@ -76,7 +80,7 @@ class SessionModel: ObservableObject {
             wait = 15
             for time in breakTimes {
                 if time > now - 60 * 60 {
-                    wait += 30
+                    wait += 25
                 } else if time > now - 120 * 60 {
                     wait += 20
                 } else if time > now - 180 * 60 {
@@ -123,6 +127,11 @@ class SessionModel: ObservableObject {
     }
     
     public func startBreak(minutes: Int) {
+        breakTimes.append(Date() + TimeInterval(minutes*60))
+        if breakTimes.count > 10 {
+            breakTimes.removeFirst()
+        }
+        
         let now = Date()
         let beginTimeComps = now.getComponents([.hour, .minute, .second], minutesAhead: -15)
         let endDate = now + TimeInterval(minutes * 60)

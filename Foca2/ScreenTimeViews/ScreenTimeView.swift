@@ -18,17 +18,9 @@ struct ScreenTimeView: View {
     @State private var tokenPickerOpen = false
     @State private var scheduleSheetOpen = false
     @State private var startBreakOpen = false
-    @State private var difficultySelectOpen = false
-    
-    @State private var alertTitle = ""
-    @State private var showingAlert = false
     
     private var status: ScreenTimeStatus {
         ScreenTimeStatus(rawValue: statusInt) ?? .noSession
-    }
-    
-    private var difficultyLevel: Difficulty {
-        Difficulty(rawValue: sessionModel.difficultyInt) ?? .normal
     }
     
     var body: some View {
@@ -63,23 +55,6 @@ struct ScreenTimeView: View {
             }
             
             Button {
-                if sessionModel.getStatus() == .scheduledSession {
-                    alertTitle = "You cannot edit session difficulty while in a scheduled session"
-                    showingAlert = true
-                } else {
-                    difficultySelectOpen = true
-                }
-            } label: {
-                SomeSettingsView(
-                    image: "speedometer",
-                    title: "Difficulty",
-                    subtitle: difficultyLevel.name,
-                    subtitleMinimized: false
-                )
-                .padding(.bottom, 5)
-            }
-            
-            Button {
                 scheduleSheetOpen = true
             } label: {
                 SomeSettingsView(
@@ -102,8 +77,6 @@ struct ScreenTimeView: View {
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
         .sheet(isPresented: $startBreakOpen) { StartBreakView() }
-        .sheet(isPresented: $difficultySelectOpen) { DifficultySelect() }
-        .alert(alertTitle, isPresented: $showingAlert, actions: {})
         .onAppear {
             Task {
                 do {

@@ -17,8 +17,8 @@ struct StartBreakView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        ScrollView {
-            VStack {
+        VStack {
+            VStack (spacing: 0) {
                 Text("Break Length")
                     .font(.system(size: 20, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -34,9 +34,10 @@ struct StartBreakView: View {
                     }
                     .preferredColorScheme(.light)
                     .pickerStyle(.wheel)
+                    .frame(height: 220)
                     
                     Text(minuteSelection < 2 ? "minute" : "minutes")
-                        .offset(x: 50)
+                        .offset(x: 55)
                 }
                 
                 BreakButton(
@@ -44,14 +45,15 @@ struct StartBreakView: View {
                     minutes: minuteSelection,
                     dismiss: dismiss
                 )
-                    .onReceive(timer) { _ in
-                        if timeRemaining > 0 {
-                            timeRemaining -= 1
-                        }
+                .onReceive(timer) { _ in
+                    if timeRemaining > 0 {
+                        timeRemaining -= 1
                     }
+                }
             }
             .foregroundStyle(Color(.spaceCadet))
             .readSize(onChange: { sheetLength = $0.height })
+            Spacer()
         }
         .onChange(of: minuteSelection) {
             if $1 == 0 { withAnimation { minuteSelection = 1 } }
@@ -72,10 +74,6 @@ struct BreakButton: View {
     
     var body: some View {
         Button {
-            sessionModel.breakTimes.append(Date() + TimeInterval(minutes*60))
-            if sessionModel.breakTimes.count > 10 {
-                sessionModel.breakTimes.removeFirst()
-            }
             sessionModel.startBreak(minutes: minutes)
             dismiss()
         } label: {
@@ -96,4 +94,5 @@ struct BreakButton: View {
 
 #Preview {
     StartBreakView()
+        .environmentObject(SessionModel())
 }
