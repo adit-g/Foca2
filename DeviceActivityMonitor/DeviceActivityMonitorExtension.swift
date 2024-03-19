@@ -15,7 +15,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
-        UNUserNotificationCenter.scheduleNoti(title: "Interval started", subtitle: "", identifier: "start")
         // Handle the start of the interval.
         if activity == .focusSessions {
             SessionModel.blockApps()
@@ -31,12 +30,18 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
-        UNUserNotificationCenter.scheduleNoti(title: "Interval ended", subtitle: "", identifier: "end")
         // Handle the end of the interval.
         if activity == .focusSessions {
             SessionModel.unblockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         } else if activity == .breaks {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
+                    .set(ShieldStatus.one.rawValue, forKey: "shield")
+            }
+            
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
+                .set(ShieldStatus.four.rawValue, forKey: "shield")
             SessionModel.blockApps()
             UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         } else {
@@ -61,6 +66,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.intervalWillEndWarning(for: activity)
         
         // Handle the warning before the interval ends.
+        UNUserNotificationCenter.scheduleNoti(title: "break ending in 1 minute", body: "", identifier: "warning")
     }
     
     override func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {

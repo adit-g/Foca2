@@ -15,21 +15,88 @@ import UIKit
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     private func getShield(appName: String?) -> ShieldConfiguration {
-        let image = "✋".textToImage()!
-        return ShieldConfiguration(
-            backgroundBlurStyle: .systemMaterial,
-            backgroundColor: UIColor.black,
-            icon: image,
+        let statusInt = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.integer(forKey: "shield")
+        let status = ShieldStatus(rawValue: statusInt) ?? .one
+        switch status {
+        case .one:
+            return shield1(name: appName)
+        case .two:
+            return shield2
+        case .three:
+            return shield3
+        case .four:
+            return shield4
+        }
+    }
+    
+    private func shield1(name: String?) -> ShieldConfiguration {
+        ShieldConfiguration(
+            backgroundColor: UIColor(named: "ghostWhite"),
+            icon: UIImage(named: "logo"),
             title: ShieldConfiguration.Label(
-                text:  "\(appName ?? "This app") is blocked",
-                color: .lightText),
+                text:  "\(name?.lowercased() ?? "this app") is blocked\n",
+                color: UIColor(named: "coolGray")!),
             subtitle: ShieldConfiguration.Label(
-                text: "Lets get back to your tasks\n\nClick the notification above to see your schedule on Foca",
-                color: .lightText),
+                text: "\n\nto enter, look at your to-do list first",
+                color: UIColor(named: "coolGray")!),
             primaryButtonLabel: ShieldConfiguration.Label(
-                text: "Close",
-                color: .darkText),
-            primaryButtonBackgroundColor: .white
+                text: "continue",
+                color: UIColor(named: "ghostWhite")!),
+            primaryButtonBackgroundColor: UIColor(named: "coolGray")
+        )
+    }
+    
+    private var shield2: ShieldConfiguration {
+        ShieldConfiguration(
+            backgroundColor: UIColor(named: "ghostWhite"),
+            icon: UIImage(named: "clock"),
+            title: ShieldConfiguration.Label(
+                text:  "lets pause\n",
+                color: UIColor(named: "coolGray")!),
+            subtitle: ShieldConfiguration.Label(
+                text: "\n\n↑ tap the notification ↑",
+                color: UIColor(named: "coolGray")!),
+            primaryButtonLabel: ShieldConfiguration.Label(
+                text: "",
+                color: UIColor.clear),
+            primaryButtonBackgroundColor: UIColor.clear,
+            secondaryButtonLabel: ShieldConfiguration.Label(
+                text: "didn't get a notification?",
+                color: UIColor(named: "coolGray")!)
+        )
+    }
+    
+    private var shield3: ShieldConfiguration {
+        ShieldConfiguration(
+            backgroundColor: UIColor(named: "ghostWhite"),
+            icon: UIImage(systemName: "moon.fill"),
+            title: ShieldConfiguration.Label(
+                text:  "do not disturb active\n",
+                color: UIColor(named: "coolGray")!),
+            subtitle: ShieldConfiguration.Label(
+                text: "\n\nyou must enable notifications from foca in Settings -> Focus",
+                color: UIColor(named: "coolGray")!),
+            primaryButtonLabel: ShieldConfiguration.Label(
+                text: "retry",
+                color: UIColor(named: "ghostWhite")!),
+            primaryButtonBackgroundColor: UIColor(named: "coolGray")
+        )
+    }
+    
+    private var shield4: ShieldConfiguration {
+        ShieldConfiguration(
+            backgroundColor: UIColor(named: "ghostWhite"),
+            icon: UIImage(systemName: "clock"),
+            title: ShieldConfiguration.Label(
+                text:  "break ended\n",
+                color: UIColor(named: "coolGray")!),
+            subtitle: ShieldConfiguration.Label(
+                text: "\n\nthe time you set aside for this break is up",
+                color: UIColor(named: "coolGray")!),
+            primaryButtonLabel: ShieldConfiguration.Label(
+                text: "close",
+                color: UIColor(named: "ghostWhite")!),
+            primaryButtonBackgroundColor: UIColor(named: "coolGray")
         )
     }
     

@@ -14,6 +14,10 @@ struct SizePreferenceKey: PreferenceKey {
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
 
+enum ShieldStatus: Int {
+    case one, two, three, four
+}
+
 extension Array: RawRepresentable where Element: Codable {
     public init?(rawValue: String) {
         guard let data = rawValue.data(using: .utf8),
@@ -61,10 +65,10 @@ extension Notification.Name {
 }
 
 extension UNUserNotificationCenter {
-    static func scheduleNoti(title: String, subtitle: String, identifier: String) {
+    static func scheduleNoti(title: String, body: String, identifier: String) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.subtitle = subtitle
+        content.body = body
         content.sound = UNNotificationSound.default
         
         let request = UNNotificationRequest(

@@ -14,8 +14,8 @@
             filePath = "DeviceActivityMonitor/DeviceActivityMonitorExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "intervalDidStart(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -81,6 +81,102 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "dayView(dayView:didLongPressTimelineAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5DDE2F81-FCE7-4E67-B5D6-AF0EC82CBBFD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShieldConfiguration/ShieldConfigurationExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "getShield(appName:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "76A83E36-E936-4491-89AA-C29C0BDD7C40"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShieldConfiguration/ShieldConfigurationExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "getShield(appName:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "76A83E36-E936-4491-89AA-C29C0BDD7C40 - e2273265487b1d4a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShieldConfiguration.ShieldConfigurationExtension.getShield(appName: Swift.Optional&lt;Swift.String&gt;) -&gt; ManagedSettingsUI.ShieldConfiguration"
+                  moduleName = "ShieldConfiguration"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aditg/Documents/The-Mega-Folder/Programming/Foca2/ShieldConfiguration/ShieldConfigurationExtension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  uuid = "76A83E36-E936-4491-89AA-C29C0BDD7C40 - e2273265487b1d4a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShieldConfiguration.ShieldConfigurationExtension.getShield(appName: Swift.Optional&lt;Swift.String&gt;) -&gt; ManagedSettingsUI.ShieldConfiguration"
+                  moduleName = "ShieldConfiguration"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aditg/Documents/The-Mega-Folder/Programming/Foca2/ShieldConfiguration/ShieldConfigurationExtension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "480">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F2C3784-1943-4410-85FE-F549F500F87B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShieldAction/ShieldActionExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "handleBoss(action:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7E11AC84-6870-4F18-ACC6-E295AF5BA6F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShieldAction/ShieldActionExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "handleBoss(action:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
