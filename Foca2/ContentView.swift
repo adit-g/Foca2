@@ -29,7 +29,10 @@ struct ContentView: View {
             
             TabBar(selectedTab: $selectedTab)
         }
-        .onAppear { sessionModel.updateStatus() }
+        .onAppear { 
+            sessionModel.updateStatus()
+            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ShieldStatus.one.rawValue, forKey: "shield")
+        }
     }
 }
 

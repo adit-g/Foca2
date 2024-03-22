@@ -13,18 +13,24 @@ import SwiftUI
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
+    let store = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
+    
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         // Handle the start of the interval.
         if activity == .focusSessions {
             SessionModel.blockApps()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.session.rawValue, forKey: "status")
+            store.set(ScreenTimeStatus.session.rawValue, forKey: "status")
         } else if activity == .breaks {
             SessionModel.unblockApps()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
-        } else {
-            SessionModel.blockApps()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+            store.set(ScreenTimeStatus.onBreak.rawValue, forKey: "status")
+        } else if activity == .scheduled {
+            let daysEnabled = store.object(forKey: "SSDaysEnabled") as? [Bool] ?? [false, true, true, true, true, true, false]
+            let weekday = Calendar.current.dateComponents([.weekday], from: Date()).weekday!
+            if daysEnabled[weekday - 1] {
+                SessionModel.blockApps()
+            }
+            store.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
         }
     }
     
@@ -33,20 +39,15 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         // Handle the end of the interval.
         if activity == .focusSessions {
             SessionModel.unblockApps()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+            store.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         } else if activity == .breaks {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                    .set(ShieldStatus.one.rawValue, forKey: "shield")
-            }
-            
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                .set(ShieldStatus.four.rawValue, forKey: "shield")
+            store.set(ShieldStatus.four.rawValue, forKey: "shield")
+            store.set(Date(), forKey: "lastShieldDate")
             SessionModel.blockApps()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
-        } else {
+            store.set(ScreenTimeStatus.scheduledSession.rawValue, forKey: "status")
+        } else if activity == .scheduled {
             SessionModel.unblockApps()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
+            store.set(ScreenTimeStatus.noSession.rawValue, forKey: "status")
         }
     }
     
@@ -66,7 +67,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         super.intervalWillEndWarning(for: activity)
         
         // Handle the warning before the interval ends.
-        UNUserNotificationCenter.scheduleNoti(title: "break ending in 1 minute", body: "", identifier: "warning")
+        UNUserNotificationCenter.scheduleNoti(title: "break ending soon", body: "your apps will be blocked in 1m", identifier: "warning")
     }
     
     override func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {

@@ -25,8 +25,6 @@ class SessionModel: ObservableObject {
     @AppStorage("SSFromTime") var ssFromTime = Date()
     @AppStorage("SSToTime") var ssToTime = Date() + 3600
     @AppStorage("SSEnabled") var ssEnabled = false
-    @AppStorage("SSDaysEnabled")
-    var daysEnabled = [false, true, true, true, true, true, false]
     
     public var ssFromTimeComps: DateComponents {
         var c = Calendar.current.dateComponents([.hour, .minute], from: ssFromTime)
@@ -94,31 +92,18 @@ class SessionModel: ObservableObject {
     }
     
     public func scheduleSS() {
-        var ignoredDays: [DeviceActivityName] = []
-        for i in 0...6 {
-            if !daysEnabled[i] {
-                ignoredDays.append(DeviceActivityName.dayNames[i])
-                continue
-            }
-            var beginComp = ssFromTimeComps
-            beginComp.setValue(i+1, for: .weekday)
-            var endComp = ssToTimeComps
-            endComp.setValue(isSessionOvernight() ? (i+1)%7+1 : i+1, for: .weekday)
-            try! dac.startMonitoring(
-                .dayNames[i],
-                during: DeviceActivitySchedule(
-                    intervalStart: beginComp,
-                    intervalEnd: endComp,
-                    repeats: true)
-            )
-        }
+        try! dac.startMonitoring(
+            .scheduled,
+            during: DeviceActivitySchedule(
+                intervalStart: ssFromTimeComps,
+                intervalEnd: ssToTimeComps,
+                repeats: true)
+        )
         ssEnabled = true
-        dac.stopMonitoring(ignoredDays)
     }
     
     public func cancelSS() {
         ssEnabled = false
-        dac.stopMonitoring(DeviceActivityName.dayNames)
         updateStatus()
     }
     
@@ -201,6 +186,7 @@ class SessionModel: ObservableObject {
     public func getStatus() -> ScreenTimeStatus {
         let now = Date()
         let weekday = Calendar.current.dateComponents([.weekday], from: now).weekday!
+        let daysEnabled = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.object(forKey: "SSDaysEnabled") as? [Bool] ?? [false, true, true, true, true, true, false]
         if now.compare(fsEndTime) == .orderedAscending {
             return .session
         } else if now.compare(brEndTime) == .orderedAscending {

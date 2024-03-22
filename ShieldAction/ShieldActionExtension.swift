@@ -12,35 +12,32 @@ import SwiftUI
 // The system provides a default response for any functions that your subclass doesn't override.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class ShieldActionExtension: ShieldActionDelegate {
+    
+    let store = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
+    
     private func handleBoss(action: ShieldAction, completionHandler: @escaping (ShieldActionResponse) -> Void) {
-        let statusInt = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.integer(forKey: "shield")
-        let status = ShieldStatus(rawValue: statusInt) ?? .one
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                .set(ShieldStatus.one.rawValue, forKey: "shield")
-        }
+        let lastDate = store.object(forKey: "lastShieldDate") as? Date ?? Date() - 35
+        let shield = ShieldStatus(rawValue: store.integer(forKey: "shield")) ?? .one
+        let status = lastDate > Date() - 30 ? shield : .one
         
         // Handle the action as needed.
         switch action {
         case .primaryButtonPressed:
             switch status {
             case .one:
-                let num = ShieldStatus.two.rawValue
                 UNUserNotificationCenter.scheduleNoti(title: "click here", body: "to see your to-do list", identifier: "portal")
-                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                    .set(num, forKey: "shield")
+                store.set(ShieldStatus.two.rawValue, forKey: "shield")
+                store.set(Date(), forKey: "lastShieldDate")
                 completionHandler(.defer)
             case .two:
                 completionHandler(.defer)
             case .three:
                 UNUserNotificationCenter.scheduleNoti(title: "click here", body: "to see your to-do list", identifier: "portal")
-                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                    .set(ShieldStatus.two.rawValue, forKey: "shield")
+                store.set(ShieldStatus.two.rawValue, forKey: "shield")
+                store.set(Date(), forKey: "lastShieldDate")
                 completionHandler(.defer)
             case .four:
-                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                    .set(ShieldStatus.one.rawValue, forKey: "shield")
+                store.set(ShieldStatus.one.rawValue, forKey: "shield")
                 completionHandler(.close)
             }
         case .secondaryButtonPressed:
@@ -48,8 +45,8 @@ class ShieldActionExtension: ShieldActionDelegate {
             case .one:
                 completionHandler(.defer)
             case .two:
-                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
-                    .set(ShieldStatus.three.rawValue, forKey: "shield")
+                store.set(ShieldStatus.three.rawValue, forKey: "shield")
+                store.set(Date(), forKey: "lastShieldDate")
                 completionHandler(.defer)
             case .three:
                 completionHandler(.defer)

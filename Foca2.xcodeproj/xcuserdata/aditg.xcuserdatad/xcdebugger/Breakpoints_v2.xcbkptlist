@@ -14,8 +14,8 @@
             filePath = "DeviceActivityMonitor/DeviceActivityMonitorExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "intervalDidStart(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "ShieldConfiguration/ShieldConfigurationExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "getShield(appName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -104,14 +104,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "76A83E36-E936-4491-89AA-C29C0BDD7C40"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShieldConfiguration/ShieldConfigurationExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "getShield(appName:)"
             landmarkType = "7">
             <Locations>
@@ -151,15 +151,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7F2C3784-1943-4410-85FE-F549F500F87B"
-            shouldBeEnabled = "Yes"
+            uuid = "7E11AC84-6870-4F18-ACC6-E295AF5BA6F2"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShieldAction/ShieldActionExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "handleBoss(action:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -167,16 +167,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7E11AC84-6870-4F18-ACC6-E295AF5BA6F2"
-            shouldBeEnabled = "Yes"
+            uuid = "26669D82-0B41-45AB-9B9D-DD60F46C4C85"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShieldAction/ShieldActionExtension.swift"
+            filePath = "DeviceActivityMonitor/DeviceActivityMonitorExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "handleBoss(action:completionHandler:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "intervalDidStart(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -120,6 +120,8 @@ struct ScheduleSheet: View {
         }
     }
     
+    @State private var daysEnabled = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.object(forKey: "SSDaysEnabled") as? [Bool] ?? [false, true, true, true, true, true, false]
+    
     var DaySelector: some View {
         VStack(spacing: 0) {
             Text("Days of Week Active")
@@ -129,17 +131,18 @@ struct ScheduleSheet: View {
                 .padding(.vertical)
             
             HStack {
-                ForEach(sessionModel.daysEnabled.indices, id: \.self) { index in
+                ForEach(daysEnabled.indices, id: \.self) { index in
                     Circle()
                         .foregroundStyle(Color(.chineseViolet))
-                        .opacity(sessionModel.daysEnabled[index] ? 1 : 0.3)
+                        .opacity(daysEnabled[index] ? 1 : 0.3)
                         .overlay {
                             Text(weekdays[index])
                                 .foregroundStyle(.white)
                         }
                         .frame(width: 40, height: 40)
                         .onTapGesture {
-                            sessionModel.daysEnabled[index].toggle()
+                            daysEnabled[index].toggle()
+                            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(daysEnabled, forKey: "SSDaysEnabled")
                         }
                         .disabled(sessionModel.ssEnabled)
                 }

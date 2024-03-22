@@ -14,9 +14,13 @@ import UIKit
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
+    let store = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!
+    
     private func getShield(appName: String?) -> ShieldConfiguration {
-        let statusInt = UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.integer(forKey: "shield")
-        let status = ShieldStatus(rawValue: statusInt) ?? .one
+        let lastDate = store.object(forKey: "lastShieldDate") as? Date ?? Date() - 35
+        let shield = ShieldStatus(rawValue: store.integer(forKey: "shield")) ?? .one
+        let status = lastDate > Date() - 30 ? shield : .one
+        
         switch status {
         case .one:
             return shield1(name: appName)
@@ -31,7 +35,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     private func shield1(name: String?) -> ShieldConfiguration {
         ShieldConfiguration(
-            backgroundColor: UIColor(named: "ghostWhite"),
+            backgroundColor: UIColor(named: "ghostWhite")!,
             icon: UIImage(named: "logo"),
             title: ShieldConfiguration.Label(
                 text:  "\(name?.lowercased() ?? "this app") is blocked\n",
@@ -48,7 +52,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     private var shield2: ShieldConfiguration {
         ShieldConfiguration(
-            backgroundColor: UIColor(named: "ghostWhite"),
+            backgroundColor: UIColor(named: "ghostWhite")!,
             icon: UIImage(named: "clock"),
             title: ShieldConfiguration.Label(
                 text:  "lets pause\n",
@@ -69,7 +73,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     private var shield3: ShieldConfiguration {
         ShieldConfiguration(
             backgroundColor: UIColor(named: "ghostWhite"),
-            icon: UIImage(systemName: "moon.fill"),
+            icon: UIImage(named: "moon"),
             title: ShieldConfiguration.Label(
                 text:  "do not disturb active\n",
                 color: UIColor(named: "coolGray")!),
