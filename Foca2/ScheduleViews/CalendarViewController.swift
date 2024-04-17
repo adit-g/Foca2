@@ -30,7 +30,7 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         navigationController?.isNavigationBarHidden = true
     }
     
-    private func requestAccessToCalendar() {
+    public func requestAccessToCalendar() {
         // Code to handle the response to the request.
         // We create the completion handler first, as we need to ask for a permission differently in iOS 17
         let completionHandler: EKEventStoreRequestAccessCompletionHandler = { [weak self] granted, error in
@@ -48,7 +48,6 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
         // Request access to the events
         // More info: https://developer.apple.com/documentation/technotes/tn3152-migrating-to-the-latest-calendar-access-levels
         eventStore.requestFullAccessToEvents(completion: completionHandler)
-        
     }
 
     private func subscribeToNotifications() {
@@ -111,7 +110,10 @@ final class CalendarViewController: DayViewController, EKEventEditViewDelegate {
     private func presentUnauthorizedAlert() {
         let alert = UIAlertController(title: "Foca is not authorized to make changes to your calendar", message: "Please go to Foca in the settings app and ensure that full access is granted to the Calendars setting", preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Go To Settings", style: .default) { _ in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         self.present(alert, animated: true)
     }

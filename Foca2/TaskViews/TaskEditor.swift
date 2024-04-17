@@ -26,7 +26,7 @@ struct TaskEditor: View {
     @State private var alertTitle = ""
     
     init(task: TaskItem? = nil, date: Date? = nil, context: NSManagedObjectContext) {
-        let wrappedTask = task ?? TaskItem(context: context)
+        let wrappedTask = task ?? TaskItem(entity: TaskItem.entity(), insertInto: nil)
         if (date != nil) {
             wrappedTask.doDate = date
         }
@@ -202,14 +202,14 @@ struct TaskEditor: View {
         Button {
             onClickBool.wrappedValue = true
         } label: {
-            ImageTemplate(imageName, 20, Color(.darkGray))
+            ImageTemplate(imageName, 20, Color(.spaceCadet))
                 .padding(5)
         }
     }
     
     var TitleRow: some View {
         HStack {
-            ImageTemplate("circle", 24, Color(.darkGray))
+            ImageTemplate("circle", 24, Color(.spaceCadet))
             
             TextField("Add a Task", text: $taskTitle)
                 .padding(.leading, 5)

@@ -90,7 +90,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     private var shield4: ShieldConfiguration {
         ShieldConfiguration(
             backgroundColor: UIColor(named: "ghostWhite"),
-            icon: UIImage(systemName: "clock"),
+            icon: UIImage(named: "clock"),
             title: ShieldConfiguration.Label(
                 text:  "break ended\n",
                 color: UIColor(named: "coolGray")!),

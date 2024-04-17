@@ -15,6 +15,7 @@ struct Foca2App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }

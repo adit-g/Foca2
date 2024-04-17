@@ -11,10 +11,6 @@ struct TabBar: View {
     
     @Binding var selectedTab : Tab
     
-    private var fillImage: String {
-        selectedTab.imageString + ".fill"
-    }
-    
     var body: some View {
         VStack {
             Spacer()
@@ -22,7 +18,7 @@ struct TabBar: View {
                 Spacer()
                 
                 ForEach(Tab.allCases, id: \.imageString) { tab in
-                    Image(systemName: selectedTab == tab ? fillImage : tab.imageString)
+                    Image(systemName: tab.imageString)
                         .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
                         .foregroundStyle(selectedTab == tab ? Color(.spaceCadet) : .gray)
                         .font(.system(size: 22))

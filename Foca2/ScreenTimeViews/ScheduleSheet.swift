@@ -24,8 +24,15 @@ struct ScheduleSheet: View {
     var buttonTitle: String {
         if !sessionModel.ssEnabled {
             return "Save"
-        } else if sessionModel.getStatus() == .scheduledSession && timeRemaining > 0 {
-            return "Cancel Available in \(timeRemaining)"
+        } else if sessionModel.getStatus() == .scheduledSession {
+            switch difficultyLevel {
+            case .normal:
+                return timeRemaining > 0 ? "Cancel Available in \(timeRemaining)" : "Cancel"
+            case .timeout:
+                return timeRemaining > 0 ? "Cancel Available in \(timeRemaining)" : "Cancel"
+            case .deepfocus:
+                return "Cancel Unavailable"
+            }
         } else {
             return "Cancel"
         }
@@ -67,7 +74,7 @@ struct ScheduleSheet: View {
                     )
                     .padding(.bottom, 5)
                 }
-                .disabled(timeRemaining > 0)
+                .disabled(sessionModel.ssEnabled)
                 
                 DaySelector
                 
@@ -105,7 +112,7 @@ struct ScheduleSheet: View {
                 }
                 .padding(.horizontal)
         }
-        .disabled(timeRemaining > 0)
+        .disabled(timeRemaining > 0 || (timeRemaining > 0 && difficultyLevel == .deepfocus))
         .onAppear {
             if sessionModel.getStatus() == .scheduledSession {
                 timeRemaining = sessionModel.getCurrentWaitTime()
@@ -114,7 +121,7 @@ struct ScheduleSheet: View {
             }
         }
         .onReceive(timer) { _ in
-            if timeRemaining > 0 {
+            if timeRemaining > 0 && difficultyLevel != .deepfocus {
                 timeRemaining -= 1
             }
         }
@@ -160,7 +167,6 @@ struct ScheduleSheet: View {
     var TimeSelector: some View {
         VStack(spacing: 0) {
             DatePicker("From", selection: $sessionModel.ssFromTime, displayedComponents: .hourAndMinute)
-                .preferredColorScheme(.light)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)
@@ -169,7 +175,6 @@ struct ScheduleSheet: View {
             Divider()
             
             DatePicker("To", selection: $sessionModel.ssToTime, displayedComponents: .hourAndMinute)
-                .preferredColorScheme(.light)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)

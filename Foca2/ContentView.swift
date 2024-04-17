@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @AppStorage("userOnboarded") private var userOnboarded = false
     @State private var selectedTab = Tab.first
     @StateObject private var sessionModel = SessionModel()
     
@@ -17,21 +17,30 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
-            TabView(selection: $selectedTab) {
-                Schedule()
-                    .tag(Tab.first)
+        if userOnboarded {
+            ZStack {
+                TabView(selection: $selectedTab) {
+                    TaskView()
+                        .tag(Tab.first)
+                    
+                    Schedule()
+                        .tag(Tab.second)
+                    
+                    ScreenTimeView()
+                        .environmentObject(sessionModel)
+                        .tag(Tab.third)
+                }
                 
-                ScreenTimeView()
-                    .environmentObject(sessionModel)
-                    .tag(Tab.second)
+                TabBar(selectedTab: $selectedTab)
             }
-            
-            TabBar(selectedTab: $selectedTab)
-        }
-        .onAppear { 
-            sessionModel.updateStatus()
-            UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ShieldStatus.one.rawValue, forKey: "shield")
+            .transition(.moveAndFade)
+            .onAppear {
+                sessionModel.updateStatus()
+                UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ShieldStatus.one.rawValue, forKey: "shield")
+            }
+        } else {
+            IntroTutorial(isFinished: $userOnboarded)
+                .environmentObject(sessionModel)
         }
     }
 }
@@ -39,11 +48,13 @@ struct ContentView: View {
 enum Tab: Int, CaseIterable {
     case first
     case second
+    case third
     
     var imageString: String {
         switch self {
         case .first: return "list.bullet.clipboard"
-        case .second: return "hourglass.circle"
+        case .second: return "calendar"
+        case .third: return "hourglass"
         }
     }
 }

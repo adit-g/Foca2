@@ -26,8 +26,8 @@ struct TaskTile: View {
             entity: TaskItem.entity(),
             sortDescriptors: [NSSortDescriptor(key: "createdDate", ascending: true)],
             predicate: NSPredicate(
-                format: "doDate BETWEEN {%@, %@} AND title != %@ AND title != nil",
-                startDate as CVarArg, endDate as CVarArg, "")
+                format: "(doDate <= %@ AND completed == %@) OR (doDate BETWEEN {%@, %@})",
+                endDate as CVarArg, false as NSNumber, startDate as CVarArg, endDate as CVarArg)
         )
     }
     
@@ -35,10 +35,24 @@ struct TaskTile: View {
         VStack(spacing: 0) {
             TopBar
             
-            ForEach(items, id: \.self) { item in
-                Divider()
-                
-                TaskRow(passedTask: item, editTask: $taskToEdit)
+            if items.count < 4 {
+                ForEach(items, id: \.self) { item in
+                    Divider()
+                    
+                    TaskRow(passedTask: item, editTask: $taskToEdit)
+                }
+            } else {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ForEach(items, id: \.self) { item in
+                            Divider()
+                            
+                            TaskRow(passedTask: item, editTask: $taskToEdit)
+                        }
+                    }
+                }
+                .scrollBounceBehavior(.basedOnSize)
+                .frame(height: 120)
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 20))

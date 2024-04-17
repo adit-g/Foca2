@@ -16,6 +16,10 @@ struct StartBreakView: View {
     @State private var timeRemaining = 5
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    private var difficulty: Difficulty {
+        Difficulty(rawValue: sessionModel.difficultyInt) ?? .normal
+    }
+    
     var body: some View {
         VStack {
             VStack (spacing: 0) {
@@ -32,7 +36,6 @@ struct StartBreakView: View {
                                 .fontWeight(.bold)
                         }
                     }
-                    .preferredColorScheme(.light)
                     .pickerStyle(.wheel)
                     .frame(height: 220)
                     
@@ -43,7 +46,8 @@ struct StartBreakView: View {
                 BreakButton(
                     counter: $timeRemaining,
                     minutes: minuteSelection,
-                    dismiss: dismiss
+                    dismiss: dismiss,
+                    difficulty: difficulty
                 )
                 .onReceive(timer) { _ in
                     if timeRemaining > 0 {
@@ -71,6 +75,7 @@ struct BreakButton: View {
     @Binding fileprivate var counter: Int
     let minutes: Int
     let dismiss: DismissAction
+    let difficulty: Difficulty
     
     var body: some View {
         Button {
@@ -80,15 +85,27 @@ struct BreakButton: View {
             Capsule()
                 .frame(height: 45)
                 .foregroundStyle(.white)
-                .overlay {
-                    Text(counter > 0 ? "Break Available in \(counter)" : "Start Break")
-                        .foregroundStyle(counter > 0 ? Color.gray : Color(.eggplant))
-                        .fontWeight(.semibold)
-                }
+                .overlay { BreakText }
                 .padding(.horizontal)
         }
-        .disabled(counter > 0)
+        .disabled(counter > 0 || difficulty == .deepfocus)
         .onAppear { counter = sessionModel.getCurrentWaitTime() }
+    }
+    
+    var BreakText: some View {
+        let txt: String
+        switch difficulty {
+        case .normal:
+            txt = counter > 0 ? "Break Available in \(counter)" : "Start Break"
+        case .timeout:
+            txt = counter > 0 ? "Break Available in \(counter)" : "Start Break"
+        case .deepfocus:
+            txt = "Break Unavailable"
+        }
+        return Text(txt)
+            .foregroundStyle(counter > 0 || difficulty == .deepfocus ? Color.gray : Color(.eggplant))
+            .fontWeight(.semibold)
+        
     }
 }
 

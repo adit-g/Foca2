@@ -25,14 +25,22 @@ class ShieldActionExtension: ShieldActionDelegate {
         case .primaryButtonPressed:
             switch status {
             case .one:
-                UNUserNotificationCenter.scheduleNoti(title: "click here", body: "to see your to-do list", identifier: "portal")
+                UNUserNotificationCenter.scheduleNoti(
+                    title: "click here",
+                    body: "to see your to-do list",
+                    identifier: "portal",
+                    userInfo: ["todo": true])
                 store.set(ShieldStatus.two.rawValue, forKey: "shield")
                 store.set(Date(), forKey: "lastShieldDate")
                 completionHandler(.defer)
             case .two:
                 completionHandler(.defer)
             case .three:
-                UNUserNotificationCenter.scheduleNoti(title: "click here", body: "to see your to-do list", identifier: "portal")
+                UNUserNotificationCenter.scheduleNoti(
+                    title: "click here",
+                    body: "to see your to-do list",
+                    identifier: "portal",
+                    userInfo: ["todo": true])
                 store.set(ShieldStatus.two.rawValue, forKey: "shield")
                 store.set(Date(), forKey: "lastShieldDate")
                 completionHandler(.defer)

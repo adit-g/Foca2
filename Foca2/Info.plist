@@ -4,5 +4,14 @@
 <dict>
 	<key>NSCalendarsFullAccessUsageDescription</key>
 	<string>This app needs access to calendar data in order to display it on your screen</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>ghostWhite</string>
+		<key>UIImageName</key>
+		<string>logo</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

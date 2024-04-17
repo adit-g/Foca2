@@ -16,6 +16,7 @@ class SessionModel: ObservableObject {
     private let dac = DeviceActivityCenter()
     
     @AppStorage("difficulty") var difficultyInt = Difficulty.normal.rawValue
+    @AppStorage("appBudget") var appBudget = 3
     
     @AppStorage("breakTimes") var breakTimes: [Date] = []
 
@@ -86,7 +87,7 @@ class SessionModel: ObservableObject {
                 }
             }
             wait = min(120, wait)
-        case .deepfocus: break
+        case .deepfocus: wait = .max
         }
         return wait
     }

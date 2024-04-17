@@ -14,17 +14,19 @@ struct ScreenTimeView: View {
     @AppStorage("status", store: UserDefaults(suiteName: "group.2L6XN9RA4T.focashared"))
     var statusInt: Int = ScreenTimeStatus.noSession.rawValue
     
-    @State private var minutes = 5
+    @State private var minutes = 30
     @State private var tokenPickerOpen = false
     @State private var scheduleSheetOpen = false
     @State private var startBreakOpen = false
+    
+    @State private var alertOpen = false
     
     private var status: ScreenTimeStatus {
         ScreenTimeStatus(rawValue: statusInt) ?? .noSession
     }
     
     var body: some View {
-        ScrollView {
+        VStack {
             Text("Focus")
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundColor(Color(.spaceCadet))
@@ -77,6 +79,15 @@ struct ScreenTimeView: View {
         .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
         .sheet(isPresented: $startBreakOpen) { StartBreakView() }
+        .alert("no apps are blocked", isPresented: $alertOpen) {
+            Button("lets block!", role: .cancel) {
+                tokenPickerOpen = true
+            }
+                .keyboardShortcut(.defaultAction)
+            Button("i'm good") { sessionModel.startFS(minutes: minutes) }
+        } message: {
+            Text("blocking distracting apps could help you maintain focus")
+        }
         .onAppear {
             Task {
                 do {
@@ -92,7 +103,11 @@ struct ScreenTimeView: View {
         Button {
             switch status {
             case .noSession:
-                sessionModel.startFS(minutes: minutes)
+                if sessionModel.tokens.applications.isEmpty && sessionModel.tokens.categories.isEmpty {
+                    alertOpen = true
+                } else {
+                    sessionModel.startFS(minutes: minutes)
+                }
             case .session:
                 sessionModel.endFS()
             case .scheduledSession:

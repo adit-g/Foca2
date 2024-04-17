@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "focalogo1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "focalogo2-bgremoved.png",
+      "filename" : "digitalWellness.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -11,7 +11,7 @@ struct TimeSelectorView: View {
     let size: CGSize
     @Binding var minutes: Int
     @State private var hourSelection = 0
-    @State private var minuteSelection = 1
+    @State private var minuteSelection = 6
     
     private var selectedMinutes: Int {
         hourSelection * 60 + minuteSelection * 5
@@ -26,7 +26,6 @@ struct TimeSelectorView: View {
                         .fontWeight(.bold)
                 }
             }
-            .preferredColorScheme(.light)
             .pickerStyle(.wheel)
             .frame(
                 width: size.width / 4,
@@ -52,7 +51,7 @@ struct TimeSelectorView: View {
             Spacer()
         }
         .foregroundStyle(Color(.spaceCadet))
-        .onAppear { minutes = 5 }
+        .onAppear { minutes = 30 }
         .onChange(of: selectedMinutes) {
             withAnimation {
                 if hourSelection == 0 && minuteSelection == 0 {

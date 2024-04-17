@@ -9,20 +9,33 @@ import SwiftUI
 
 struct TaskRow: View {
     @Environment(\.managedObjectContext) var moc
-    @State var xOffset: CGFloat = 0
-    @State var deleteButtonHidden = true
+    @State var xOffset: CGFloat
+    @State var deleteButtonHidden: Bool
     
-    @ObservedObject var passedTask: TaskItem
+    @StateObject var passedTask: TaskItem
     @Binding var editTask: TaskItem?
+    let showDetails: Bool
+    
+    init(passedTask: TaskItem, editTask: Binding<TaskItem?>, showDetails: Bool = false) {
+        self._xOffset = State(initialValue: CGFloat.zero)
+        self._deleteButtonHidden = State(initialValue: true)
+        self._passedTask = StateObject(wrappedValue: passedTask)
+        self._editTask = Binding(projectedValue: editTask)
+        self.showDetails = showDetails
+    }
     
     var body: some View {
         ZStack {
             LinearGradient(gradient: .init(colors: [.pink, .red]), startPoint: .leading, endPoint: .trailing)
+                .opacity(xOffset == .zero ? 0 : 1)
             
             HStack {
                 Spacer()
                 
-                Button(action: { moc.delete(passedTask) }) {
+                Button {
+                    moc.delete(passedTask)
+                    try? moc.save()
+                } label: {
                     Image(systemName: "trash")
                         .resizable()
                         .foregroundColor(.white)
@@ -43,8 +56,20 @@ struct TaskRow: View {
                         }
                     }
                 
-                Text(passedTask.wrappedTitle)
-                    .strikethrough(passedTask.completed)
+                VStack(spacing: 4) {
+                    HStack {
+                        Text(passedTask.wrappedTitle)
+                            .strikethrough(passedTask.completed)
+                            .opacity(passedTask.completed ? 0.7 : 1.0)
+                            .font(.system(size: 16))
+                        Spacer()
+                    }
+                        
+                    if showDetails {
+                        TaskRowExtraInfo(task: passedTask)
+                    }
+                }
+                .foregroundStyle(Color(.spaceCadet))
                 
                 Spacer()
             }
@@ -77,8 +102,12 @@ struct TaskRow: View {
             } else {
                 xOffset = 0
                 moc.delete(passedTask)
+                try? moc.save()
             }
         }
     }
-    
+}
+
+#Preview {
+    TaskRow(passedTask: DataController.previewTask, editTask: .constant(nil), showDetails: true)
 }

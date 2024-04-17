@@ -103,6 +103,16 @@ class TaskModel: ObservableObject {
             throw TaskModelError.BlankTitle
         }
         
+        if task.managedObjectContext == nil {
+            let newTask = TaskItem(context: moc)
+            newTask.title = task.title
+            newTask.doDate = task.doDate
+            newTask.reminderDate = task.reminderDate
+            newTask.notes = task.notes
+            newTask.completed = task.completed
+            task = newTask
+        }
+        
         do {
             if task.id == nil {
                 task.id = UUID()
@@ -122,7 +132,7 @@ class TaskModel: ObservableObject {
         hasReminderDate = false
         hasNotes = false
         let cachedDate = task.doDate
-        task = TaskItem(context: moc)
+        task = TaskItem(entity: TaskItem.entity(), insertInto: nil)
         if cachedDate != nil {
             setDueDate(cachedDate!)
         }

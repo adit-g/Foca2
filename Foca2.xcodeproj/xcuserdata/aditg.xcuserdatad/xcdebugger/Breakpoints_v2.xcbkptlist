@@ -78,8 +78,8 @@
             filePath = "Foca2/ScheduleViews/CalendarViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "dayView(dayView:didLongPressTimelineAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "ShieldAction/ShieldActionExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "handleBoss(action:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -178,6 +178,134 @@
             endingLineNumber = "30"
             landmarkName = "intervalDidStart(for:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7AD3003E-2223-477A-A1CB-31EBFE4F2987"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foca2/ScheduleViews/TaskRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7AD3003E-2223-477A-A1CB-31EBFE4F2987 - ebb01e4a000354ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Foca2.TaskRow.body.getter : some"
+                  moduleName = "Foca2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aditg/Documents/The-Mega-Folder/Programming/Foca2/Foca2/ScheduleViews/TaskRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "612">
+               </Location>
+               <Location
+                  uuid = "7AD3003E-2223-477A-A1CB-31EBFE4F2987 - 145cbdf247cd7045"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.LinearGradient, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.highPriorityGesture&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.Gesture&gt;(_: &#x3c4;_1_0, including: SwiftUI.GestureMask) -&gt; some&gt;&gt;.0)&gt; in Foca2.TaskRow.body.getter : some"
+                  moduleName = "Foca2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aditg/Documents/The-Mega-Folder/Programming/Foca2/Foca2/ScheduleViews/TaskRow.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "1128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E33170EC-B4CE-4C15-BFCF-6DE0FDFE7337"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foca2/Logic/TaskModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "rinseAndRepeat()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DE50784-BA76-4457-9CF3-2D7AD3A6E8BF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foca2/Logic/TaskModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "rinseAndRepeat()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2299D14D-7EE9-42CB-BCEB-32399DF61E91"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Foca2/Logic/TaskModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "rinseAndRepeat()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2299D14D-7EE9-42CB-BCEB-32399DF61E91 - 7fa537e074d67c99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Foca2.TaskModel.rinseAndRepeat() throws -&gt; ()"
+                  moduleName = "Foca2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aditg/Documents/The-Mega-Folder/Programming/Foca2/Foca2/Logic/TaskModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "4980">
+               </Location>
+               <Location
+                  uuid = "2299D14D-7EE9-42CB-BCEB-32399DF61E91 - 7fa537e074d67c99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Foca2.TaskModel.rinseAndRepeat() throws -&gt; ()"
+                  moduleName = "Foca2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aditg/Documents/The-Mega-Folder/Programming/Foca2/Foca2/Logic/TaskModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "5016">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

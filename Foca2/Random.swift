@@ -65,11 +65,14 @@ extension Notification.Name {
 }
 
 extension UNUserNotificationCenter {
-    static func scheduleNoti(title: String, body: String, identifier: String) {
+    static func scheduleNoti(title: String, body: String, identifier: String, userInfo: [AnyHashable : Any]? = nil) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
         content.sound = UNNotificationSound.default
+        if let ui = userInfo {
+            content.userInfo = ui
+        }
         
         let request = UNNotificationRequest(
             identifier: identifier,
@@ -101,7 +104,7 @@ public extension URL {
 extension String {
     func textToImage() -> UIImage? {
         let nsString = (self as NSString)
-        let font = UIFont.systemFont(ofSize: 200) // you can change your font size here
+        let font = UIFont.systemFont(ofSize: 150) // you can change your font size here
         let stringAttributes = [NSAttributedString.Key.font: font]
         let imageSize = nsString.size(withAttributes: stringAttributes)
 
