@@ -60,8 +60,25 @@ extension Date: RawRepresentable {
     }
 }
 
-extension Notification.Name {
-    static let shieldStarted = Notification.Name("shieldStarted")
+class AppState: ObservableObject {
+    static let shared = AppState()
+    @Published var redirect : Bool = false
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    // This function will be called right after user tap on the notification
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // start notification while app is in Foreground
+        UNUserNotificationCenter.current().delegate = self
+        return true
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let _ = response.notification.request.content.userInfo["todo"] as? Bool {
+            AppState.shared.redirect = true
+        }
+    }
 }
 
 extension UNUserNotificationCenter {

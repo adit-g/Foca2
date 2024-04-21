@@ -23,8 +23,8 @@ class SessionModel: ObservableObject {
     @AppStorage("FSEndTime") var fsEndTime = Date()
     @AppStorage("BREndTime") var brEndTime = Date()
     
-    @AppStorage("SSFromTime") var ssFromTime = Date()
-    @AppStorage("SSToTime") var ssToTime = Date() + 3600
+    @AppStorage("SSFromTime") var ssFromTime = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: Date())!
+    @AppStorage("SSToTime") var ssToTime = Calendar.current.date(bySettingHour: 17, minute: 0, second: 0, of: Date())!
     @AppStorage("SSEnabled") var ssEnabled = false
     
     public var ssFromTimeComps: DateComponents {

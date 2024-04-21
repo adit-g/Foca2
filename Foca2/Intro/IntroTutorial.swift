@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum IntroPhases: Int {
-    case welcome, permissions, selectApps, budget, tasks, allset
+    case welcome, permissions, selectApps, schedule, tasks, allset
 }
 
 extension AnyTransition {
@@ -35,8 +35,8 @@ struct IntroTutorial: View {
         case .selectApps:
             SelectApps(nextView: increment)
                 .transition(.moveAndFade)
-        case .budget:
-            Budget(nextView: increment)
+        case .schedule:
+            OnboardSchedule(nextView: increment)
                 .transition(.moveAndFade)
         case .tasks:
             TaskIntro(nextView: increment)
@@ -55,8 +55,8 @@ struct IntroTutorial: View {
             case .permissions:
                 introStatus = .selectApps
             case .selectApps:
-                introStatus = .budget
-            case .budget:
+                introStatus = .schedule
+            case .schedule:
                 introStatus = .tasks
             case .tasks:
                 introStatus = .allset

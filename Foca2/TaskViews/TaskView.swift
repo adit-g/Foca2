@@ -10,6 +10,9 @@ import CoreData
 
 struct TaskView: View {
     @Environment(\.managedObjectContext) var moc
+    
+    @ObservedObject var appState = AppState.shared
+    @State private var redirect = false
     @State private var taskCreaterOpen = false
     
     var body: some View {
@@ -42,6 +45,10 @@ struct TaskView: View {
         .background(Color(.ghostWhite))
         .sheet(isPresented: $taskCreaterOpen) {
             TaskEditor(date: Date(), context: moc)
+        }
+        .fullScreenCover(isPresented: $redirect) { RedirectView() }
+        .onReceive(appState.$redirect) { red in
+            redirect = red
         }
     }
     

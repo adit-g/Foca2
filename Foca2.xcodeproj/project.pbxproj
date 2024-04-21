@@ -24,6 +24,8 @@
 		A991C6432BCA0E490043E37E /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6422BCA0E490043E37E /* Tasks.swift */; };
 		A991C6452BCA0FC90043E37E /* TaskIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6442BCA0FC90043E37E /* TaskIntro.swift */; };
 		A991C6472BCA14980043E37E /* AllSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6462BCA14980043E37E /* AllSet.swift */; };
+		A991C6582BD33EEB0043E37E /* OnboardSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6572BD33EEB0043E37E /* OnboardSchedule.swift */; };
+		A991C65A2BD369380043E37E /* RedirectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6592BD369380043E37E /* RedirectView.swift */; };
 		A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A821FE2AF355FE002E0F61 /* Foca2App.swift */; };
 		A9A822012AF355FE002E0F61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A822002AF355FE002E0F61 /* ContentView.swift */; };
 		A9A822032AF355FF002E0F61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A822022AF355FF002E0F61 /* Assets.xcassets */; };
@@ -135,6 +137,8 @@
 		A991C6422BCA0E490043E37E /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		A991C6442BCA0FC90043E37E /* TaskIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntro.swift; sourceTree = "<group>"; };
 		A991C6462BCA14980043E37E /* AllSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSet.swift; sourceTree = "<group>"; };
+		A991C6572BD33EEB0043E37E /* OnboardSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardSchedule.swift; sourceTree = "<group>"; };
+		A991C6592BD369380043E37E /* RedirectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectView.swift; sourceTree = "<group>"; };
 		A9A821FB2AF355FE002E0F61 /* Foca2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foca2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A821FE2AF355FE002E0F61 /* Foca2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foca2App.swift; sourceTree = "<group>"; };
 		A9A822002AF355FE002E0F61 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 				A9ACBA1A2BBCA4CD00526429 /* Welcome.swift */,
 				A9ACBA1C2BBCCC0B00526429 /* Permissions.swift */,
 				A9C9F7942BBF330B006F718B /* SelectApps.swift */,
+				A991C6572BD33EEB0043E37E /* OnboardSchedule.swift */,
 				A9C9F7982BC34E22006F718B /* Budget.swift */,
 				A991C6442BCA0FC90043E37E /* TaskIntro.swift */,
 				A991C6462BCA14980043E37E /* AllSet.swift */,
@@ -384,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C9F79B2BC49E25006F718B /* TaskView.swift */,
+				A991C6592BD369380043E37E /* RedirectView.swift */,
 				A991C6422BCA0E490043E37E /* Tasks.swift */,
 				A9C9F79D2BC5D6C9006F718B /* TaskRowExtraInfo.swift */,
 				A92F831B2B4EE61F00AFFFBD /* TaskEditor.swift */,
@@ -575,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A991C6582BD33EEB0043E37E /* OnboardSchedule.swift in Sources */,
 				A9BFCEBA2B59BC3000F55EE3 /* NotesEditor.swift in Sources */,
 				A9F5B1AA2B80255E00CD4F69 /* TileImage+CoreDataProperties.swift in Sources */,
 				A9BFCEC32B608FFF00F55EE3 /* ScreenTimeView.swift in Sources */,
@@ -600,6 +607,7 @@
 				A9C9F79E2BC5D6C9006F718B /* TaskRowExtraInfo.swift in Sources */,
 				A9A8222A2AF356E9002E0F61 /* Foca2.xcdatamodeld in Sources */,
 				A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */,
+				A991C65A2BD369380043E37E /* RedirectView.swift in Sources */,
 				A9A821FF2AF355FE002E0F61 /* Foca2App.swift in Sources */,
 				A9F5B1752B74820B00CD4F69 /* ScheduleSheet.swift in Sources */,
 				A9C651FE2B19A308000B3D2A /* TaskModel.swift in Sources */,

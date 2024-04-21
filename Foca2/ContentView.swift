@@ -21,6 +21,7 @@ struct ContentView: View {
             ZStack {
                 TabView(selection: $selectedTab) {
                     TaskView()
+                        .environmentObject(sessionModel)
                         .tag(Tab.first)
                     
                     Schedule()

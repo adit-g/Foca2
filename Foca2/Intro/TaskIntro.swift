@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TaskIntro: View {
     @Environment(\.managedObjectContext) var moc
-    @State private var taskCreaterOpen = true
+    @State private var taskCreaterOpen = false
     let nextView: () -> ()
     var body: some View {
         VStack(spacing: 0) {
@@ -54,6 +54,13 @@ struct TaskIntro: View {
         .background(Color(.ghostWhite))
         .sheet(isPresented: $taskCreaterOpen) {
             TaskEditor(date: Date(), context: moc)
+        }
+        .onAppear {
+            Task {
+                try? await Task.sleep(nanoseconds: 500_000_000)
+                taskCreaterOpen = true
+            }
+            
         }
         
     }

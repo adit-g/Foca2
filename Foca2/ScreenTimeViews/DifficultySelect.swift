@@ -65,7 +65,7 @@ struct DifficultySelect: View {
             }
             Spacer()
             Circle()
-                .stroke(.white.opacity(0.5))
+                .stroke(Color(.spaceCadet))
                 .frame(width: 20)
                 .padding(.horizontal)
                 .overlay {
@@ -73,7 +73,7 @@ struct DifficultySelect: View {
                         Image(systemName: "checkmark.circle.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color(.coolGray))
                     }
                 }
         }
@@ -81,7 +81,7 @@ struct DifficultySelect: View {
         .background {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.white.opacity(0.5))
-                .fill(Color(.coolGray).opacity(0.5))
+                .fill(Color.white)
         }
         .onTapGesture {
             sessionModel.difficultyInt = diff.rawValue
