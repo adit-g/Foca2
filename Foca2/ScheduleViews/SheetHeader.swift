@@ -18,7 +18,7 @@ struct SheetHeader: View {
                 .font(.system(size: 20, weight: .semibold))
                 .frame(maxWidth: .infinity, alignment: .center)
             
-            Button("Done") {
+            Button("done") {
                 doneAction()
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -29,5 +29,5 @@ struct SheetHeader: View {
 }
 
 #Preview {
-    SheetHeader(title: "Reminder", doneAction: {})
+    SheetHeader(title: "reminder", doneAction: {})
 }

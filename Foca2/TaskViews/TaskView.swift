@@ -11,14 +11,12 @@ import CoreData
 struct TaskView: View {
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var appState = AppState.shared
-    @State private var redirect = false
     @State private var taskCreaterOpen = false
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Tasks")
+                Text("tasks")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundStyle(Color(.chineseViolet))
@@ -26,7 +24,7 @@ struct TaskView: View {
                     .padding([.horizontal, .top])
                     .padding(.bottom, 10)
                 
-                Button("+ Add") {
+                Button("+ add") {
                     taskCreaterOpen = true
                 }
                 .foregroundStyle(Color(.chineseViolet))
@@ -45,10 +43,6 @@ struct TaskView: View {
         .background(Color(.ghostWhite))
         .sheet(isPresented: $taskCreaterOpen) {
             TaskEditor(date: Date(), context: moc)
-        }
-        .fullScreenCover(isPresented: $redirect) { RedirectView() }
-        .onReceive(appState.$redirect) { red in
-            redirect = red
         }
     }
     

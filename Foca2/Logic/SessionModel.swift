@@ -104,8 +104,8 @@ class SessionModel: ObservableObject {
     }
     
     public func cancelSS() {
+        dac.stopMonitoring([.scheduled])
         ssEnabled = false
-        updateStatus()
     }
     
     public func isSessionOvernight() -> Bool {
@@ -205,6 +205,14 @@ class SessionModel: ObservableObject {
         let status = getStatus()
         UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(status.rawValue, forKey: "status")
         
+        if status != .onBreak {
+            if ssEnabled {
+                scheduleSS()
+            } else {
+                cancelSS()
+            }
+        }
+        
         switch status {
         case .noSession:
             SessionModel.unblockApps()
@@ -238,22 +246,22 @@ enum Difficulty: Int {
     var name: String {
         switch self {
         case .normal:
-            return "Normal"
+            return "normal"
         case .timeout:
-            return "Timeout"
+            return "timeout"
         case .deepfocus:
-            return "Deep Focus"
+            return "deep focus"
         }
     }
     
     var caption: String {
         switch self {
         case .normal:
-            return "You can easily take breaks or cancel this session"
+            return "you can easily take breaks or cancel this session"
         case .timeout:
-            return "There will be increasing delays before you can take a break or cancel"
+            return "there will be increasing delays before you can take a break or cancel"
         case .deepfocus:
-            return "You can't take breaks or end the session early"
+            return "you can't take breaks or end the session early"
         }
     }
 }

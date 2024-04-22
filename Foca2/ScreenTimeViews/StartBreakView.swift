@@ -23,14 +23,14 @@ struct StartBreakView: View {
     var body: some View {
         VStack {
             VStack (spacing: 0) {
-                Text("Break Length")
+                Text("break length")
                     .font(.system(size: 20, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
                     .padding(.top, 5)
                 
                 ZStack {
-                    Picker("Minute Picker", selection: $minuteSelection) {
+                    Picker("minute picker", selection: $minuteSelection) {
                         ForEach(0..<16) { row in
                             Text(row.description)
                                 .fontWeight(.bold)
@@ -49,6 +49,7 @@ struct StartBreakView: View {
                     dismiss: dismiss,
                     difficulty: difficulty
                 )
+                .padding(.bottom)
                 .onReceive(timer) { _ in
                     if timeRemaining > 0 {
                         timeRemaining -= 1
@@ -88,7 +89,7 @@ struct BreakButton: View {
                 .overlay { BreakText }
                 .padding(.horizontal)
         }
-        .disabled(counter > 0 || difficulty == .deepfocus)
+        .disabled(counter > 0 || difficulty == .deepfocus || sessionModel.getStatus() == .session)
         .onAppear { counter = sessionModel.getCurrentWaitTime() }
     }
     
@@ -96,11 +97,16 @@ struct BreakButton: View {
         let txt: String
         switch difficulty {
         case .normal:
-            txt = counter > 0 ? "Break Available in \(counter)" : "Start Break"
+            txt = counter > 0 ? "break available in \(counter)" : "start break"
         case .timeout:
-            txt = counter > 0 ? "Break Available in \(counter)" : "Start Break"
+            txt = counter > 0 ? "break available in \(counter)" : "start break"
         case .deepfocus:
-            txt = "Break Unavailable"
+            txt = "break unavailable"
+        }
+        if sessionModel.getStatus() == .session {
+            return Text("break unavailable during focus sessions")
+                .foregroundStyle(Color.gray)
+                .fontWeight(.semibold)
         }
         return Text(txt)
             .foregroundStyle(counter > 0 || difficulty == .deepfocus ? Color.gray : Color(.eggplant))

@@ -15,7 +15,7 @@ struct SelectApps: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Text("Lets get you set up")
+            Text("lets get you set up")
                 .foregroundStyle(Color(.chineseViolet))
                 .fontWeight(.semibold)
                 .font(.title3)
@@ -24,17 +24,17 @@ struct SelectApps: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
             
-            Text("Select your most distracting apps")
+            Text("select your most distracting apps")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundStyle(Color(.spaceCadet))
+                .foregroundStyle(Color(.chineseViolet))
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-            Text("You can always change these later or pick a new group of apps to block")
+            Text("you can always change these later or pick a new group of apps to block")
                 .padding(.horizontal)
                 .font(.subheadline)
-                .foregroundStyle(Color(.spaceCadet))
+                .foregroundStyle(Color(.coolGray))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
@@ -45,10 +45,11 @@ struct SelectApps: View {
                 tokenPickerOpen = true
             } label: {
                 Capsule()
-                    .foregroundStyle(Color(.coolGray))
+                    .foregroundStyle(Color(.chineseViolet))
                     .frame(height: 45)
                     .padding(.horizontal, 30)
-                    .overlay(Text("Select Apps").foregroundStyle(Color(.white)))
+                    .overlay(Text("select apps").foregroundStyle(Color(.white)))
+                    .padding(.bottom)
             }
         }
         .background(Color(.ghostWhite))
@@ -61,6 +62,7 @@ struct SelectApps: View {
                 if sessionModel.tokens.applications.isEmpty && sessionModel.tokens.categories.isEmpty {
                     sheetOpen = true
                 } else {
+                    sessionModel.saveTokens()
                     nextView()
                 }
             }

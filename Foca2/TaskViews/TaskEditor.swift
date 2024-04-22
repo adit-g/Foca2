@@ -67,7 +67,7 @@ struct TaskEditor: View {
                 NotesEditor(taskModel: taskModel, notes: taskModel.getNote())
             }
         )
-        .alert(alertTitle, isPresented: $showAlert) { Text("Cool") }
+        .alert(alertTitle, isPresented: $showAlert) { Text("cool") }
     }
     
     private func getSafeAreaBottom() -> CGFloat{
@@ -135,7 +135,7 @@ struct TaskEditor: View {
             ImageTemplate("pencil.and.scribble", 20, Color(.ghostWhite))
                 .onTapGesture { showNotesEditor = true }
             
-            Text("Note")
+            Text("note")
                 .foregroundStyle(Color(.ghostWhite))
                 .font(.system(size: 16))
                 .onTapGesture { showNotesEditor = true }
@@ -155,7 +155,7 @@ struct TaskEditor: View {
                 .onTapGesture { showReminderDatePicker = true }
             
             VStack {
-                Text("Remind me at \(timeString)")
+                Text("remind me at \(timeString)")
                     .font(.system(size: 12))
                 
                 Text(dateString)
@@ -186,7 +186,7 @@ struct TaskEditor: View {
             ImageTemplate("calendar", 20, Color(.ghostWhite))
                 .onTapGesture { showDueDatePicker = true }
             
-            Text("Due \(dueDateStr)")
+            Text("due \(dueDateStr)")
                 .foregroundStyle(Color(.ghostWhite))
                 .font(.system(size: 16))
                 .onTapGesture { showDueDatePicker = true }
@@ -211,7 +211,7 @@ struct TaskEditor: View {
         HStack {
             ImageTemplate("circle", 24, Color(.spaceCadet))
             
-            TextField("Add a Task", text: $taskTitle)
+            TextField("add a task", text: $taskTitle)
                 .padding(.leading, 5)
                 .foregroundStyle(Color(.spaceCadet))
                 .focused($isFocused)
@@ -237,10 +237,10 @@ struct TaskEditor: View {
             try taskModel.rinseAndRepeat()
             taskTitle = ""
         } catch TaskModelError.BlankTitle {
-            alertTitle = "The task title cannot be blank"
+            alertTitle = "the task title cannot be blank"
             showAlert = true
         } catch TaskModelError.CoreDataIssue {
-            alertTitle = "There was an issue saving your task. Please try again later"
+            alertTitle = "there was an issue saving your task. please try again later"
             showAlert = true
         } catch { print(error.localizedDescription) }
     }

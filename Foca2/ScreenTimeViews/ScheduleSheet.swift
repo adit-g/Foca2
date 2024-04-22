@@ -79,6 +79,7 @@ struct ScheduleSheet: View {
                 DaySelector
                 
                 BigButton
+                    .padding(.bottom)
             }
             .readSize(onChange: { sheetLength = $0.height })
             .foregroundStyle(Color(.spaceCadet))

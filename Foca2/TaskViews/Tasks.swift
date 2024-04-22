@@ -51,7 +51,7 @@ struct Tasks: View {
                         Image(systemName: "chevron.right")
                             .font(.system(size: 12))
                             .rotationEffect(completedOpen ? .degrees(90) : .zero)
-                        Text("Completed")
+                        Text("completed")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                     }

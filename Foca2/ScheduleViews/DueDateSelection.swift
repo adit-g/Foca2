@@ -29,15 +29,15 @@ struct DueDateSelection: View {
     var body: some View {
         NavigationStack {
             VStack {
-                SheetHeader(title: "Schedule", doneAction: { dismiss() })
+                SheetHeader(title: "schedule", doneAction: { dismiss() })
                 
-                getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Today", dateToSelect: today)
-                getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
-                getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
+                getConvenienceButton(imageName: "clock.arrow.circlepath", text: "today", dateToSelect: today)
+                getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "tomorrow", dateToSelect: tomorrow)
+                getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "next week", dateToSelect: nextWeek, flipImage: true)
                     .disabled(isItSunday)
                     .opacity(isItSunday ? 0.5 : 1)
                 
-                PickADateButton(title: "Pick a Date")
+                PickADateButton(title: "pick a date")
                     .padding(.bottom)
                     .onTapGesture {
                         sheetLength = 450

@@ -12,6 +12,9 @@ struct ContentView: View {
     @State private var selectedTab = Tab.first
     @StateObject private var sessionModel = SessionModel()
     
+    @ObservedObject var appState = AppState.shared
+    @State private var redirect = false
+    
     init() {
         UITabBar.appearance().isHidden = true
     }
@@ -20,15 +23,15 @@ struct ContentView: View {
         if userOnboarded {
             ZStack {
                 TabView(selection: $selectedTab) {
-                    TaskView()
+                    ScreenTimeView()
                         .environmentObject(sessionModel)
                         .tag(Tab.first)
                     
-                    Schedule()
+                    TaskView()
+                        .environmentObject(sessionModel)
                         .tag(Tab.second)
                     
-                    ScreenTimeView()
-                        .environmentObject(sessionModel)
+                    Schedule()
                         .tag(Tab.third)
                 }
                 
@@ -38,6 +41,13 @@ struct ContentView: View {
             .onAppear {
                 sessionModel.updateStatus()
                 UserDefaults(suiteName: "group.2L6XN9RA4T.focashared")!.set(ShieldStatus.one.rawValue, forKey: "shield")
+            }
+            .fullScreenCover(isPresented: $redirect) {
+                RedirectView()
+                    .environmentObject(sessionModel)
+            }
+            .onReceive(appState.$redirect) { red in
+                redirect = red
             }
         } else {
             IntroTutorial(isFinished: $userOnboarded)
@@ -53,9 +63,9 @@ enum Tab: Int, CaseIterable {
     
     var imageString: String {
         switch self {
-        case .first: return "list.bullet.clipboard"
-        case .second: return "calendar"
-        case .third: return "hourglass"
+        case .second: return "list.bullet.clipboard"
+        case .third: return "calendar"
+        case .first: return "hourglass"
         }
     }
 }

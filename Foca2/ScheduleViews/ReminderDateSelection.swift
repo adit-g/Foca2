@@ -39,19 +39,19 @@ struct ReminderDateSelection: View {
     var body: some View {
         NavigationStack {
             VStack {
-                SheetHeader(title: "Reminder", doneAction: { dismiss() })
+                SheetHeader(title: "reminder", doneAction: { dismiss() })
                 
-                getConvenienceButton(imageName: "clock.arrow.circlepath", text: "Later Today", dateToSelect: laterToday, hideDate: isItLate)
+                getConvenienceButton(imageName: "clock.arrow.circlepath", text: "later today", dateToSelect: laterToday, hideDate: isItLate)
                     .disabled(isItLate)
                     .opacity(isItLate ? 0.5 : 1)
                 
-                getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "Tomorrow", dateToSelect: tomorrow)
+                getConvenienceButton(imageName: "arrowshape.turn.up.right", text: "tomorrow", dateToSelect: tomorrow)
                 
-                getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "Next Week", dateToSelect: nextWeek, flipImage: true)
+                getConvenienceButton(imageName: "arrowshape.turn.up.left.2", text: "next week", dateToSelect: nextWeek, flipImage: true)
                     .disabled(isItSunday)
                     .opacity(isItSunday ? 0.5 : 1)
                 
-                PickADateButton(title: "Pick a Date & Time")
+                PickADateButton(title: "pick a date & time")
                     .padding(.bottom)
                     .onTapGesture {
                         sheetLength = 520

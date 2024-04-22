@@ -61,7 +61,7 @@ struct TimerCircle: View {
                     VStack {
                         Text(status.sessionName)
                             .font(.title)
-                        Text("Remaining Time: " + formattedStr)
+                        Text("remaining time: " + formattedStr)
                     }
                     
                     Circle()

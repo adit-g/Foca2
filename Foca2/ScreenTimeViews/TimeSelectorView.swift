@@ -31,7 +31,7 @@ struct TimeSelectorView: View {
                 width: size.width / 4,
                 height: size.height)
             
-            Text("Hours")
+            Text("hours")
             
             Picker("Minute Picker", selection: $minuteSelection) {
                 ForEach(0..<12) { row in
@@ -46,7 +46,7 @@ struct TimeSelectorView: View {
                 height: size.height)
             
             
-            Text("Mins")
+            Text("mins")
             
             Spacer()
         }

@@ -19,9 +19,9 @@ struct AllSet: View {
                 .padding(.top, 60)
             
             Text("when distracting apps are opened, foca will send you to your to-do list. you can then decide whether you actually want to open that app")
-                .foregroundStyle(Color(.spaceCadet))
+                .foregroundStyle(Color(.coolGray))
                 .frame(width: 300, alignment: .leading)
-                .font(.headline)
+                .font(.subheadline)
                 .padding()
             
             Spacer()
@@ -32,10 +32,11 @@ struct AllSet: View {
                 nextView()
             } label: {
                 Capsule()
-                    .foregroundStyle(Color(.coolGray))
+                    .foregroundStyle(Color(.chineseViolet))
                     .frame(height: 45)
                     .padding(.horizontal, 30)
                     .overlay(Text("finish").foregroundStyle(Color(.white)))
+                    .padding(.bottom)
             }
         }
         .background(Color(.ghostWhite))

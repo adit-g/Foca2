@@ -16,7 +16,7 @@ struct NotesEditor: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SheetHeader(title: "Note") {
+            SheetHeader(title: "note") {
                 taskModel.setNote(notes)
                 dismiss()
             }
@@ -24,7 +24,7 @@ struct NotesEditor: View {
             Divider()
 
             ScrollView {
-                TextField("Add Notes", text: $notes, axis: .vertical)
+                TextField("add notes", text: $notes, axis: .vertical)
                     .padding()
                     .focused($focus)
                     .onAppear { focus = true }

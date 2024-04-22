@@ -21,6 +21,10 @@
 		A962ECF52B955B10008B9F97 /* TaskItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962ECF32B953E37008B9F97 /* TaskItem+CoreDataProperties.swift */; };
 		A97798702B4E05F800ACA144 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */; };
 		A97798722B4E06CD00ACA144 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97798712B4E06CD00ACA144 /* CalendarView.swift */; };
+		A979F0712BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A979F0702BD5A7D2000656E6 /* PrivacyInfo.xcprivacy */; };
+		A979F0722BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A979F0702BD5A7D2000656E6 /* PrivacyInfo.xcprivacy */; };
+		A979F0732BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A979F0702BD5A7D2000656E6 /* PrivacyInfo.xcprivacy */; };
+		A979F0742BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A979F0702BD5A7D2000656E6 /* PrivacyInfo.xcprivacy */; };
 		A991C6432BCA0E490043E37E /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6422BCA0E490043E37E /* Tasks.swift */; };
 		A991C6452BCA0FC90043E37E /* TaskIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6442BCA0FC90043E37E /* TaskIntro.swift */; };
 		A991C6472BCA14980043E37E /* AllSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991C6462BCA14980043E37E /* AllSet.swift */; };
@@ -134,6 +138,7 @@
 		A962ECF32B953E37008B9F97 /* TaskItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A977986F2B4E05F800ACA144 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		A97798712B4E06CD00ACA144 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		A979F0702BD5A7D2000656E6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A991C6422BCA0E490043E37E /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		A991C6442BCA0FC90043E37E /* TaskIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskIntro.swift; sourceTree = "<group>"; };
 		A991C6462BCA14980043E37E /* AllSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSet.swift; sourceTree = "<group>"; };
@@ -283,6 +288,7 @@
 		A9A821F22AF355FE002E0F61 = {
 			isa = PBXGroup;
 			children = (
+				A979F0702BD5A7D2000656E6 /* PrivacyInfo.xcprivacy */,
 				A9A821FD2AF355FE002E0F61 /* Foca2 */,
 				A9BFCEDD2B64396A00F55EE3 /* DeviceActivityMonitor */,
 				A9F5B1812B7DE65300CD4F69 /* ShieldConfiguration */,
@@ -538,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A979F0742BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +552,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A979F0712BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */,
 				A9A822062AF355FF002E0F61 /* Preview Assets.xcassets in Resources */,
 				A9A822032AF355FF002E0F61 /* Assets.xcassets in Resources */,
 			);
@@ -554,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A979F0722BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +570,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A979F0732BD5A7D2000656E6 /* PrivacyInfo.xcprivacy in Resources */,
 				A9F5B1A62B7F444F00CD4F69 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,7 +872,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Foca2/Foca2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Foca2/Preview Content\"";
 				DEVELOPMENT_TEAM = 2L6XN9RA4T;
 				ENABLE_PREVIEWS = YES;
@@ -895,7 +905,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Foca2/Foca2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Foca2/Preview Content\"";
 				DEVELOPMENT_TEAM = 2L6XN9RA4T;
 				ENABLE_PREVIEWS = YES;

@@ -19,7 +19,7 @@ struct ChooseDateView: View {
     
     var body: some View {
         Form {
-            DatePicker("Pick a Date", selection: $chosenDate, displayedComponents: components)
+            DatePicker("pick a date", selection: $chosenDate, displayedComponents: components)
                 .datePickerStyle(.graphical)
         }
         .scrollContentBackground(.hidden)
@@ -41,17 +41,17 @@ struct ChooseDateView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 12, maxHeight: 12)
                     
-                    Text("Back")
+                    Text("back")
                 }
             }
         }
         
         ToolbarItem(placement: .principal) {
-            Text("Pick a Date")
+            Text("pick a date")
         }
         
         ToolbarItem(placement: .topBarTrailing) {
-            Button("Set") {
+            Button("set") {
                 setAction(chosenDate)
             }
         }

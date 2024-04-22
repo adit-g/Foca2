@@ -65,7 +65,7 @@ struct Permissions: View {
                 nextView()
             } label: {
                 Capsule()
-                    .foregroundStyle(Color(.coolGray))
+                    .foregroundStyle(Color(.chineseViolet))
                     .frame(height: 45)
                     .padding(.horizontal, 30)
                     .opacity(stStatus != .check || notiStatus != .check ? 0.4 : 1)

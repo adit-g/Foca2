@@ -68,10 +68,10 @@ struct TaskTile: View {
     
     var TopBar: some View {
         HStack {
-            Text("Tasks:")
+            Text("tasks:")
                 .foregroundStyle(Color(.ghostWhite))
             Spacer()
-            Button("+ Add") {
+            Button("+ add") {
                 taskCreaterOpen = true
             }
             .foregroundStyle(Color(.chineseViolet))

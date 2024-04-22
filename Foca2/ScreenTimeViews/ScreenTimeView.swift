@@ -26,20 +26,16 @@ struct ScreenTimeView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("Focus")
-                .font(.system(size: 24, weight: .semibold))
-                .foregroundColor(Color(.spaceCadet))
-                .padding(.vertical, 10)
-            
+        ScrollView(showsIndicators: false) {
+            Spacer()
             if status == .noSession {
                 TimeSelectionCircle(minutes: $minutes)
                     .padding(.vertical, 15)
-                    .padding(.bottom)
+                    .padding(.vertical)
             } else {
                 TimerCircle()
                     .padding(.vertical, 15)
-                    .padding(.bottom)
+                    .padding(.vertical)
             }
             
             BigButton
@@ -49,7 +45,7 @@ struct ScreenTimeView: View {
             } label: {
                 SomeSettingsView(
                     image: "shield",
-                    title: "Apps Blocked",
+                    title: "apps blocked",
                     subtitle: "\(sessionModel.tokens.categories.count) categories\n\(sessionModel.tokens.applications.count) applications",
                     subtitleMinimized: true
                 )
@@ -61,29 +57,32 @@ struct ScreenTimeView: View {
             } label: {
                 SomeSettingsView(
                     image: "clock",
-                    title: "Schedule",
-                    subtitle: sessionModel.ssEnabled ? "On" : "Off",
+                    title: "schedule",
+                    subtitle: sessionModel.ssEnabled ? "on" : "off",
                     subtitleMinimized: false
                 )
                 .padding(.bottom, 5)
             }
-            
+            .padding(.bottom, 80)
             Spacer()
         }
         .background(Color(.ghostWhite))
-        .foregroundStyle(.black)
+        .foregroundStyle(Color(.spaceCadet))
         .familyActivityPicker(
             isPresented: $tokenPickerOpen,
             selection: $sessionModel.tokens
         )
-        .onChange(of: sessionModel.tokens) { sessionModel.saveTokens() }
+        .onChange(of: sessionModel.tokens) {
+            sessionModel.saveTokens()
+            sessionModel.updateStatus()
+        }
         .sheet(isPresented: $scheduleSheetOpen) { ScheduleSheet() }
         .sheet(isPresented: $startBreakOpen) { StartBreakView() }
         .alert("no apps are blocked", isPresented: $alertOpen) {
             Button("lets block!", role: .cancel) {
                 tokenPickerOpen = true
             }
-                .keyboardShortcut(.defaultAction)
+            .keyboardShortcut(.defaultAction)
             Button("i'm good") { sessionModel.startFS(minutes: minutes) }
         } message: {
             Text("blocking distracting apps could help you maintain focus")

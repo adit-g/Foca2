@@ -41,7 +41,7 @@ struct OnboardSchedule: View {
             } label: {
                 SomeSettingsView(
                     image: "speedometer",
-                    title: "Difficulty",
+                    title: "difficulty",
                     subtitle: difficultyLevel.name,
                     subtitleMinimized: false
                 )
@@ -58,10 +58,11 @@ struct OnboardSchedule: View {
                 nextView()
             } label: {
                 Capsule()
-                    .foregroundStyle(Color(.coolGray))
+                    .foregroundStyle(Color(.chineseViolet))
                     .frame(height: 45)
                     .padding(.horizontal, 30)
                     .overlay(Text("continue").foregroundStyle(Color(.white)))
+                    .padding(.bottom)
             }
         }
         .foregroundStyle(Color(.spaceCadet))
@@ -75,7 +76,7 @@ struct OnboardSchedule: View {
     
     var DaySelector: some View {
         VStack(spacing: 0) {
-            Text("Days of Week Active")
+            Text("days of week active")
                 .fontWeight(.medium)
                 .foregroundColor(Color(.spaceCadet))
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -110,7 +111,7 @@ struct OnboardSchedule: View {
     
     var TimeSelector: some View {
         VStack(spacing: 0) {
-            DatePicker("From", selection: $sessionModel.ssFromTime, displayedComponents: .hourAndMinute)
+            DatePicker("from", selection: $sessionModel.ssFromTime, displayedComponents: .hourAndMinute)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)
@@ -118,7 +119,7 @@ struct OnboardSchedule: View {
             
             Divider()
             
-            DatePicker("To", selection: $sessionModel.ssToTime, displayedComponents: .hourAndMinute)
+            DatePicker("to", selection: $sessionModel.ssToTime, displayedComponents: .hourAndMinute)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
                 .padding(.vertical, 8)

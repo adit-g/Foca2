@@ -45,10 +45,11 @@ struct TaskIntro: View {
                 nextView()
             } label: {
                 Capsule()
-                    .foregroundStyle(Color(.coolGray))
+                    .foregroundStyle(Color(.chineseViolet))
                     .frame(height: 45)
                     .padding(.horizontal, 30)
                     .overlay(Text("continue").foregroundStyle(Color(.white)))
+                    .padding(.bottom)
             }
         }
         .background(Color(.ghostWhite))

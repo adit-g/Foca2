@@ -29,6 +29,7 @@ struct DifficultySelect: View {
                 getDiffButton(diff: .normal, image: "shield")
                 getDiffButton(diff: .timeout, image: "shield.lefthalf.filled")
                 getDiffButton(diff: .deepfocus, image: "shield.fill")
+                    .padding(.bottom)
                 
             }
             .readSize(onChange: { sheetLength = $0.height })
