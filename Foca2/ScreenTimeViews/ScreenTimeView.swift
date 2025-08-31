@@ -51,6 +51,7 @@ struct ScreenTimeView: View {
                 )
                 .padding(.bottom, 5)
             }
+            .disabled(sessionModel.blockedAppChangingDisabled)
             
             Button {
                 scheduleSheetOpen = true

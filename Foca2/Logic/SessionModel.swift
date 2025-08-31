@@ -27,6 +27,16 @@ class SessionModel: ObservableObject {
     @AppStorage("SSToTime") var ssToTime = Calendar.current.date(bySettingHour: 17, minute: 0, second: 0, of: Date())!
     @AppStorage("SSEnabled") var ssEnabled = false
     
+    public var blockedAppChangingDisabled: Bool {
+        let now = Date()
+        for time in breakTimes {
+            if time > now - 180 * 60 {
+                return true
+            }
+        }
+        return false
+    }
+    
     public var ssFromTimeComps: DateComponents {
         var c = Calendar.current.dateComponents([.hour, .minute], from: ssFromTime)
         c.second = 0
